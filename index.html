@@ -10,19 +10,28 @@
     <style>
         
         body {
-            background-color: #170722;
-            color: antiquewhite;
+            background-image: linear-gradient(#3e1f47, #144552);
+            color: #f7f7ff;
             font-family: 'Asap', sans-serif;
             font-size: larger;
             letter-spacing: 0.7px; 
+            
         }
 
         .index {
             font-family: 'Roboto Slab';
             font-size: 0.9em;
         }
+
         a {
             text-decoration: none;
+            color: #f2dc5d;
+        }
+        .indexLink {
+            color: #006466;
+        }
+        ul {
+            list-style: none;
         }
 
         #perfil {
@@ -39,6 +48,15 @@
             font-size: 2.5em;
         }
 
+        strong {
+            color: #F2A359;
+            font-weight: 500;
+        }
+
+         {
+            text-align: center;
+        }
+
         .l1 {
             font-size: 1.5em;
         }
@@ -52,16 +70,21 @@
             font-size: 0.9em;
         }
 
+        #rodape {
+            color: #161627;
+            font-size: 80%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
     <!-- QUINTA SESSÃO-->
     <ul class="index">
-        <li><a href="#perfil">Início</a></li>
-        <li><a href="#sobre">Sobre mim</a></li>
-        <li><a href="#habilidades">Minhas habilidades</a></li>
-        <li><a href="#links">Links</a></li>
+        <li><a href="#perfil" class="indexLink">Início</a></li>
+        <li><a href="#sobre" class="indexLink">Sobre mim</a></li>
+        <li><a href="#habilidades" class="indexLink">Minhas habilidades</a></li>
+        <li><a href="#links" class="indexLink">Links</a></li>
     </ul>
 
     <!-- PRIMEIRA SESSÃO-->
@@ -83,7 +106,7 @@
         Minhas habilidades
     </h2>
 
-    <ul>
+    <ul class="habilidadesText">
         <li class="l1">Git e GitHub</li>
         <li class="l2">HTML e CSS</li>
         <li class="l3">Listas</li>
@@ -94,7 +117,7 @@
     <h2 id="links" class="title">
         Desenvolvimento? Programação?
     </h2>
-    <p> 
+    <p class="linksText"> 
         <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Common_questions" target="_blank">
             Clique aqui
         </a> 
@@ -102,5 +125,18 @@
         por trás das telas e fique tão chocada(o) quanto eu
     </p>
 
+    <!-- SEXTA SESSÃO-->
+    <h2 class="title">
+        Me encontre aqui
+    </h2>
+    <p>
+        <a href="https://github.com/Btriz">GitHub</a> <br> 
+        <a href="https://www.linkedin.com/in/fagundesbeatriz/">LinkedIn</a>
+    </p>
+
+    <!-- RODAPÉ-->
+    <p id="rodape">
+        <em>Site em construção</em>
+    </p>
 </body>
 </html>
