@@ -14,15 +14,19 @@
             color: antiquewhite;
             font-family: 'Asap', sans-serif;
             font-size: larger;
+            letter-spacing: 0.7px; 
         }
 
         .index {
             font-family: 'Roboto Slab';
             font-size: 0.9em;
         }
-
         a {
             text-decoration: none;
+        }
+
+        #perfil {
+            border-radius: 100%;
         }
 
         .title {
@@ -35,10 +39,18 @@
             font-size: 2.5em;
         }
 
-        .general-text {
-            letter-spacing: 0.7px; 
+        .l1 {
+            font-size: 1.5em;
         }
-
+        .l2 {
+            font-size: 1.3em;
+        }
+        .l3 {
+            font-size: 1.1em;
+        }
+        .l4 {
+            font-size: 0.9em;
+        }
 
     </style>
 </head>
@@ -46,14 +58,14 @@
 
     <!-- QUINTA SESSÃO-->
     <ul class="index">
-        <li><a href="#foto">Início</a></li>
+        <li><a href="#perfil">Início</a></li>
         <li><a href="#sobre">Sobre mim</a></li>
         <li><a href="#habilidades">Minhas habilidades</a></li>
         <li><a href="#links">Links</a></li>
     </ul>
 
     <!-- PRIMEIRA SESSÃO-->
-    <img id="foto" src="perfil.jpg" width="180" alt="imagem de Beatriz">
+    <img id="perfil" src="perfil.jpg" width="180" alt="imagem de Beatriz">
 
     <h1 class="title">
         Beatriz Maria <br> 
@@ -61,7 +73,7 @@
     </h1>
 
     <!-- SEGUNDA SESSÃO-->
-    <p id="sobre" class="general-text"> 
+    <p id="sobre"> 
         Olá! Eu sou estudante de desenvolvimento web.<br>
         Do <strong>Rio Grande do Norte</strong>, <strong>Brasil</strong>, para o mundo! (em breve)
     </p>
@@ -71,18 +83,18 @@
         Minhas habilidades
     </h2>
 
-    <ul class="general-text">
-        <li>Git e GitHub</li>
-        <li>HTML</li>
-        <li>Listas</li>
-        <li>Eu também sei <em>tatuar</em>!!!</li>
+    <ul>
+        <li class="l1">Git e GitHub</li>
+        <li class="l2">HTML e CSS</li>
+        <li class="l3">Listas</li>
+        <li class="l4">Eu também sei <em>tatuar</em>!!!</li>
     </ul>
 
     <!-- QUARTA SESSÃO-->
     <h2 id="links" class="title">
         Desenvolvimento? Programação?
     </h2>
-    <p class="general-text"> 
+    <p> 
         <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Common_questions" target="_blank">
             Clique aqui
         </a> 
