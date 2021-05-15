@@ -7,6 +7,9 @@ body {
     letter-spacing: 0.7px; 
     margin: 0px;       
 }
+div { 
+    border: 0.5px solid rgba(255, 253, 253, 0);
+}
 .divBody {
     margin: 0px auto;
     padding: 0px;
@@ -16,7 +19,7 @@ body {
     font-family: 'Roboto Slab', serif;
     font-weight: 500;
     letter-spacing: 1.3px;
-    margin-top: 5%;
+    margin-top: 2em;
 }
 ul {
     list-style: none;
@@ -67,14 +70,10 @@ a {
     margin: 100px;
 }
 
-div { 
-    border: 0.5px solid rgba(255, 253, 253, 0);
-}
-
 /*NOME FOTO DESCRIÇÃO----------------------------*/
 .divProfile {        
-    margin-top:10%;
-    margin-bottom: 5%;
+    margin-top:;
+    margin-bottom: 10%;
 }
 
 .divFotoSobre div {        
@@ -87,16 +86,25 @@ div {
 }
 #foto {
     margin-right: 2.5%;
-    min-width: fit-content;
+    min-width: max-content;
 }
 #sobre {
+    margin-right: auto;
     margin-top: 8%;
     vertical-align: top;
 }
 
 /*HABILIDADES--------------------------------*/
-#habilidades {
+#divContent {
+    margin: auto;
+    max-width: 70%;
+}
 
+
+
+ul {
+    padding: 0%;
+    line-height: 30px;
 }
 
 .l1 {
@@ -112,6 +120,24 @@ div {
     font-size: 0.9em;
 }
 
+/*LINKS---------------------------------------*/
+.right {
+    border-right: 2px solid rgba(255, 255, 255, 0.096);
+    text-align: center;
+    line-height: 30px;
+    margin-left: auto;
+    max-width: max-content;
+    padding-right: 30px;
+}
+
+.left {
+    border-left: 2px solid rgba(255, 255, 255, 0.096);
+    text-align: center;
+    line-height: 30px;
+    margin-right: auto;
+    max-width: max-content;
+    padding-left: 30px;
+}
 
 #rodape {
     color: #3e1f47;
