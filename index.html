@@ -6,137 +6,103 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        
-        body {
-            background-image: linear-gradient(#3e1f47, #144552);
-            color: #f7f7ff;
-            font-family: 'Asap', sans-serif;
-            font-size: larger;
-            letter-spacing: 0.7px; 
-            
-        }
-
-        .index {
-            font-family: 'Roboto Slab';
-            font-size: 0.9em;
-        }
-
-        a {
-            text-decoration: none;
-            color: #f2dc5d;
-        }
-        .indexLink {
-            color: #006466;
-        }
-        ul {
-            list-style: none;
-        }
-
-        #perfil {
-            border-radius: 100%;
-        }
-
-        .title {
-            font-family: 'Roboto Slab', serif;
-            font-weight: 500;
-            letter-spacing: 1.3px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-        }
-
-        strong {
-            color: #F2A359;
-            font-weight: 500;
-        }
-
-         {
-            text-align: center;
-        }
-
-        .l1 {
-            font-size: 1.5em;
-        }
-        .l2 {
-            font-size: 1.3em;
-        }
-        .l3 {
-            font-size: 1.1em;
-        }
-        .l4 {
-            font-size: 0.9em;
-        }
-
-        #rodape {
-            color: #161627;
-            font-size: 80%;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 
     <!-- QUINTA SESSÃO-->
-    <ul class="index">
-        <li><a href="#perfil" class="indexLink">Início</a></li>
-        <li><a href="#sobre" class="indexLink">Sobre mim</a></li>
-        <li><a href="#habilidades" class="indexLink">Minhas habilidades</a></li>
-        <li><a href="#links" class="indexLink">Links</a></li>
-    </ul>
+    <div class="index">
+            <h3 id="logo">B_</h3>
+        <div>
+            <a href="#inicio">Início</a>
+        </div>
+        <div>
+            <a href="#foto">Sobre mim</a>
+        </div>
+        <div>
+            <a href="#habilidades">Minhas habilidades</a>
+        </div>
+        <div>
+            <a href="#links">Links</a>  
+        </div>   
+        <div>
+            <a href="#contato">Contato</a>
+        </div> 
+    </div>
 
-    <!-- PRIMEIRA SESSÃO-->
-    <img id="perfil" src="perfil.jpg" width="180" alt="imagem de Beatriz">
+    <div class="divBody">
 
-    <h1 class="title">
-        Beatriz Maria <br> 
-        Fagundes Oliveira_
-    </h1>
+    <!-- PRIMEIRA SESSÃO-->  
+    <div id="inicio" class="divProfile">
+        <h1 class="title">
+            Beatriz Maria <br> 
+            Fagundes Oliveira_
+        </h1>
+    <!-- SEGUNDA SESSÃO--> 
+        <div class="divFotoSobre">
 
-    <!-- SEGUNDA SESSÃO-->
-    <p id="sobre"> 
-        Olá! Eu sou estudante de desenvolvimento web.<br>
-        Do <strong>Rio Grande do Norte</strong>, <strong>Brasil</strong>, para o mundo! (em breve)
-    </p>
+           <div id="foto">
+            <img src="perfil.jpg" width="180" alt="imagem de Beatriz">
+           </div>
+        
+            <div id="sobre">
+                <p> 
+                    Olá! Eu sou estudante de desenvolvimento web.<br>
+                    Do <strong>Rio Grande do Norte</strong>, <strong>Brasil</strong>, para o mundo! (em breve)
+                </p>
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- TERCEIRA SESSÃO-->
-    <h2 id="habilidades" class="title">
-        Minhas habilidades
-    </h2>
-
-    <ul class="habilidadesText">
-        <li class="l1">Git e GitHub</li>
-        <li class="l2">HTML e CSS</li>
-        <li class="l3">Listas</li>
-        <li class="l4">Eu também sei <em>tatuar</em>!!!</li>
-    </ul>
+    <div id="habilidades">
+        <h2 class="title">
+            Minhas habilidades
+        </h2>
+    
+        <ul class="habilidadesText">
+            <li class="l1">Git e GitHub</li>
+            <li class="l2">HTML e CSS</li>
+            <li class="l3">Listas</li>
+            <li class="l4">Também sei <em>tatuar</em>!!!</li>
+        </ul>
+    </div>
 
     <!-- QUARTA SESSÃO-->
-    <h2 id="links" class="title">
-        Desenvolvimento? Programação?
-    </h2>
-    <p class="linksText"> 
-        <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Common_questions" target="_blank">
-            Clique aqui
-        </a> 
-        para entender como funciona a internet <br>
-        por trás das telas e fique tão chocada(o) quanto eu
-    </p>
-
+    <div id="links">
+        <h2 class="title">
+            Desenvolvimento? Programação?
+        </h2>
+        <p class="linksText"> 
+            <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Common_questions" target="_blank">
+                Clique aqui
+            </a> 
+            para entender como funciona a internet <br>
+            por trás das telas e fique tão chocada(o) quanto eu.
+        </p>
+    </div>
+    
     <!-- SEXTA SESSÃO-->
-    <h2 class="title">
-        Me encontre aqui
-    </h2>
-    <p>
-        <a href="https://github.com/Btriz">GitHub</a> <br> 
-        <a href="https://www.linkedin.com/in/fagundesbeatriz/">LinkedIn</a>
-    </p>
+    <div id="contato">
+        <h2 class="title">
+            Me encontre aqui
+        </h2>
+        <p>
+            <a href="https://github.com/Btriz">GitHub</a> <br> 
+            <a href="https://www.linkedin.com/in/fagundesbeatriz/">LinkedIn</a>
+        </p>
+    </div>
+    
+    </div>
 
-    <!-- RODAPÉ-->
-    <p id="rodape">
-        <em>Site em construção</em>
-    </p>
+        <!-- RODAPÉ-->
+        <div id="rodape">
+            <p>
+                <em>Site em construção</em>
+            </p>
+        </div>
 </body>
 </html>

@@ -1,0 +1,120 @@
+        
+body {
+    background-image: linear-gradient(#3e1f47, #144552);
+    color: #f7f7ff;
+    font-family: 'Asap', sans-serif;
+    font-size: larger;
+    letter-spacing: 0.7px; 
+    margin: 0px;       
+}
+.divBody {
+    margin: 0px auto;
+    padding: 0px;
+    width: 75%;
+}
+.title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    letter-spacing: 1.3px;
+    margin-top: 5%;
+}
+ul {
+    list-style: none;
+}
+h1 {
+    font-size: 2.5em;
+}
+strong {
+    color: #F2A359;
+    font-weight: 400;
+}
+a {
+    text-decoration: none;
+    color: #f2dc5d;
+}
+
+/*ÍNDICE-----------------------------------*/
+.index {
+    align-content: flex-end;
+    background-color: #3e1f47;
+    font-family: 'Roboto Slab';
+    font-size: 0.9em;
+    padding: 0%;
+    width: 100%;
+    position: fixed;
+    vertical-align: top;        
+}
+.index div {
+    display:inline-block;
+    margin: 0% 4.5%;
+    padding: 0px;
+    
+    
+}
+#logo {
+    display: inline-block;
+    margin: 0% 0% 0% 2%;
+    padding: 0%;
+    font-family: Roboto Slab;
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.index a{
+    color: #006466;
+}
+#divlogo {
+    margin: 100px;
+}
+
+div { 
+    border: 0.5px solid rgba(255, 253, 253, 0);
+}
+
+/*NOME FOTO DESCRIÇÃO----------------------------*/
+.divProfile {        
+    margin-top:10%;
+    margin-bottom: 5%;
+}
+
+.divFotoSobre div {        
+    display: inline-block;  
+}
+.divFotoSobre img{
+    background-color: rgba(255, 255, 255, 0.096);
+    border-radius: 100%;
+    padding: 10px;
+}
+#foto {
+    margin-right: 2.5%;
+    min-width: fit-content;
+}
+#sobre {
+    margin-top: 8%;
+    vertical-align: top;
+}
+
+/*HABILIDADES--------------------------------*/
+#habilidades {
+
+}
+
+.l1 {
+    font-size: 1.5em;
+}
+.l2 {
+    font-size: 1.3em;
+}
+.l3 {
+    font-size: 1.1em;
+}
+.l4 {
+    font-size: 0.9em;
+}
+
+
+#rodape {
+    color: #3e1f47;
+    font-size: 80%;
+    text-align: center;
+}
