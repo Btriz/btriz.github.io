@@ -1,0 +1,169 @@
+body {
+  background-image: url('back.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  margin: 50px 20px;
+}
+
+h1 {
+  margin: auto;
+  max-width: max-content;
+  text-align: center;
+}
+
+#hero-title {
+  font-family: Bungee Outline, monospace;
+  font-size: 4em;
+  color: white;
+}
+
+#title {
+  padding-top: 35px;
+  color: rgba(255, 255, 255, 0.747);
+  font-family: VT323, monospace;
+}
+
+section {
+  margin: 5px auto 20px;
+  height: 60px;
+  width: 330px;
+  position: relative;
+}
+
+#a {
+  display: inline-block;
+  width: 140px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#b {
+  width: 190px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+input {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 30px 4px 4px 30px;
+  color: white;
+  font-family: VT323, monospace;
+  font-size: 26px;
+  height: 44px;
+  padding-left: 20px;
+  padding-right: 0;
+  max-width: 45px;
+  transition: 0.1s;
+}
+
+input:hover , input:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.486), inset 0 0 10px white;
+  outline: none;
+}
+
+input::selection {
+  background-color: rgba(255, 255, 255, 0.295);
+}
+
+table {
+  box-shadow: 0 0 200px black;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+  font-family: VT323, monospace;
+  font-size: 20px;
+  height: 50px;
+  line-height: 15px;
+  margin-left: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: absolute;
+  top: 0;
+  transition: 0.1s;
+}
+
+button:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.486), inset 0 0 10px white;
+}
+
+button:active {
+  box-shadow: 0 0 13px white, inset 0 0 10px white;
+}
+
+button:focus {
+  outline: 0;
+}
+
+#generate-board {
+  right: 0;
+}
+
+#random {
+  left: 0;
+}
+
+#clear-board {
+  border-radius: 4px 30px 30px 4px;
+  right: 0;
+}
+
+#clear-board:hover {
+  box-shadow: 0 0 10px rgba(255, 0, 106, 0.753), inset 0 0 18px rgba(255, 0, 106, 0.836);
+}
+
+#clear-board:active {
+  box-shadow: 0 0 15px rgb(253, 51, 135), inset 0 0 18px rgb(253, 38, 128);
+}
+
+.color {
+  border: 1px solid black;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  transition: 0.1s linear;
+}
+
+.color:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.432);
+}
+
+#color-palette {
+  margin: 20px auto 0;
+  height: 80px;
+  max-width: max-content;
+}
+
+#color-palette::selection {
+  background-color: none;
+}
+
+#pixel-board {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pixel {
+  background-color: white;
+  border: 1px solid black;
+  height: 41px;
+  width: 41px;
+}
+
+.pixel:hover {
+  box-shadow: inset 0 0 10px rgb(139, 139, 139);
+}
+
+.selected {
+  box-shadow: 0 0 1.7em white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
