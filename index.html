@@ -3,81 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <title>Beatriz - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="images/ensolarado.ico">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="node_modules/aos/dist/aos.css">
+    <link rel="stylesheet" href="node_modules/flickity/dist/flickity.css" media="screen">
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-    <!-- QUINTA SESSÃO-->
-    <div class="index">
-            <h3 id="logo">B_</h3>
+    <nav id="index">
         <div>
-            <a href="#inicio">Início</a>
+            <a href="#header">Início</a>
         </div>
+
         <div>
-            <a href="#foto">Sobre mim</a>
+            <a href="#skills">habilidades</a>
         </div>
-        <div>
-            <a href="#habilidades">Minhas habilidades</a>
-        </div>
+        <a href="#projects">Projetos</a>
         <div>
             <a href="#links">Links</a>  
         </div>   
         <div>
-            <a href="#contato">Contato</a>
+            <a href="#contact">Contato</a>
         </div> 
-    </div>
+    </nav>
 
-    <div class="divBody">
+    <header id="header" class="big-container">
 
-    <!-- PRIMEIRA SESSÃO-->  
-    <div id="inicio" class="divProfile">
-        <h1 class="title">
-            Beatriz Maria <br> 
-            Fagundes Oliveira_
-        </h1>
-    <!-- SEGUNDA SESSÃO--> 
-        <div class="divFotoSobre">
+        <div id="images">
+            <!-- <img src="images/moon.png" id="moon" class="imgs"> -->
+            <img src="images/background/ob1.png" class="imgs poligons ani1" id="img1">
+            <img src="images/background/ob2.png" class="imgs poligons ani2" id="img2">
+            <img src="images/background/ob3.png" class="imgs poligons ani" id="img3">
+            <img src="images/background/ob4.png" class="imgs poligons ani3" id="img4">
+            <img src="images/background/ob5.png" class="imgs poligons ani" id="img5">
 
-           <div id="foto">
-            <img src="perfil.jpg" width="180" alt="imagem de Beatriz">
-           </div>
+            <!-- <img src="images/background/back.png" id="back" class="imgs"> -->
+            <img src="images/background/topmain.png" id="topmain" class="imgs">
+        </div>
         
-            <div id="sobre">
-                <p> 
-                    Olá! Eu sou estudante de desenvolvimento web.<br>
-                    Do <strong>Rio Grande do Norte</strong>, <strong>Brasil</strong>, para o mundo! (em breve)
-                </p>
+        <div id="front">
+
+            <div id="front-div-1">
+                <div id="hero-title-container">
+                    <h1 id="title-text">Oi, eu faço sites!</h1>
+                    <div id="text-cursor"></div>
+                </div>
+
+                <div id="scrl" data-aos="zoom-out-down">↓</div>
+
+            </div>
+
+            <section id="message-section" data-aos="fade-up">
+    
+                <div id="profile">
+                 <img src="images/perfil.jpg" width="180" alt="imagem de Beatriz">
+                </div>
+             
+                 <div id="about">
+                     <p> 
+                         Sou <strong>Beatriz Fagundes</strong>. <br>
+                         Estudo desenvolvimento web <br> e sou do <strong>Rio Grande do Norte</strong>, <strong>Brasil</strong> 🌞
+                     </p>
+                 </div>
+        
+            </section>
+
+        </div>
+    </header>
+
+    <main id="main" class="big-container">
+
+        <div id="skills" class="container">
+            <h2 class="title item">
+                Minhas habilidades
+            </h2>
+        
+            <ul class="item right-item">
+                <li>Git e GitHub</li>
+                <li>HTML e CSS</li>
+                <li>JavaScript <br> <p class="s-text">Testes unitários</p> </li>
+                <li>Listas</li>
+                <li>Também sei fazer tatuagem e tocar pandeiro</li>
+            </ul>
+        </div>
+
+        <h2 class="title container" id="projects">
+            Projetos
+        </h2>
+
+        <div id="carousel-wrap"> 
+            
+            <div class="project"> 
+                <a href="https://btriz.github.io/projects/pixel-art" target="_blank">
+                    <div class="project-title">
+                        <p>Pixel Art</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+                    <div class="print-div" id="pixel-art"></div>
+                </a>
+            </div>
+
+            <div class="project"> 
+                <a href="" target="_blank">
+                    <div class="project-title">
+                        <p>To Do List</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+                    
+                    <div class="print-div" id="todo-list">
+                    </div>
+                </a>
+            </div>
+
+            <div class="project"> 
+                <a href="" target="_blank">
+                    <div class="project-title">
+                        <p>To Do List</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+                    
+                    <div class="print-div" id="">
+                    </div>
+                </a>
+            </div>
+            
+            <div class="project"> 
+                <a href="" target="_blank">
+                    <div class="project-title">
+                        <p>To Do List</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+                    
+                    <div class="print-div" id="">
+                    </div>
+                </a>
+            </div>
+
+            <div class="project"> 
+                <a href="" target="_blank">
+                    <div class="project-title">
+                        <p>To Do List</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+                    
+                    <div class="print-div" id="">
+                    </div>
+                </a>
+            </div>
+
+            <div class="project"> 
+                <a href="" target="_blank">
+                    <div class="project-title">
+                        <p>To Do List</p>
+                        <img src="images/btn-galery.png">
+                    </div>
+
+                    <div class="print-div" id="">
+                    </div>
+                </a>
             </div>
 
         </div>
 
-    </div>
-
-    <!-- TERCEIRA SESSÃO-->
-    <div id="divContent">
-        <div id="habilidades" class="left">
-            <h2 class="title">
-                Minhas habilidades
-            </h2>
-        
-            <ul class="habilidadesText">
-                <li class="l1">Git e GitHub</li>
-                <li class="l2">HTML e CSS</li>
-                <li class="l3">Listas</li>
-                <li class="l4">Também sei <em>tatuar</em>!!!</li>
-            </ul>
-        </div>
-    
         <!-- QUARTA SESSÃO-->
-        <div id="links" class="right">
-            <h2 class="title">
+        <div id="links" class="container">
+            <h2 class="title item" >
                 Desenvolvimento? <br> Programação?
             </h2>
-            <p class="linksText"> 
+            <p class="linksText item right-item"> 
                 <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Common_questions" target="_blank">
                     Clique aqui
                 </a> 
@@ -89,23 +191,32 @@
         </div>
         
         <!-- SEXTA SESSÃO-->
-        <div id="contato" class="left">
-            <h2 class="title">
+        <div id="contact" class="container">
+            <h2 class="title item">
                 Me encontre aqui
             </h2>
-            <p>
-                <a href="https://github.com/Btriz">GitHub</a> <br> 
-                <a href="https://www.linkedin.com/in/fagundesbeatriz/">LinkedIn</a>
+            <p class="item right-item">
+                
+                <a href="https://github.com/Btriz" id="git-link">GitHub</a> <br>
+               
+                <a href="https://www.linkedin.com/in/fagundesbeatriz/" id="lin-link">LinkedIn</a>
             </p>
+            
+            <img src="images/github.png" alt="" id="git-1">
+            <img src="images/linkedIn.png" alt="" id="lin-1">
         </div>
 
-    </div>
+    </main>
 
-        <!-- RODAPÉ-->
-        <div id="rodape">
+        <footer id="footer" class="big-container">
             <p>
                 <em>Site em construção</em>
             </p>
-        </div>
+        </footer>
 </body>
+
+<script src="node_modules/aos/dist/aos.js"> </script>
+<script src="node_modules/flickity/dist/flickity.pkgd.min.js"></script>
+<script src="script.js"></script>
+
 </html>
