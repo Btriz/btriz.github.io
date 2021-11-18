@@ -5,8 +5,43 @@
 }
 
 body {
+  align-items: center;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100vh;
   width: 100vw;
 }
+
+.page {
+  border: 1px solid white;
+}
+
+/* ------------------------------------------------//
+//                     HOME                        //
+//------------------------------------------------ */
+
+/* ------------------------------------------------//
+//                      MENU                       //
+//------------------------------------------------ */
+
+.menu-links {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+/* -------------------MESSAGE--------------------- */
+
+.message-container {
+  border: 1px solid white;
+  display: flex;
+  width: fit-content;
+}
+
+/* ------------------------------------------------//
+//                   NAVIGATION                    //
+//------------------------------------------------ */
 

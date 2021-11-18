@@ -5,7 +5,7 @@ import NavigationLinks from '../components/NavigationLinks';
 
 export default function Navigation() {
   return (
-    <div>
+    <div className="page navigation">
       <Message />
       <NavigationLinks />
       <Outlet />
