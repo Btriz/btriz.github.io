@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Contact() {
   return (
-    <div className="category constact">
+    <div className="category contact">
       Contato
     </div>
   )
