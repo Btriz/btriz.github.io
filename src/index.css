@@ -7,7 +7,6 @@
 
 * {
   box-sizing: border-box;
-  color: white;
   font-family: monospace;
   margin: 0;
   text-decoration: none;
@@ -15,6 +14,7 @@
 
 body {
   align-items: center;
+  color: white;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -24,20 +24,29 @@ body {
 }
 
 .page {
-  /* border: 1px solid white; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  letter-spacing: 0.3rem;
 }
 
 /* ------------------------------------------------//
 //                     HOME                        //
 //------------------------------------------------ */
 
+.home a {
+  color: var(--blue);
+  font-size: 1.5rem;
+}
+
 /* ------------------------------------------------//
 //                      MENU                       //
 //------------------------------------------------ */
+
 .menu {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
   height: 80vh;
   justify-content: space-evenly;
 }
@@ -52,7 +61,6 @@ body {
 .menu-links a {
   color: var(--blue);
   font-size: 1.5rem;
-  letter-spacing: 0.3rem;
   margin: 1rem;
 }
 
@@ -83,6 +91,7 @@ body {
   border: 5px solid black;
   border-radius: 1rem;
   box-shadow: -5px 5px 0 darkgrey;
+  color: black;
   font-size: 1.5rem;
   margin: 1rem;
   padding: 2em;
@@ -91,3 +100,20 @@ body {
 //                   NAVIGATION                    //
 //------------------------------------------------ */
 
+.navigation {
+  /* border: 1px solid white; */
+  height: 90vh;
+
+}
+
+.navigation-links {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem;
+  width: 100%;
+}
+
+.navigation-links a {
+  font-size: 1.2rem;
+  color: var(--purple);
+}
