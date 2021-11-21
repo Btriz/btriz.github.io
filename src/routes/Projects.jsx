@@ -1,6 +1,6 @@
 import React from 'react';
 import projects from '../services/projectDATA';
-import btn from '../images/assets/button.png';
+import btn from '../images/button.png';
 
 export default function Projects() {
   return (

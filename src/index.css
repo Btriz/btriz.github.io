@@ -31,7 +31,12 @@ body {
 }
 
 a {
+  color: var(--blue);
   letter-spacing: 0.3rem;
+}
+
+body a:hover {
+  color: var(--yellow);
 }
 
 /* ------------------------------------------------//
@@ -39,7 +44,6 @@ a {
 //------------------------------------------------ */
 
 .home a {
-  color: var(--blue);
   font-size: 1.5rem;
 }
 
@@ -48,21 +52,26 @@ a {
 //------------------------------------------------ */
 
 .menu {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   height: 80vh;
-  justify-content: space-evenly;
 }
 
 .menu-links {
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
-  width: fit-content;
-  margin: rem;
 }
 
 .menu-links a {
-  color: var(--blue);
   font-size: 1.5rem;
   margin: 1rem;
+}
+
+.menu-links a:hover {
+  font-size: 2rem;
+  margin: 0.7rem;
 }
 
 /* -------------------MESSAGE--------------------- */
@@ -119,36 +128,46 @@ a {
   color: var(--purple);
 }
 
+.navigation-links a:hover {
+  color: var(--yellow);
+}
+
+.navigation-links a:focus {
+  color: var(--yellow);
+}
+
 /* ------------------------------------------------//
 //                     SKILLS                      //
 //------------------------------------------------ */
 
 .stack {
   color: var(--yellow);
-  align-items: center;
   display: flex;
   flex-direction: column;
+  letter-spacing: 0.2rem;
+
 }
 
 .fundamentals {
   grid-area: fundamentals;
 }
 
-.front {
+.frontend {
   grid-area: front;
 }
 
-.back {
+.backend {
   grid-area: back;
 }
 
 .bonus {
+  animation: blink infinite 1s;
   grid-area: bonus;
-  justify-content: center;
+  justify-content: flex-end;
+  justify-self: center;
 }
 
 .skills {
-  /* border: 1px solid greenyellow; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
@@ -157,20 +176,34 @@ a {
     ;
   height: 100%;
   padding: 1rem;
-
   width: 100%;
 }
 
-.stack div{
-  background-color: #fff;
-  height: 2rem;
+.stack div {
+  animation: rotateIcons 2s infinite;
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid grey;
+  border-radius: 0.2rem;
+  box-shadow: inset -1px 1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(53, 53, 53);
+  height: 3rem;
   margin-bottom: 2rem;
-  width: 2rem;
+  width: 3rem;
+  align-self: center;
+}
+
+.stack div:hover {
+  animation: hovingIcons 2ms infinite;
 }
 
 .stack li {
   line-height: 2rem;
   list-style: '🡪 ' inside;
+}
+
+.stack li:hover {
+  font-size: 1.5rem;
 }
 
 /* ------------------------------------------------//
@@ -216,4 +249,19 @@ a {
   border: 2px solid black;
   background-size: cover;
   border-radius: 5px;
+}
+
+@keyframes blink {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+@keyframes rotateIcons {
+  from { transform: rotateIcons3d(0, 0, 0, 0deg); }
+  to   { transform: rotate3d(0, 1, 0, 360deg); }
+}
+
+@keyframes hovingIcons {
+  from { transform: rotateIcons3d(0, 0, 0, 0deg); }
+  to   { transform: rotate3d(0, 1, 0, 180deg); }
 }
