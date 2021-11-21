@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './Home';
-import Menu from './routes/Menu';
-import Skills from './routes/Skills';
-import Projects from './routes/Projects';
-import Contact from './routes/Contact';
-import Navigation from './routes/Navigation';
+import { Home, Menu, Navigation, Skills, Projects, Contact } from './exports';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(

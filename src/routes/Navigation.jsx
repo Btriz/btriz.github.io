@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router';
-import Links from '../components/Links';
-import Message from '../components/Message';
+import { Links, Message } from '../exports';
 
 export default function Navigation() {
   return (

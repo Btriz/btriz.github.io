@@ -1,6 +1,5 @@
 import React from 'react';
-import github from '../images/github.png';
-import linkedin from '../images/linkedin.png';
+import { github, linkedin } from '../exports';
 
 function over({ target }) {
   if (target.className === "github-link") {

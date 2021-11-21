@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const projects = [
+const projectsDATA = [
   {
     name: 'Pixel Art',
     imagePath: 'https://github.com/Btriz/pixel-art/blob/master/thumbnail.png?raw=true',
@@ -30,4 +30,4 @@ const projects = [
   }
 ];
 
-export default projects;
+export default projectsDATA;

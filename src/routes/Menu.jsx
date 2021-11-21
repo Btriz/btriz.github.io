@@ -1,6 +1,5 @@
 import React from 'react';
-import Links from '../components/Links';
-import Message from '../components/Message';
+import { Links, Message } from '../exports';
 
 export default function Menu() {
   return (

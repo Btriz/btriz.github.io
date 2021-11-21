@@ -1,5 +1,5 @@
-import React from 'react'
-import profile from "../images/perfil.png";
+import React from 'react';
+import { profile } from '../exports';
 
 export default function Message() {
   return (

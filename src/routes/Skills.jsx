@@ -1,5 +1,5 @@
 import React from 'react';
-import skillsDATA from '../services/skillsDATA';
+import { skillsDATA } from '../exports';
 
 export default function Skills() {
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
-import projects from '../services/projectDATA';
-import btn from '../images/button.png';
+import { projectsDATA, btn } from '../exports';
 import Flickity from 'react-flickity-component';
 
 const flickityOptions = {
@@ -20,7 +19,7 @@ export default function Projects() {
         options={ flickityOptions }
         reloadOnUpdate
         static> 
-            { projects.map(({ name, imagePath, link }, index) => {
+            { projectsDATA.map(({ name, imagePath, link }, index) => {
               return (
                 <div
                   key={ index }
