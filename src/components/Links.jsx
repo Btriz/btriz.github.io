@@ -7,7 +7,7 @@ export default function MenuLinks(linkClass) {
       <Link to="/">Início</Link>
       <Link to="/navigation/skills">Habilidades</Link>
       <Link to="/navigation/projects">Projetos</Link>
-      <Link to="/navigation/contact">Contato</Link>
+      <Link to="/navigation/contact">Me Ache!</Link>
     </div>
-  )
+  );
 }

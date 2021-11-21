@@ -15,12 +15,12 @@
 
 body {
   align-items: center;
-  color: white;
   background-color: black;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100vh;
+  justify-content: center;
   width: 100vw;
 }
 
@@ -58,11 +58,11 @@ body a:hover {
 
 .hero-title-container h1 {
   animation: animated-text 2s steps(20,end) 1s 1 normal both;
-  white-space: nowrap;
-  overflow: hidden; 
   font-family: monospace;
   font-size: 4rem;
   font-weight: 400;
+  overflow: hidden; 
+  white-space: nowrap;
 }
 
 .hero-title-container div {
@@ -100,19 +100,18 @@ body a:hover {
 
 .menu-links {
   align-items: center;
-  justify-content: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .menu-links a {
   font-size: 1.5rem;
-  margin: 1rem;
+  line-height: 4rem;
 }
 
 .menu-links a:hover {
-  font-size: 2rem;
-  margin: 0.7rem;
+  font-size: 3rem;
 }
 
 /* -------------------MESSAGE--------------------- */
@@ -206,7 +205,7 @@ body a:hover {
 .bonus {
   animation: blink infinite 1s;
   grid-area: bonus;
-  /* justify-content: flex-end; */
+  justify-content: center;
   justify-self: center;
 }
 
@@ -223,6 +222,7 @@ body a:hover {
 }
 
 .stack div {
+  align-self: center;
   animation: rotateIcons 2s infinite;
   background-size: 90%;
   background-position: center;
@@ -233,7 +233,6 @@ body a:hover {
   height: 3rem;
   margin-bottom: 2rem;
   width: 3rem;
-  align-self: center;
 }
 
 .stack div:hover {
@@ -253,13 +252,19 @@ body a:hover {
 //                    PROJECTS                     //
 //------------------------------------------------ */
 
+.flickity-enabled:focus-visible {
+  outline: none;
+}
+
 .projects {
-  overflow: hidden;
+  overflow-x: hidden;
+  padding: 1rem;
+  text-decoration: none;
 }
 
 .project a {
-  height: 100%;
   display: grid;
+  height: 100%;
   grid-template-rows: 2fr 9fr;
 }
 
@@ -270,13 +275,17 @@ body a:hover {
 
 .project {
   background-color: darkgrey;
+  border: 4px solid black;
   border-radius: 0.8rem;
+  box-shadow: -5px 5px 0 grey;
   height: 200px;
-  margin: 1rem;
   padding: 0 1rem 1rem;
   width: 350px;
-  border: 4px solid black;
-  box-shadow: -5px 5px 0 grey;
+  transform: scale(90%);
+}
+
+.project:hover {
+  transform: scale(100%);
 }
 
 .project-title {
@@ -308,4 +317,57 @@ body a:hover {
 @keyframes hovingIcons {
   from { transform: rotateIcons3d(0, 0, 0, 0deg); }
   to   { transform: rotate3d(0, 1, 0, 180deg); }
+}
+
+/* ------------------------------------------------//
+//                     CONTACT                     //
+//------------------------------------------------ */
+
+.contact {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.contact-links {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  position: absolute;
+  z-index: 10;
+}
+
+.contact-links a {
+  color: var(--yellow);
+  font-size: 1.5rem;
+  line-height: 4rem;
+}
+
+.contact-links a:hover {
+  font-size: 3rem;
+}
+
+.github {
+  animation: rotate 3s linear infinite;
+  bottom: -10rem;
+  filter: invert(1);
+  position: absolute;
+  right: 5rem;
+  visibility: hidden;
+}
+
+.linkedin {
+  animation: rotate 3s linear infinite;
+  bottom: -10rem;
+  filter: invert(1);
+  left: 5rem;
+  position: absolute;
+  visibility: hidden;
+}
+
+@keyframes rotate {
+  from { transform: rotate3d(0, 0, 0, 360deg) }
+  to { transform: rotate3d(0, 1, 0, 360deg)}
 }
