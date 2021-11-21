@@ -4,8 +4,11 @@ import skillsDATA from '../services/skillsDATA';
 export default function Skills() {
   return (
     <div className="category skills">
-      { skillsDATA.map(({ name, skills, icon }) => (
-        <div className={ `stack ${name}` }>
+      { skillsDATA.map(({ name, skills, icon }, index) => (
+        <div
+          key={ index }
+          className={ `stack ${name}` }
+        >
           <div
             style={ { backgroundImage: `url(${icon})` } }
           />

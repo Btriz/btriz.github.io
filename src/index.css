@@ -43,7 +43,48 @@ body a:hover {
 //                     HOME                        //
 //------------------------------------------------ */
 
+.home {
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-title-container {
+  display: flex;
+  height: 5rem;
+  margin: 4rem;
+  width: 46rem;
+}
+
+.hero-title-container h1 {
+  animation: animated-text 2s steps(20,end) 1s 1 normal both;
+  white-space: nowrap;
+  overflow: hidden; 
+  font-family: monospace;
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.hero-title-container div {
+  animation: animated-cursor 600ms steps(30,end) infinite;
+  background-color: var(--blue);
+  height: 100%;
+  right: 0;
+  width: 3rem;
+}
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 610px}
+}
+
+@keyframes animated-cursor{
+  from{background-color: var(--blue);}
+  to{background-color: transparent;}
+}
+
 .home a {
+  animation: blink 2s infinite;
   font-size: 1.5rem;
 }
 
