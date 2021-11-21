@@ -16,4 +16,6 @@ const skillsDATA = [
   }
 ];
 
+skillsDATA.forEach((item, index) => item['id'] = index);
+
 export default skillsDATA ;
