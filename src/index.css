@@ -44,9 +44,21 @@ body a:hover {
 //------------------------------------------------ */
 
 .home {
-  justify-content: center;
+  height: 100vh;
   overflow: hidden;
   position: relative;
+  width: 100vw;
+}
+
+.front {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
 }
 
 .hero-title-container {
@@ -86,6 +98,127 @@ body a:hover {
 .home a {
   animation: blink 2s infinite;
   font-size: 1.5rem;
+}
+
+/* -------------------BACKGROUND--------------------- */
+
+.background {
+  display: grid;
+  grid-template-areas:
+  'bg1 bg4 bg4 bg2'
+  'bg5 bg5 bg5 bg3'
+  ;
+  height: 100%;
+  position: absolute;
+  width: 120%;
+}
+
+.background img {
+  height: 300px;
+}
+
+.background img:nth-of-type(1) {
+  animation: bg1 7.5s linear infinite;
+  grid-area: bg1;
+}
+
+.background img:nth-of-type(2) {
+  animation: bg2 7.5s linear infinite;
+  grid-area: bg2;
+}
+
+.background img:nth-of-type(3) {
+  animation: bg3 7.5s linear infinite;
+  grid-area: bg3;
+}
+
+.background img:nth-of-type(4) {
+  animation: bg4 7.5s linear infinite;
+  grid-area: bg4;
+  height: 100px;
+}
+
+.background img:nth-of-type(5) {
+  animation: bg5 7.5s linear infinite;
+  grid-area: bg5;
+}
+
+@keyframes bg1 {
+  0% { transform: rotate3d(0, 0, 0) scale(1); }
+  25% { transform: rotate3d( 0.75, 1.5, 0.75,
+    100deg
+    ) scale(1); }
+ 50% { transform: rotate3d(1, 0.5, 1, 
+    120deg
+    ) scale(0.5); }
+  75% { transform: rotate3d(2, 1, 0.5, 
+    150deg
+    ) scale(1); }
+  100% { transform: rotate3d(0.25, 0.5, 1, 
+    360deg
+    ) scale(1); }
+}
+
+@keyframes bg2 {
+  0% { transform: rotate3d(0, 0, 0) scale(1); }
+  25% { transform: rotate3d(-0.25, -0.5, -0.25, 
+    30deg
+    ) scale(1); }
+ 50% { transform: rotate3d(-0.5, -1, -0.5, 
+    80deg
+    ) scale(1.5); }
+  75% { transform: rotate3d(-0.75, -1.5, -0.75, 
+    200deg
+    ) scale(1); }
+  100% { transform: rotate3d(-1, -2, -1, 
+    360deg
+    ) scale(1); }
+}
+
+@keyframes bg3 {
+  0% { transform: rotate3d(0, 0, 0) scale(1); }
+  25% { transform: rotate3d(0.25, 0.5, 0.25, 
+    80deg
+    ) scale(1); }
+ 50% { transform: rotate3d(0.1, 1, 0.5, 
+    100deg
+    ) scale(1); }
+  75% { transform: rotate3d(0.75, 2, 1, 
+    280deg
+    ) scale(2); }
+  100% { transform: rotate3d(2, 1, 0.5); }
+}
+
+@keyframes bg4 {
+  0% { transform: rotate3d(0, 0, 0) scale(1); }
+  25% { transform: rotate3d(-0.25, -0.5, -0.25, 
+    50deg
+    ) scale(1.5); }
+ 50% { transform: rotate3d(-0.5, 1, -0.5, 
+    80deg
+    ) scale(1); }
+  75% { transform: rotate3d(0.75, -1.5, -0.75, 
+    180deg
+    ) scale(1); }
+  100% { transform: rotate3d(-1, -2, 1, 
+    360deg
+    ) scale(1); }
+}
+
+@keyframes bg5 {
+  0% { transform: rotate3d(0, 0, 0) scale(1); }
+  25% { transform: rotate3d(-0.25, -0.5, -0.25, 
+    90deg
+    ) scale(1); }
+ 50% { transform: rotate3d(-0.5, -1, -0.5, 
+    180deg
+    ) scale(1.5); }
+  75% { transform: rotate3d(-0.75, -1.5, -0.75, 
+    270deg
+    ) scale(1); }
+  100% { transform: rotate3d(-1, -2, -1, 
+    360deg
+    ) scale(1); }
 }
 
 /* ------------------------------------------------//
@@ -151,7 +284,6 @@ body a:hover {
 //------------------------------------------------ */
 
 .navigation {
-  /* border: 1px solid white; */
   display: grid;
   grid-template-rows: 3fr 1fr 6fr ;
   height: 90vh;
