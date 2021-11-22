@@ -21,6 +21,7 @@ body {
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  overflow: hidden;
   width: 100vw;
 }
 
@@ -45,7 +46,6 @@ body a:hover {
 
 .home {
   height: 100vh;
-  overflow: hidden;
   position: relative;
   width: 100vw;
 }
@@ -98,6 +98,10 @@ body a:hover {
 .home a {
   animation: blink 2s infinite;
   font-size: 1.5rem;
+}
+
+.home a:hover {
+  color: var(--pink);
 }
 
 /* -------------------BACKGROUND--------------------- */
@@ -229,6 +233,7 @@ body a:hover {
   display: grid;
   grid-template-rows: 1fr 1fr;
   height: 80vh;
+  position: relative;
 }
 
 .menu-links {
@@ -247,14 +252,35 @@ body a:hover {
   font-size: 3rem;
 }
 
+.menu-img {
+  animation: rotate 3s linear infinite;
+  bottom: 3rem;
+  filter: invert(1) brightness(0.2);
+  height: 15rem;
+  position: absolute;
+  visibility: hidden;
+}
+
+.skills-link-img, .contact-link-img {
+  left: -5rem;
+}
+
+.projects-link-img {
+  right: -5rem;
+}
+
 /* -------------------MESSAGE--------------------- */
 
+@keyframes slideDown {
+  from {transform: translateY(-300px);}
+  to {transform: translateY(0);}
+}
 .message-container {
-  /* border: 1px solid white; */
   align-items: center;
   display: flex;
   justify-content: center;
-}
+  animation: slideDown 0.4s;
+  }
 
 .message-image {
   background-color: palegoldenrod;
@@ -353,22 +379,20 @@ body a:hover {
   width: 100%;
 }
 
-.stack div {
+.stack img {
   align-self: center;
   animation: rotateIcons 2s infinite;
-  background-size: 90%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 3px solid grey;
-  border-radius: 0.2rem;
-  box-shadow: inset -1px 1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(53, 53, 53);
-  height: 3rem;
-  margin-bottom: 2rem;
-  width: 3rem;
+  filter: invert(1) brightness(0.4);
+  height: 3.4rem;
+  margin-bottom: 1rem;
+  transition: 1s;
+  width: 3.5rem;
 }
 
-.stack div:hover {
+.stack img:hover {
   animation: hovingIcons 2ms infinite;
+  filter: invert(1) brightness(1);
+  box-shadow: 10 0 20px white;
 }
 
 .stack li {
@@ -391,7 +415,6 @@ body a:hover {
 .projects {
   overflow-x: hidden;
   padding: 1rem;
-  text-decoration: none;
 }
 
 .project a {
@@ -481,19 +504,19 @@ body a:hover {
   font-size: 3rem;
 }
 
-.github {
+.github-link-img {
   animation: rotate 3s linear infinite;
   bottom: -10rem;
-  filter: invert(1);
+  filter: invert(1) brightness(0.2);
   position: absolute;
   right: 5rem;
   visibility: hidden;
 }
 
-.linkedin {
+.linkedin-link-img {
   animation: rotate 3s linear infinite;
   bottom: -10rem;
-  filter: invert(1);
+  filter: invert(1) brightness(0.2);
   left: 5rem;
   position: absolute;
   visibility: hidden;

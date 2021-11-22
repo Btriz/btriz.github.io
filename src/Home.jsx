@@ -4,7 +4,7 @@ import { bg1, bg2, bg3, bg4, bg5 } from './exports';
 
 export default function Home() {
   return (
-    <div className="home">
+    <div className="page home">
       <div className="front">
         <div className="hero-title-container">
           <h1>Oi, eu faço sites!</h1>

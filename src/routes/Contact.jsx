@@ -1,25 +1,5 @@
 import React from 'react';
-import { github, linkedin } from '../exports';
-
-function over({ target }) {
-  if (target.className === "github-link") {
-    const gitPic = document.querySelector('.github');
-    gitPic.style.visibility = 'visible';
-  } else {
-    const inPic = document.querySelector('.linkedin');
-    inPic.style.visibility = 'visible';
-  }
-}
-
-function out({ target }) {
-  if (target.className === "github-link") {
-    const gitPic = document.querySelector('.github');
-    gitPic.style.visibility = 'hidden';
-  } else {
-    const inPic = document.querySelector('.linkedin');
-    inPic.style.visibility = 'hidden';
-  }
-}
+import { github, linkedin, over, out } from '../exports';
 
 export default function Contact() {
   return (
@@ -48,8 +28,8 @@ export default function Contact() {
         </a>
       </div>
 
-      <img src={ github } alt="github" className="github" />
-      <img src={ linkedin } alt="linkedin" className="linkedin" />
+      <img src={ github } alt="github" className="github-link-img" />
+      <img src={ linkedin } alt="linkedin" className="linkedin-link-img" />
     </div>
   )
 }

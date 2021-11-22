@@ -10,7 +10,14 @@ export { default as btn } from '../images/button.png';
 export { default as github } from '../images/github.png';
 export { default as linkedin } from '../images/linkedin.png';
 export { default as profile } from '../images/perfil.png';
+export { default as imgSkills } from '../images/cubo-3d.png';
+export { default as imgProjects } from '../images/retrato-falado.png';
+export { default as imgContact } from '../images/rede.png';
 
+export { default as fundamentals } from '../images/skills/codificacao.png';
+export { default as frontend } from '../images/skills/imagem.png';
+export { default as backend } from '../images/skills/designer-de-web.png';
+export { default as computer } from '../images/skills/navegador.png';
 
 export { default as Links } from '../components/Links';
 export { default as Message } from '../components/Message';
@@ -23,3 +30,5 @@ export { default as Skills } from '../routes/Skills';
 
 export { default as projectsDATA } from '../services/projectsDATA';
 export { default as skillsDATA } from '../services/skillsDATA';
+
+export { over, out } from '../services/showImagesOnHover';

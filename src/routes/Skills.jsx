@@ -1,17 +1,26 @@
 import React from 'react';
-import { skillsDATA } from '../exports';
+import { skillsDATA, fundamentals, frontend, backend } from '../exports';
+
+function icon(name) {
+  switch (name) {
+    case "frontend":
+      return frontend;
+    case "backend":
+      return backend;
+    default:
+      return fundamentals;
+  }
+}
 
 export default function Skills() {
   return (
-    <div className="category skills">
-      { skillsDATA.map(({ name, skills, icon }, index) => (
+    <div className="skills">
+      { skillsDATA.map(({ name, skills }, index) => (
         <div
           key={ index }
           className={ `stack ${name}` }
         >
-          <div
-            style={ { backgroundImage: `url(${icon})` } }
-          />
+          <img src={ icon(name) } alt={ name } />
 
           <ul>
             { skills.map((item, index) => (
