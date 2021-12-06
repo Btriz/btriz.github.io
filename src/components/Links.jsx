@@ -1,34 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { over, out } from '../exports';
+import { over, out, skillsDATA } from '../exports';
 
-export default function MenuLinks(linkClass) {
+export default function Links(linkClass) {
   return (
     <div className={ linkClass }>
-      <Link to="/">Início</Link>
       <Link
-        to="/navigation/skills"
+        to="/"
+        data-content="INÍCIO"
+      >
+        INÍCIO
+      </Link>
+      <Link
+        to={`/navigation/skills/${skillsDATA[0].id}`}
         className="skills-link"
+        data-content="HABILIDADES"
         onMouseOver={ over }
         onMouseOut={ out }
       >
-        Habilidades
+        HABILIDADES
       </Link>
       <Link
         to="/navigation/projects"
         className="projects-link"
+        data-content="PROJETOS"
         onMouseOver={ over }
         onMouseOut={ out }
       >
-        Projetos
+        PROJETOS
       </Link>
       <Link
         to="/navigation/contact"
         className="contact-link"
+        data-content="ME ACHE!"
         onMouseOver={ over }
         onMouseOut={ out }
       >
-        Me Ache!
+        ME ACHE!
       </Link>
     </div>
   );

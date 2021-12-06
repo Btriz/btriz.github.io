@@ -1,38 +1,34 @@
 import React from 'react';
-import { skillsDATA, fundamentals, frontend, backend } from '../exports';
-
-function icon(name) {
-  switch (name) {
-    case "frontend":
-      return frontend;
-    case "backend":
-      return backend;
-    default:
-      return fundamentals;
-  }
-}
+import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router';
+import { skillsDATA } from '../exports';
 
 export default function Skills() {
+
   return (
     <div className="skills">
-      { skillsDATA.map(({ name, skills }, index) => (
-        <div
-          key={ index }
-          className={ `stack ${name}` }
-        >
-          <img src={ icon(name) } alt={ name } />
-
-          <ul>
-            { skills.map((item, index) => (
-              <li key={ index }>{ item }</li>
-            )) }
-          </ul>
-        </div>
-      )) }
-
-      <div className="stack bonus">
-        <p>Bônus!!! Também sei tatuar e tocar pandeiro!</p>
+      <div className="skills-links">
+        { skillsDATA.map(({ id, name }, index) => {
+          return (
+            <Link
+              to={ `/navigation/skills/${id}` }
+              key={ index }
+              data-content={ name }
+            >
+              { name }
+            </Link>
+          );
+        }) }
       </div>
+
+      <div className="skills-list">
+        <Outlet />
+
+        <div className="bonus">
+          <p>Bônus!!! Também sei tatuar e tocar pandeiro!</p>
+        </div>
+      </div>
+
     </div>
   )
 }

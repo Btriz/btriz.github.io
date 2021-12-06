@@ -1,18 +1,19 @@
 const skillsDATA = [
   {
-    name: 'fundamentals',
-    skills: ['Unix & Bash', 'Git & GitHub', 'HTML', 'CSS', 'JavaScript', 'Testes Unitários 🡦 Jest'],
+    id: 'fundamentals',
+    name: 'fundamentos',
+    skills: ['Unix & Bash', 'Git & GitHub', 'HTML', 'CSS', 'JavaScript', 'Testes Unitários 🡾 Jest'],
   },
   {
-    name: 'frontend',
+    id: 'front',
+    name: 'front-end',
     skills: ['React', 'Metodologias ágeis', 'React Testing Library', 'Redux'],
   },
   {
-    name: 'backend',
+    id: 'back',
+    name: 'back-end',
     skills: ['SQL', 'Normalização e modelagem de Banco de Dados', 'Docker', 'MongoDB'],
   }
 ];
-
-skillsDATA.forEach((item, index) => item['id'] = index);
 
 export default skillsDATA ;
