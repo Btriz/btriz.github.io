@@ -1,7 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 
-import Island from '../models/Island';
+// import Island from '../models/Island';
 import Sky from '../models/Sky';
 import Bird from '../models/Bird';
 import Plane from '../models/Plane';
@@ -10,6 +10,7 @@ import Loader from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
+import YoshisIsland from '../models/YoshisIsland';
 
 function Home() {
   const audioRef = useRef(new Audio(sakura));
@@ -31,21 +32,22 @@ function Home() {
   }, [isAudioPlaying]);
 
   const adjustIslandForScreenSize = () => {
-    let screenScale = null;
-    const screenPosition = [0, -6.5, -43];
-    const rotation = [0.1, 4.7, 0];
+    let screenScale: [number, number, number];
+    const screenPosition: [number, number, number] = [0, -4, -40]; // horizontal, vertical, depth
+    const rotation: [number, number, number] = [0.2, 4.7, 0]; // x, y, z rotation
 
     if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
+      screenScale = [0.22, 0.22, 0.22]; // bottom, top, sides
     } else {
-      screenScale = [1, 1, 1];
+      screenScale = [0.3, 0.3, 0.3];
     }
 
     return [screenScale, screenPosition, rotation];
   };
 
   const adjustPlaneForScreenSize = () => {
-    let screenScale, screenPosition;
+    let screenScale: [number, number, number];
+    let screenPosition: [number, number, number];
 
     if (window.innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];
@@ -63,8 +65,6 @@ function Home() {
 
   const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
-  console.log('AQUI');
-
   return (
     <section className="w-full h-screen relative">
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
@@ -80,13 +80,13 @@ function Home() {
 
           <ambientLight intensity={0.5} />
 
-          <hemisphereLight args={['#b1e1ff', '#000000', 1]} />
+          <hemisphereLight args={['#c20010', '#000000', 0.5]} />
 
           <Bird />
 
           <Sky isRotating={isRotating} />
 
-          <Island
+          <YoshisIsland
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
