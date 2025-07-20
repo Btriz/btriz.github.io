@@ -7,6 +7,7 @@ Title: Yoshi's island
 */
 
 import type { GLTF } from 'three-stdlib';
+import type { JSX } from 'react';
 
 import * as THREE from 'three';
 import { useCallback, useEffect, useRef } from 'react';
@@ -14,7 +15,6 @@ import { useGLTF } from '@react-three/drei';
 
 import yoshisIslandScene from '../assets/3d/yoshis_island.glb';
 import { a } from '@react-spring/three';
-import type { JSX } from 'react/jsx-runtime';
 import { useFrame, useThree } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
