@@ -1,0 +1,16 @@
+services:
+  app:
+    image: node-base-dev
+    command: zsh
+    container_name: 3d-portfolio
+    working_dir: /app
+    tty: true
+    stdin_open: true
+    volumes:
+      - ../:/app
+      - ~/dev-kits/configs/.zshrc:/root/.zshrc
+      - ~/dev-kits/configs/aliases.zsh:/root/aliases.zsh
+      - ~/dev-kits/configs/.p10k.zsh:/root/.p10k.zsh
+      - ~/dev-kits/configs/.zsh_history:/root/.zsh_history
+
+
