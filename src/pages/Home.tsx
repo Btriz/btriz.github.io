@@ -1,15 +1,17 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 
-import Island from '../models/Island';
+// import Island from '../models/Island';
 import Sky from '../models/Sky';
-import Bird from '../models/Bird';
-import Plane from '../models/Plane';
+// import Bird from '../models/Bird';
 
 import Loader from '../components/Loader';
 import HomeInfo from '../components/HomeInfo';
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
+// import YoshisIsland from '../models/YoshisIsland';
+import World from '../models/World';
+import Ufo from '../models/Ufo';
 
 function Home() {
   const audioRef = useRef(new Audio(sakura));
@@ -18,6 +20,7 @@ function Home() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
+  const [rotationDirection, setRotationDirection] = useState<1 | -1>(1);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -31,39 +34,38 @@ function Home() {
   }, [isAudioPlaying]);
 
   const adjustIslandForScreenSize = () => {
-    let screenScale = null;
-    const screenPosition = [0, -6.5, -43];
-    const rotation = [0.1, 4.7, 0];
+    let screenScale: [number, number, number];
+    const screenPosition: [number, number, number] = [0, -0.5, 0]; // horizontal, vertical, depth
+    const rotation: [number, number, number] = [0, 0, 0.5]; // x, y, z rotation
 
     if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
+      screenScale = [1.3, 1.3, 1.3]; // bottom, top, sides
     } else {
-      screenScale = [1, 1, 1];
+      screenScale = [1.8, 1.8, 1.8];
     }
 
     return [screenScale, screenPosition, rotation];
   };
 
-  const adjustPlaneForScreenSize = () => {
-    let screenScale, screenPosition;
+  const adjustUfoForScreenSize = () => {
+    let ufoScale: [number, number, number];
+    let ufoPosition: [number, number, number];
 
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
+      ufoScale = [0.1, 0.1, 0.1];
+      ufoPosition = [0, 0, 3.3]; // horizontal, vertical, depth
     } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
+      ufoScale = [0.15, 0.15, 0.15];
+      ufoPosition = [0, 0, 3.3];
     }
 
-    return [screenScale, screenPosition];
+    return [ufoScale, ufoPosition];
   };
 
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
 
-  const [planeScale, planePosition] = adjustPlaneForScreenSize();
-
-  console.log('AQUI');
+  const [ufoScale, ufoPosition] = adjustUfoForScreenSize();
 
   return (
     <section className="w-full h-screen relative">
@@ -76,31 +78,55 @@ function Home() {
         camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
+          <directionalLight
+            position={[5, 0, 2]}
+            intensity={1.2}
+            color="#fff8e1"
+            castShadow
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+          />
 
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.3} />
 
-          <hemisphereLight args={['#b1e1ff', '#000000', 1]} />
+          <spotLight
+            position={[5, 0, 0]}
+            intensity={400}
+            color={'#ff8000'}
+          />
 
-          <Bird />
+          <spotLight
+            position={[-9, -1, 0]}
+            intensity={90}
+            color="#f542ef"
+            angle={0.7}
+            penumbra={0.5}
+          />
+
+          <hemisphereLight
+            args={['#ffcc80', '#ff9100', 0.15]}
+          />
 
           <Sky isRotating={isRotating} />
 
-          <Island
+          <World
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
+            setRotationDirection={setRotationDirection}
           />
 
-          <Plane
+          <Ufo
             isRotating={isRotating}
-            scale={planeScale}
-            position={planePosition}
-            rotation={[0, 20, 0]}
+            rotationDirection={rotationDirection}
+            scale={ufoScale}
+            position={ufoPosition}
+            rotation={[0.5, 0, 0]}
           />
+
         </Suspense>
       </Canvas>
 
