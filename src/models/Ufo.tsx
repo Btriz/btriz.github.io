@@ -14,7 +14,7 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 
 type UfoProps = JSX.IntrinsicElements['group'] & {
   isRotating: boolean;
-  rotationDirection: 1 | -1; // 1 = horário, -1 = anti-horário
+  rotationDirection: 1 | -1;
 }
 
 const Ufo = ({ isRotating, rotationDirection, ...props }: UfoProps) => {
@@ -29,16 +29,89 @@ const Ufo = ({ isRotating, rotationDirection, ...props }: UfoProps) => {
       if (isRotating) {
         action.play();
       } else {
-        action.timeScale = 0.2 * rotationDirection; // velocidade reduzida
+        action.timeScale = 0.2 * rotationDirection;
         action.play();
       }
     }
   }, [actions, isRotating, rotationDirection]);
 
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh && child.material) {
+        const mat = child.material as THREE.MeshStandardMaterial;
+
+        if (mat.name === 'LightMetal' || mat.name === 'LightMEtal') {
+          const newMaterial = new THREE.MeshStandardMaterial({
+            name: 'LightMetal',
+            color: new THREE.Color(0xdfdeff),
+            metalness: 0.7,
+            roughness: 0.2,
+          });
+
+          child.material = newMaterial;
+        }
+
+        if (mat.name === 'DarkMetal') {
+          const newMaterial = new THREE.MeshStandardMaterial({
+            color: new THREE.Color(0x0e029c),
+          });
+          child.material = newMaterial;
+        }
+
+        if (mat.name === 'Glass') {
+          const newGlassMaterial = new THREE.MeshPhysicalMaterial({
+            name: 'Glass',
+            color: new THREE.Color(0x72e795),
+            emissive: new THREE.Color(0x00ff80),
+            emissiveIntensity: 1.2,
+            transparent: true,
+            opacity: 0.85,
+            transmission: 0.6,
+            depthWrite: false,
+            roughness: 0.05,
+            metalness: 0.1,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.1,
+            side: THREE.DoubleSide,
+          });
+
+          child.material = newGlassMaterial;
+        }
+      }
+    });
+
+  }, [scene]);
+
   return (
-    <mesh {...props}>
-      <primitive object={scene} ref={ufoRef} />
-    </mesh>
+    <>
+      <mesh {...props}>
+        <primitive object={scene} ref={ufoRef} />
+
+        <spotLight
+          position={[-0.3, 0.7, 2.3]}
+          intensity={0.03}
+          distance={0.4}
+          color="#00ff80"
+          angle={2}
+          penumbra={1}
+        />
+
+        <pointLight
+          position={[2, 0.5, 0.1]}
+          intensity={0.15}
+          distance={0.5}
+          color="#ffffff"
+        />
+
+        <pointLight
+          position={[0, -0.2, 0.2]}
+          intensity={5}
+          distance={0.5}
+          color="#ffffff"
+          decay={2.5}
+        />
+      </mesh>
+    </>
   );
 };
 

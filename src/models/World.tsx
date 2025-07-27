@@ -10,7 +10,7 @@ import type { GLTF } from 'three-stdlib';
 import type { JSX } from 'react';
 
 import * as THREE from 'three';
-import { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
@@ -381,10 +381,17 @@ const World = ({
     worldScene,
   ) as unknown as GLTFResult;
   const worldRef = useRef<THREE.Group>(null);
+  const cloudsRef = useRef<THREE.Group>(null);
+  const planesRef = useRef<THREE.Group>(null);
+  const plane1Ref = useRef<THREE.Group | null>(null);
+  const plane2Ref = useRef<THREE.Group | null>(null);
+  const plane3Ref = useRef<THREE.Group | null>(null);
+  const plane1Angle = useRef(0);
+  const plane2Angle = useRef(2);
+  const plane3Angle = useRef(4);
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
   const dampingFactor = 0.95;
-
   const handlePointerDown = useCallback(
     (event: PointerEvent | TouchEvent) => {
       event.stopPropagation();
@@ -520,10 +527,231 @@ const World = ({
     handleKeyUp,
   ]);
 
+  useFrame(() => {
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.x += 0.0005;
+      cloudsRef.current.rotation.y += 0.0003;
+    }
+  });
+
+  type AnimatedPlaneProps = {
+  planeRef: React.RefObject<THREE.Group | null>;
+  orbitRadius: number;
+  heightAboveSurface: number;
+  speed: number;
+  angleRef: React.RefObject<number>;
+  direction?: 1 | -1;
+};
+
+  const AnimatedPlane = React.memo(({ planeRef, orbitRadius, heightAboveSurface, speed, angleRef, direction = 1 }: AnimatedPlaneProps) => {
+    useFrame((_, delta) => {
+      angleRef.current += direction * (Math.PI * 2 * delta) / speed;
+
+      if (planeRef.current) {
+        const x = orbitRadius * Math.cos(angleRef.current);
+        const z = orbitRadius * Math.sin(angleRef.current);
+        const y = heightAboveSurface;
+
+        planeRef.current.position.set(x, y, z);
+
+        // Orientação do avião na direção do movimento
+        const tangent = new THREE.Vector3(
+          -Math.sin(angleRef.current) * direction,
+          0,
+          Math.cos(angleRef.current) * direction,
+        ).normalize();
+
+        const up = new THREE.Vector3(0, 1, 0);
+        const quaternion = new THREE.Quaternion().setFromUnitVectors(up, tangent);
+
+        planeRef.current.setRotationFromQuaternion(quaternion);
+      }
+    });
+
+    return null;
+  });
+
   return (
     <a.group ref={worldRef} {...props}>
       <group scale={0.01}>
-        <group
+        <mesh //terra
+          castShadow
+          receiveShadow
+          geometry={nodes.Icokugel_Material002_0.geometry}
+          material={materials['Material.002']}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={100}
+        />
+
+        <mesh // agua
+          castShadow
+          receiveShadow
+          geometry={nodes.Icokugel001_Material001_0.geometry}
+          material={materials['Material.001']}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={104.571}
+        />
+
+        <group ref={planesRef}>
+          <group //avião
+            ref={plane1Ref}
+            position={[-38.47, 77.002, 58.561]}
+            rotation={[-1.075, -0.316, 0.12]}
+            scale={[6.203, 21.124, 21.124]}
+          >
+            <AnimatedPlane
+              planeRef={plane1Ref}
+              orbitRadius={120}
+              heightAboveSurface={150}
+              speed={20}
+              angleRef={plane1Angle}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che243_Material006_0'].geometry}
+              material={materials['Material.006']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che243_Material009_0'].geometry}
+              material={materials['Material.009']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che243_Material010_0'].geometry}
+              material={materials['Material.010']}
+            />
+          </group>
+
+          <group //aviao
+            ref={plane2Ref}
+            position={[-95.343, -50.148, -0.822]}
+            rotation={[1.731, -0.971, 2.842]}
+            scale={[5.075, 17.282, 17.282]}
+          >
+            <AnimatedPlane
+              planeRef={plane2Ref}
+              orbitRadius={120}
+              heightAboveSurface={-100}
+              speed={15}
+              angleRef={plane2Angle}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che245_Material006_0'].geometry}
+              material={materials['Material.006']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che245_Material009_0'].geometry}
+              material={materials['Material.009']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che245_Material011_0'].geometry}
+              material={materials['Material.011']}
+            />
+          </group>
+
+          <group // aviao
+            ref={plane3Ref}
+            position={[-32.498, -74.087, 64.015]}
+            rotation={[0.915, -0.29, -3.123]}
+            scale={[6.582, 22.413, 22.413]}
+          >
+            <AnimatedPlane
+              planeRef={plane3Ref}
+              orbitRadius={200}
+              heightAboveSurface={100}
+              speed={20} // Velocidade em segundos para completar uma volta
+              angleRef={plane3Angle}
+              direction={-1}
+
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che246_Material006_0'].geometry}
+              material={materials['Material.006']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che246_Material009_0'].geometry}
+              material={materials['Material.009']}
+            />
+
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['Fl��che246_Material011_0'].geometry}
+              material={materials['Material.011']}
+            />
+          </group>
+        </group>
+
+        <group ref={cloudsRef}>
+          <mesh //nuvem
+            castShadow
+            receiveShadow
+            geometry={nodes.Icokugel003_Material_0.geometry}
+            material={materials.Material}
+            rotation={[-0.34, 0.248, -0.649]}
+            scale={13.412}
+          />
+
+          <mesh //nuvem
+            castShadow
+            receiveShadow
+            geometry={nodes.Icokugel002_Material_0.geometry}
+            material={materials.Material}
+            rotation={[0.725, -0.835, -1.878]}
+            scale={11.684}
+          />
+
+          <mesh //nuvem
+            castShadow
+            receiveShadow
+            geometry={nodes.Icokugel004_Material_0.geometry}
+            material={materials.Material}
+            rotation={[2.656, 0.725, -0.9]}
+            scale={[-16.056, 16.056, 16.056]}
+          />
+
+          <mesh //nuvem
+            castShadow
+            receiveShadow
+            geometry={nodes.Icokugel005_Material_0.geometry}
+            material={materials.Material}
+            rotation={[0.869, -1.235, 2.148]}
+            scale={11.832}
+          />
+
+          <mesh //nuvem
+            castShadow
+            receiveShadow
+            geometry={nodes.Icokugel006_Material_0.geometry}
+            material={materials.Material}
+            rotation={[-0.188, -0.208, -2.299]}
+            scale={10.851}
+          />
+        </group>
+
+        <group //casinha
           position={[-69.597, 44.483, 67.596]}
           rotation={[-0.546, -0.698, 0.321]}
           scale={[2.971, 3.648, 2.971]}
@@ -543,7 +771,7 @@ const World = ({
           />
         </group>
 
-        <group
+        <group //casinha
           position={[-79.342, 40.342, 59.522]}
           rotation={[-0.491, -0.879, -0.527]}
           scale={[3.785, 4.647, 3.785]}
@@ -1983,7 +2211,7 @@ const World = ({
           />
         </group>
 
-        <group
+        <group // casinha
           position={[96.339, 6.564, -44.606]}
           rotation={[-2.927, 1.087, -2.447]}
           scale={[3.734, 4.585, 3.734]}
@@ -2003,106 +2231,7 @@ const World = ({
           />
         </group>
 
-        <group
-          position={[-38.47, 77.002, 58.561]}
-          rotation={[-1.075, -0.316, 0.12]}
-          scale={[6.203, 21.124, 21.124]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che243_Material006_0'].geometry}
-            material={materials['Material.006']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che243_Material009_0'].geometry}
-            material={materials['Material.009']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che243_Material010_0'].geometry}
-            material={materials['Material.010']}
-          />
-        </group>
-
-        <group
-          position={[-95.343, -50.148, -0.822]}
-          rotation={[1.731, -0.971, 2.842]}
-          scale={[5.075, 17.282, 17.282]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che245_Material006_0'].geometry}
-            material={materials['Material.006']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che245_Material009_0'].geometry}
-            material={materials['Material.009']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che245_Material011_0'].geometry}
-            material={materials['Material.011']}
-          />
-        </group>
-
-        <group
-          position={[-32.498, -74.087, 64.015]}
-          rotation={[0.915, -0.29, -3.123]}
-          scale={[6.582, 22.413, 22.413]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che246_Material006_0'].geometry}
-            material={materials['Material.006']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che246_Material009_0'].geometry}
-            material={materials['Material.009']}
-          />
-
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['Fl��che246_Material011_0'].geometry}
-            material={materials['Material.011']}
-          />
-        </group>
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel_Material002_0.geometry}
-          material={materials['Material.002']}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={100}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel001_Material001_0.geometry}
-          material={materials['Material.001']}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={104.571}
-        />
-
-        <mesh
+        <mesh //arvore
           castShadow
           receiveShadow
           geometry={nodes['Fl��che005_Material005_0'].geometry}
@@ -3602,7 +3731,7 @@ const World = ({
           scale={0.304}
         />
 
-        <mesh
+        <mesh //barco
           castShadow
           receiveShadow
           geometry={nodes['Fl��che235_Material008_0'].geometry}
@@ -3612,7 +3741,7 @@ const World = ({
           scale={0.406}
         />
 
-        <mesh
+        <mesh // barco
           castShadow
           receiveShadow
           geometry={nodes['Fl��che237_Material008_0'].geometry}
@@ -3622,7 +3751,7 @@ const World = ({
           scale={0.406}
         />
 
-        <mesh
+        <mesh //barco
           castShadow
           receiveShadow
           geometry={nodes['Fl��che238_Material008_0'].geometry}
@@ -3632,7 +3761,7 @@ const World = ({
           scale={0.495}
         />
 
-        <mesh
+        <mesh //barco
           castShadow
           receiveShadow
           geometry={nodes['Fl��che239_Material008_0'].geometry}
@@ -3642,7 +3771,7 @@ const World = ({
           scale={0.293}
         />
 
-        <mesh
+        <mesh //barco
           castShadow
           receiveShadow
           geometry={nodes['Fl��che242_Material008_0'].geometry}
@@ -3650,51 +3779,6 @@ const World = ({
           position={[14.383, 95.187, 37.258]}
           rotation={[-1.212, 0.209, 0.026]}
           scale={0.281}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel003_Material_0.geometry}
-          material={materials.Material}
-          rotation={[-0.34, 0.248, -0.649]}
-          scale={13.412}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel002_Material_0.geometry}
-          material={materials.Material}
-          rotation={[0.725, -0.835, -1.878]}
-          scale={11.684}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel004_Material_0.geometry}
-          material={materials.Material}
-          rotation={[2.656, 0.725, -0.9]}
-          scale={[-16.056, 16.056, 16.056]}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel005_Material_0.geometry}
-          material={materials.Material}
-          rotation={[0.869, -1.235, 2.148]}
-          scale={11.832}
-        />
-
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Icokugel006_Material_0.geometry}
-          material={materials.Material}
-          rotation={[-0.188, -0.208, -2.299]}
-          scale={10.851}
         />
 
         <mesh
@@ -3747,7 +3831,7 @@ const World = ({
           scale={0.575}
         />
 
-        <mesh
+        <mesh //arvore
           castShadow
           receiveShadow
           geometry={nodes['Fl��che249_Material005_0'].geometry}

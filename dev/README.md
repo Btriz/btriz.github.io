@@ -8,10 +8,10 @@ Este projeto utiliza um contêiner de desenvolvimento baseado na imagem `node-ba
 
 1. Certifique-se de que possui [Docker](https://docs.docker.com/get-docker/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
 
-2. Clone o repositório [`dev-kits`](https://github.com/seu-usuario/dev-kits) em algum lugar da sua máquina (fora do projeto):
+2. Clone o repositório [`dev-kits`](https://github.com/btriz/dev-kits) em algum lugar da sua máquina (fora do projeto):
 
    ```bash
-   git clone https://github.com/seu-usuario/dev-kits.git ~/.dev-kits
+   git clone https://github.com/btriz/dev-kits.git ~/.dev-kits
 3. Os arquivos de configuração do terminal são montados diretamente a partir de:
 
    `~/dev-kits/configs/`

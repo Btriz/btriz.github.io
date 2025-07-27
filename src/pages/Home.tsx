@@ -53,10 +53,10 @@ function Home() {
 
     if (window.innerWidth < 768) {
       ufoScale = [0.1, 0.1, 0.1];
-      ufoPosition = [0, 0.1, 2.8]; // horizontal, vertical, depth
+      ufoPosition = [0, 0, 3.3]; // horizontal, vertical, depth
     } else {
       ufoScale = [0.15, 0.15, 0.15];
-      ufoPosition = [0, 0.1, 2.8];
+      ufoPosition = [0, 0, 3.3];
     }
 
     return [ufoScale, ufoPosition];
@@ -91,37 +91,21 @@ function Home() {
 
           <spotLight
             position={[5, 0, 0]}
-            intensity={300}
-            color={'#ff8000'} // laranja
+            intensity={400}
+            color={'#ff8000'}
           />
 
           <spotLight
             position={[-9, -1, 0]}
-            intensity={20}
-            color="#0000ff" // rosa
+            intensity={90}
+            color="#f542ef"
             angle={0.7}
             penumbra={0.5}
           />
 
-          {/* <spotLight // ufo light
-            position={[0, 1.3, 4.3]}
-            intensity={30}
-            distance={2.5}
-            color="#00ff80"
-            target-position={ufoPosition}
-            angle={2}
-          /> */}
-
-          <spotLight
-            position={[ufoPosition[0], ufoPosition[1], ufoPosition[2]]} // mesma posição do UFO
-            intensity={10}
-            distance={2}
-            color="#00ff80"
-            angle={0.5}
-            target-position={[0, 0, 10]} // alvo para o sul (eixo z positivo)
+          <hemisphereLight
+            args={['#ffcc80', '#ff9100', 0.15]}
           />
-
-          {/* <Bird /> */}
 
           <Sky isRotating={isRotating} />
 
