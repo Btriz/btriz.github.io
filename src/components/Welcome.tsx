@@ -1,5 +1,3 @@
-import { Html } from '@react-three/drei';
-
 type WelcomeProps = {
   handleEnter: () => void;
 };

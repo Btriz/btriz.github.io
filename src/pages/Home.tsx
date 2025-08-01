@@ -1,15 +1,9 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 
-// import Island from '../models/Island';
-import Sky from '../models/Sky';
-// import Bird from '../models/Bird';
-
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
-// import YoshisIsland from '../models/YoshisIsland';
-import World from '../models/World';
-import Ufo from '../models/Ufo';
+import { World, Ufo, Sky } from '../models';
 import { Welcome, Loader, HomeInfo } from '../components';
 
 function Home() {
@@ -78,11 +72,11 @@ function Home() {
 
   const adjustIslandForScreenSize = () => {
     let screenScale: [number, number, number];
-    const screenPosition: [number, number, number] = [0, -0.5, 0]; // horizontal, vertical, depth
-    const rotation: [number, number, number] = [0, 0, 0.5]; // x, y, z rotation
+    const screenPosition: [number, number, number] = [0, -0.5, 0];
+    const rotation: [number, number, number] = [0, 0, 0.5];
 
     if (window.innerWidth < 768) {
-      screenScale = [1.3, 1.3, 1.3]; // bottom, top, sides
+      screenScale = [1.3, 1.3, 1.3];
     } else {
       screenScale = [1.8, 1.8, 1.8];
     }
@@ -96,7 +90,7 @@ function Home() {
 
     if (window.innerWidth < 768) {
       ufoScale = [0.1, 0.1, 0.1];
-      ufoPosition = [0, 0, 3.3]; // horizontal, vertical, depth
+      ufoPosition = [0, 0, 3.3];
     } else {
       ufoScale = [0.15, 0.15, 0.15];
       ufoPosition = [0, 0, 3.3];
