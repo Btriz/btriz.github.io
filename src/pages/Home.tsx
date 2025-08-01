@@ -1,17 +1,16 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 
 // import Island from '../models/Island';
 import Sky from '../models/Sky';
 // import Bird from '../models/Bird';
 
-import Loader from '../components/Loader';
-import HomeInfo from '../components/HomeInfo';
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
 // import YoshisIsland from '../models/YoshisIsland';
 import World from '../models/World';
 import Ufo from '../models/Ufo';
+import { Welcome, Loader, HomeInfo } from '../components';
 
 function Home() {
   const audioRef = useRef(new Audio(sakura));
@@ -21,6 +20,37 @@ function Home() {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
   const [rotationDirection, setRotationDirection] = useState<1 | -1>(1);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 20]);
+
+  useEffect(() => {
+    if (!showWelcome) {
+      let frame: number;
+
+      const animate = () => {
+        setCameraPosition((prev) => {
+          const target: [number, number, number] = [0, 0, 5];
+          const speed = 0.1;
+
+          const next: [number, number, number] = [
+            prev[0] + (Math.abs(target[0] - prev[0]) < 0.01 ? 0 : (target[0] - prev[0]) * speed),
+            prev[1] + (Math.abs(target[1] - prev[1]) < 0.01 ? 0 : (target[1] - prev[1]) * speed),
+            prev[2] + (Math.abs(target[2] - prev[2]) < 0.01 ? 0 : (target[2] - prev[2]) * speed),
+          ];
+
+          if (next.some((value, index) => Math.abs(value - target[index]) > 0.01)) {
+            frame = requestAnimationFrame(animate);
+          }
+
+          return next;
+        });
+      };
+
+      animate();
+
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [showWelcome]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -32,6 +62,19 @@ function Home() {
       audio.pause();
     };
   }, [isAudioPlaying]);
+
+  const handleEnter = () => {
+    setShowWelcome(false);
+  };
+
+  const CameraUpdater = ({ position }: { position: [number, number, number] }) => {
+    const { camera } = useThree();
+    useFrame(() => {
+      camera.position.set(...position);
+      camera.updateProjectionMatrix();
+    });
+    return null;
+  };
 
   const adjustIslandForScreenSize = () => {
     let screenScale: [number, number, number];
@@ -69,6 +112,8 @@ function Home() {
 
   return (
     <section className="w-full h-screen relative">
+      {showWelcome && <Welcome handleEnter={handleEnter} />}
+
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
         {currentStage && <HomeInfo currentStage={currentStage} /> }
       </div>
@@ -77,6 +122,8 @@ function Home() {
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}
       >
+        <CameraUpdater position={cameraPosition} />
+
         <Suspense fallback={<Loader />}>
           <directionalLight
             position={[5, 0, 2]}
