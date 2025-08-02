@@ -3,7 +3,6 @@ import CTA from './CTA';
 import HomeInfo from './HomeInfo';
 import Loader from './Loader';
 import Navbar from './Navbar';
-import Welcome from './Welcome';
 
 export {
   Alert,
@@ -11,5 +10,4 @@ export {
   HomeInfo,
   Loader,
   Navbar,
-  Welcome,
 };

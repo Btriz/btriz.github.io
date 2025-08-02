@@ -407,6 +407,7 @@ const World = ({
       event.stopPropagation();
       event.preventDefault();
       setIsInteracting(true);
+      setIsMoving(false);
 
       const clientX =
         'touches' in event && event.touches.length
@@ -415,7 +416,7 @@ const World = ({
 
       lastX.current = clientX;
     },
-    [setIsInteracting],
+    [setIsInteracting, setIsMoving],
   );
 
   const handlePointerUp = useCallback(
@@ -472,13 +473,13 @@ const World = ({
     (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
         setLeftPressed(false);
-        setIsInteracting(false);
       } else if (event.key === 'ArrowRight') {
         setRightPressed(false);
-        setIsInteracting(false);
       }
+      setIsInteracting(false);
+      setIsMoving(false);
     },
-    [setIsInteracting],
+    [setIsInteracting, setIsMoving],
   );
 
   useFrame(() => {
@@ -523,6 +524,7 @@ const World = ({
     const canvas = gl.domElement;
     canvas.addEventListener('pointerdown', handlePointerDown);
     canvas.addEventListener('pointermove', handlePointerMove);
+    canvas.addEventListener('pointerup', handlePointerUp);
     document.addEventListener('pointerup', handlePointerUp);
 
     document.addEventListener('keydown', handleKeyDown);
@@ -531,6 +533,7 @@ const World = ({
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown);
       canvas.removeEventListener('pointermove', handlePointerMove);
+      canvas.removeEventListener('pointerup', handlePointerUp);
       document.removeEventListener('pointerup', handlePointerUp);
 
       document.removeEventListener('keydown', handleKeyDown);

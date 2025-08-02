@@ -7,7 +7,7 @@ import { BlendFunction } from 'postprocessing';
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
 import { World, Ufo, Sky } from '../models';
-import { Welcome, Loader, HomeInfo } from '../components';
+import { Loader, HomeInfo } from '../components';
 
 function Home() {
   const audioRef = useRef(new Audio(sakura));
@@ -18,37 +18,47 @@ function Home() {
   const [isMoving, setIsMoving] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
   const [rotationDirection, setRotationDirection] = useState<1 | -1>(1);
-  const [showWelcome, setShowWelcome] = useState(true);
   const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 20]);
+  const [cameraReady, setCameraReady] = useState(false);
 
   useEffect(() => {
-    if (!showWelcome) {
-      let frame: number;
+    let frame: number;
 
-      const animate = () => {
-        setCameraPosition((prev) => {
-          const target: [number, number, number] = [0, 0, 5];
-          const speed = 0.1;
+    const target: [number, number, number] = [0, 0, 5];
+    const speed = 0.1;
+    const threshold = 0.01;
 
-          const next: [number, number, number] = [
-            prev[0] + (Math.abs(target[0] - prev[0]) < 0.01 ? 0 : (target[0] - prev[0]) * speed),
-            prev[1] + (Math.abs(target[1] - prev[1]) < 0.01 ? 0 : (target[1] - prev[1]) * speed),
-            prev[2] + (Math.abs(target[2] - prev[2]) < 0.01 ? 0 : (target[2] - prev[2]) * speed),
-          ];
-
-          if (next.some((value, index) => Math.abs(value - target[index]) > 0.01)) {
-            frame = requestAnimationFrame(animate);
-          }
-
-          return next;
-        });
-      };
-
-      animate();
-
-      return () => cancelAnimationFrame(frame);
+    // cálculo da distância Euclidiana
+    function distance(a: [number, number, number], b: [number, number, number]) {
+      return Math.sqrt(
+        (a[0] - b[0]) ** 2 +
+        (a[1] - b[1]) ** 2 +
+        (a[2] - b[2]) ** 2,
+      );
     }
-  }, [showWelcome]);
+
+    const animate = () => {
+      setCameraPosition((prev) => {
+        const next: [number, number, number] = [
+          prev[0] + (Math.abs(target[0] - prev[0]) < threshold ? 0 : (target[0] - prev[0]) * speed),
+          prev[1] + (Math.abs(target[1] - prev[1]) < threshold ? 0 : (target[1] - prev[1]) * speed),
+          prev[2] + (Math.abs(target[2] - prev[2]) < threshold ? 0 : (target[2] - prev[2]) * speed),
+        ];
+
+        if (distance(next, target) > threshold) {
+          frame = requestAnimationFrame(animate);
+        } else {
+          setCameraReady(true);
+        }
+
+        return next;
+      });
+    };
+
+    animate();
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -60,10 +70,6 @@ function Home() {
       audio.pause();
     };
   }, [isAudioPlaying]);
-
-  const handleEnter = () => {
-    setShowWelcome(false);
-  };
 
   const CameraUpdater = ({ position }: { position: [number, number, number] }) => {
     const { camera } = useThree();
@@ -110,10 +116,8 @@ function Home() {
 
   return (
     <section className="w-full h-screen relative">
-      {showWelcome && <Welcome handleEnter={handleEnter} />}
-
       <AnimatePresence>
-        {currentStage && (
+        {currentStage && cameraReady && (
           <motion.div
             key={currentStage}
             className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center"
@@ -155,9 +159,9 @@ function Home() {
             penumbra={0.5}
           />
 
-          <hemisphereLight
+          {/* <hemisphereLight
             args={['#ffcc80', '#ff9100', 0.15]}
-          />
+          /> */}
 
           <Sky isMoving={isMoving} />
 
@@ -185,7 +189,7 @@ function Home() {
 
             <Noise premultiply blendFunction={BlendFunction.ADD} opacity={0.4} />
 
-            <Scanline density={0.9} opacity={0.03} blendFunction={BlendFunction.OVERLAY} />
+            <Scanline density={0.9} opacity={0.02} />
 
             <Vignette />
           </EffectComposer>
@@ -196,7 +200,7 @@ function Home() {
         className="absolute bottom-2 left-2"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: showWelcome ? 0 : 0.8, duration: 0.5 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >

@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-type WelcomeProps = {
-  handleEnter: () => void;
-};
-
-const Welcome = ({ handleEnter }: WelcomeProps) => {
+const Welcome = () => {
+  const navigate = useNavigate();
   const itemVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -38,7 +36,7 @@ const Welcome = ({ handleEnter }: WelcomeProps) => {
         variants={itemVariants}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={handleEnter}
+        onClick={() => navigate('/home')}
       >
         Explorar
       </motion.button>

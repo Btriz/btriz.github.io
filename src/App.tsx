@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
-import { Home, About, Projects, Contact } from './pages';
+import { Home, About, Projects, Contact, Welcome } from './pages';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -39,7 +39,9 @@ const AnimatedRoutes = () => {
         className="w-full min-h-screen"
       >
         <Routes location={location}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Welcome />} />
+
+          <Route path="/Home" element={<Home />} />
 
           <Route path="/about" element={<About />} />
 
