@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { arrow } from '../assets/icons';
 
 type HomeInfoProps = {
@@ -7,30 +8,60 @@ type HomeInfoProps = {
 };
 
 const InfoBox = ({ text, link, btnText }: {
-  text: string;
-  link: string;
-  btnText: string;
+  text: string | React.ReactNode;
+  link?: string;
+  btnText?: string;
 }) => (
-  <div className="info-box neo-brutalism-blue">
-    <p className="font-medium sm:text-xl text-center">{text}</p>
+  <motion.div
+    className="info-box neo-brutalism-blue"
+    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}
+    exit={{
+      opacity: 0,
+      scale: 0.5,
+      y: 40,
+      transition: { duration: 0.3, type: 'tween', ease: 'easeIn' },
+    }}
+  >
+    <motion.p
+      className="font-medium sm:text-xl text-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
+    >
+      {text}
+    </motion.p>
 
-    <Link to={link} className="neo-brutalism-white neo-btn">
-      {btnText}
+    {link && btnText && (
+      <motion.div>
+        <Link to={link} className="neo-brutalism-white neo-btn">
+          {btnText}
 
-      <img src={arrow} />
-    </Link>
-  </div>
+          <motion.img
+            src={arrow}
+            alt="arrow"
+            whileHover={{ x: 5 }}
+            transition={{ type: 'spring', stiffness: 400 }}
+          />
+        </Link>
+      </motion.div>
+    )}
+  </motion.div>
 );
 
 const renderContent: { [key: number]: React.ReactElement } = {
   1: (
-    <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
-      Hi, I am <span className="font-semibold">Beatriz</span> 👋
+    <InfoBox
+      text={
+        <>
+          Hi, I am <span className="font-semibold">Beatriz</span> 👋
 
-      <br />
-      A software developer from Brazil.
-
-    </h1>
+          <br />
+          A software developer from Brazil.
+        </>
+      }
+    />
   ),
   2: (
     <InfoBox
@@ -56,7 +87,13 @@ const renderContent: { [key: number]: React.ReactElement } = {
 };
 
 const HomeInfo = ({ currentStage }: HomeInfoProps) => {
-  return renderContent[currentStage] || (null);
+  return (
+    <div
+      key={currentStage}
+    >
+      {renderContent[currentStage] || null}
+    </div>
+  );
 };
 
 export default HomeInfo;

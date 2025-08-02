@@ -8,10 +8,10 @@ import { useFrame } from '@react-three/fiber';
 import skyScene from '../assets/3d/sky.glb';
 
 type SkyProps = JSX.IntrinsicElements['group'] & {
-  isRotating: boolean;
+  isMoving: boolean;
 };
 
-function Sky({ isRotating }: SkyProps) {
+function Sky({ isMoving }: SkyProps) {
   const sky = useGLTF(skyScene) as GLTF;
   const skyRef = useRef<THREE.Group>(null);
 
@@ -30,7 +30,7 @@ function Sky({ isRotating }: SkyProps) {
   }, [sky]);
 
   useFrame((_, delta) => {
-    if (skyRef.current && isRotating) {
+    if (skyRef.current && isMoving) {
       skyRef.current.rotation.y += 0.15 * delta;
     }
   });

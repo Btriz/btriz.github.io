@@ -1,5 +1,8 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { AnimatePresence, motion } from 'framer-motion';
+import { EffectComposer, Bloom, Noise, Scanline, Vignette } from '@react-three/postprocessing';
+import { BlendFunction } from 'postprocessing';
 
 import sakura from '../assets/sakura.mp3';
 import { soundoff, soundon } from '../assets/icons';
@@ -11,7 +14,8 @@ function Home() {
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isRotating, setIsRotating] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
   const [rotationDirection, setRotationDirection] = useState<1 | -1>(1);
   const [showWelcome, setShowWelcome] = useState(true);
@@ -108,12 +112,19 @@ function Home() {
     <section className="w-full h-screen relative">
       {showWelcome && <Welcome handleEnter={handleEnter} />}
 
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        {currentStage && <HomeInfo currentStage={currentStage} /> }
-      </div>
+      <AnimatePresence>
+        {currentStage && (
+          <motion.div
+            key={currentStage}
+            className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center"
+          >
+            <HomeInfo currentStage={currentStage} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Canvas
-        className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`w-full h-screen bg-transparent ${isInteracting ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}
       >
         <CameraUpdater position={cameraPosition} />
@@ -148,37 +159,54 @@ function Home() {
             args={['#ffcc80', '#ff9100', 0.15]}
           />
 
-          <Sky isRotating={isRotating} />
+          <Sky isMoving={isMoving} />
 
           <World
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
             setRotationDirection={setRotationDirection}
+            isInteracting={isInteracting}
+            setIsInteracting={setIsInteracting}
+            setIsMoving={setIsMoving}
           />
 
           <Ufo
-            isRotating={isRotating}
+            isInteracting={isMoving}
             rotationDirection={rotationDirection}
             scale={ufoScale}
             position={ufoPosition}
             rotation={[0.5, 0, 0]}
           />
 
+          <EffectComposer>
+            <Bloom intensity={0.1} luminanceThreshold={0.3} luminanceSmoothing={0.9} />
+
+            <Noise premultiply blendFunction={BlendFunction.ADD} opacity={0.4} />
+
+            <Scanline density={0.9} opacity={0.03} blendFunction={BlendFunction.OVERLAY} />
+
+            <Vignette />
+          </EffectComposer>
         </Suspense>
       </Canvas>
 
-      <div className="absolute bottom-2 left-2">
+      <motion.div
+        className="absolute bottom-2 left-2"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: showWelcome ? 0 : 0.8, duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
         <img
           src={isAudioPlaying ? soundon : soundoff}
           alt="Sound"
           className="w-10 h-10 cursor-pointer object-contain"
           onClick={() => setIsAudioPlaying(!isAudioPlaying)}
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

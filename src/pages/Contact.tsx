@@ -1,6 +1,8 @@
 import { Suspense, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { Canvas } from '@react-three/fiber';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+
 import Fox from '../models/fox';
 import Loader from '../components/Loader';
 import useAlert from '../hooks/useAlert';
@@ -19,12 +21,10 @@ const Contact = () => {
   const { alert, showAlert, hideAlert } = useAlert();
 
   const handleFocus = () => setCurrentAnimation('walk');
-
   const handleBlur = () => setCurrentAnimation('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -49,7 +49,6 @@ const Contact = () => {
       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
     ).then(() => {
       setIsLoading(false);
-
       showAlert({
         text: 'Message sent successfully!',
         type: 'success',
@@ -75,21 +74,59 @@ const Contact = () => {
     });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <section className="relative flex lg:flex-row flex-col max-container h-[100vh]">
-      {alert.show && <Alert text={alert.text} type={alert.type} /> }
+    <motion.section
+      className="relative flex lg:flex-row flex-col max-container h-screen"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {alert.show && <Alert text={alert.text} type={alert.type} />}
 
-      <div className="flex-1 min-w-[50%] flex flex-col">
-        <h1 className="head-text font-poppins">Get in Touch</h1>
+      <motion.div className="flex-1 min-w-[50%] flex flex-col" variants={itemVariants}>
+        <motion.h1
+          className="head-text"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Get in Touch
+        </motion.h1>
 
-        <form
+        <motion.form
           className="w-full flex flex-col gap-7 mt-14"
           ref={formRef}
           onSubmit={handleSubmit}
+          variants={containerVariants}
         >
-          <label className="text-black-500 font-semibold" htmlFor="name">
-          Name
-            <input
+          <motion.label
+            className="text-black-500 font-semibold"
+            variants={itemVariants}
+          >
+            Name
+            <motion.input
               type="text"
               name="name"
               className="input"
@@ -99,12 +136,17 @@ const Contact = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              whileFocus={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             />
-          </label>
+          </motion.label>
 
-          <label className="text-black-500 font-semibold" htmlFor="email">
-          Email
-            <input
+          <motion.label
+            className="text-black-500 font-semibold"
+            variants={itemVariants}
+          >
+            Email
+            <motion.input
               type="email"
               name="email"
               className="input"
@@ -114,13 +156,17 @@ const Contact = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              whileFocus={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             />
-          </label>
+          </motion.label>
 
-          <label className="text-black-500 font-semibold" htmlFor="message">
-          Your Message
-            <textarea
-              id="message"
+          <motion.label
+            className="text-black-500 font-semibold"
+            variants={itemVariants}
+          >
+            Your Message
+            <motion.textarea
               name="message"
               className="textarea"
               placeholder="Let me know how I can help you!"
@@ -130,22 +176,32 @@ const Contact = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              whileFocus={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             />
-          </label>
+          </motion.label>
 
-          <button
+          <motion.button
             type="submit"
             className="btn"
             onFocus={handleFocus}
             onBlur={handleBlur}
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            disabled={isLoading}
           >
             {isLoading ? 'Sending...' : 'Send Message'}
-          </button>
-        </form>
+          </motion.button>
+        </motion.form>
+      </motion.div>
 
-      </div>
-
-      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+      <motion.div
+        className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]"
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
         <Canvas
           camera={{
             position: [0, 0, 5],
@@ -167,8 +223,8 @@ const Contact = () => {
             />
           </Suspense>
         </Canvas>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

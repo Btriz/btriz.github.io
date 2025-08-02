@@ -10,7 +10,7 @@ import type { GLTF } from 'three-stdlib';
 import type { JSX } from 'react';
 
 import * as THREE from 'three';
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
@@ -363,17 +363,19 @@ type GLTFResult = GLTF & {
 }
 
 type WorldProps = JSX.IntrinsicElements['group'] & {
-  isRotating: boolean;
-  setIsRotating: (_isRotating: boolean) => void;
+  isInteracting: boolean;
+  setIsInteracting: (_isRotating: boolean) => void;
   setCurrentStage: (_stage: number | null) => void;
   setRotationDirection: (_dir: 1 | -1) => void;
+  setIsMoving: (_isMoving: boolean) => void;
 };
 
 const World = ({
-  isRotating,
-  setIsRotating,
+  isInteracting,
+  setIsInteracting,
   setCurrentStage,
   setRotationDirection,
+  setIsMoving,
   ...props
 }: WorldProps) => {
   const { gl, viewport } = useThree();
@@ -392,11 +394,19 @@ const World = ({
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
   const dampingFactor = 0.95;
+  const [leftPressed, setLeftPressed] = useState(false);
+  const [rightPressed, setRightPressed] = useState(false);
+
+  const updateRotationDirection = useCallback((dir: 1 | -1) => {
+    setRotationDirection(dir);
+    setIsMoving(true);
+  }, [setRotationDirection, setIsMoving]);
+
   const handlePointerDown = useCallback(
     (event: PointerEvent | TouchEvent) => {
       event.stopPropagation();
       event.preventDefault();
-      setIsRotating(true);
+      setIsInteracting(true);
 
       const clientX =
         'touches' in event && event.touches.length
@@ -405,116 +415,124 @@ const World = ({
 
       lastX.current = clientX;
     },
-    [setIsRotating],
+    [setIsInteracting],
   );
 
   const handlePointerUp = useCallback(
     (event: PointerEvent) => {
       event.stopPropagation();
       event.preventDefault();
-      setIsRotating(false);
+      setIsInteracting(false);
+      setIsMoving(false);
     },
-    [setIsRotating],
+    [setIsMoving, setIsInteracting],
   );
 
   const handlePointerMove = useCallback(
     (event: PointerEvent | TouchEvent) => {
       event.stopPropagation();
       event.preventDefault();
-      if (isRotating) {
+      if (isInteracting) {
         const clientX =
           'touches' in event && event.touches.length
             ? event.touches[0].clientX
             : (event as PointerEvent).clientX;
 
-        const delta = (clientX - lastX.current) / viewport.width;
-        if (worldRef.current) {
-          worldRef.current.rotation.y += delta * 0.01 * Math.PI;
+        const delta = clientX - lastX.current;
+
+        if (Math.abs(delta) > 2) {
+          updateRotationDirection(delta > 0 ? 1 : -1);
         }
+
+        if (worldRef.current) {
+          worldRef.current.rotation.y += (delta / viewport.width) * 0.005 * Math.PI;
+        }
+
         lastX.current = clientX;
-        rotationSpeed.current = delta * 0.01;
+        rotationSpeed.current = (delta / viewport.width) * 0.005;
       }
     },
-    [isRotating, viewport.width],
+    [isInteracting, viewport.width, updateRotationDirection],
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        if (!isRotating) setIsRotating(true);
-        if (worldRef.current) {
-          worldRef.current.rotation.y += 0.01 * Math.PI;
-          rotationSpeed.current = 0.0125;
-        }
+        setLeftPressed(true);
+        setIsInteracting(true);
       } else if (event.key === 'ArrowRight') {
-        if (!isRotating) setIsRotating(true);
-        if (worldRef.current) {
-          worldRef.current.rotation.y -= 0.01 * Math.PI;
-          rotationSpeed.current = -0.0125;
-        }
+        setRightPressed(true);
+        setIsInteracting(true);
       }
     },
-    [isRotating, setIsRotating],
+    [setIsInteracting],
   );
 
   const handleKeyUp = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        setIsRotating(false);
+      if (event.key === 'ArrowLeft') {
+        setLeftPressed(false);
+        setIsInteracting(false);
+      } else if (event.key === 'ArrowRight') {
+        setRightPressed(false);
+        setIsInteracting(false);
       }
     },
-    [setIsRotating],
+    [setIsInteracting],
   );
 
   useFrame(() => {
-    if (!isRotating && worldRef.current) {
-      rotationSpeed.current *= dampingFactor;
-      if (Math.abs(rotationSpeed.current) < 0.001) {
-        rotationSpeed.current = 0;
+    if (worldRef.current) {
+      if (leftPressed) {
+        worldRef.current.rotation.y += 0.01 * Math.PI;
+        rotationSpeed.current = 0.0125;
+        updateRotationDirection(1);
+      } else if (rightPressed) {
+        worldRef.current.rotation.y -= 0.01 * Math.PI;
+        rotationSpeed.current = -0.0125;
+        updateRotationDirection(-1);
+      } else if (!isInteracting) {
+        rotationSpeed.current *= dampingFactor;
+        if (Math.abs(rotationSpeed.current) < 0.001) {
+          rotationSpeed.current = 0;
+        }
+        worldRef.current.rotation.y += rotationSpeed.current;
       }
 
-      worldRef.current.rotation.y += rotationSpeed.current;
-    } else {
-      const rotation = worldRef.current?.rotation.y ?? 0;
+      if (isInteracting) {
+        const rotation = worldRef.current.rotation.y;
+        const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-      const normalizedRotation =
-        ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-
-      switch (true) {
-      case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-        setCurrentStage(4);
-        break;
-      case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-        setCurrentStage(3);
-        break;
-      case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-        setCurrentStage(2);
-        break;
-      case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-        setCurrentStage(1);
-        break;
-      default:
-        setCurrentStage(null);
+        if (normalizedRotation >= 0 && normalizedRotation < 1.27) {
+          setCurrentStage(1);
+        } else if (normalizedRotation >= 1.57 && normalizedRotation < 2.84) {
+          setCurrentStage(4);
+        } else if (normalizedRotation >= 3.14 && normalizedRotation < 4.41) {
+          setCurrentStage(3);
+        } else if (normalizedRotation >= 4.71 && normalizedRotation < 5.98) {
+          setCurrentStage(2);
+        } else {
+          setCurrentStage(null);
+        }
       }
     }
 
-    if (isRotating && rotationSpeed.current !== 0) {
-      setRotationDirection(rotationSpeed.current > 0 ? 1 : -1);
-    }
   });
 
   useEffect(() => {
     const canvas = gl.domElement;
     canvas.addEventListener('pointerdown', handlePointerDown);
-    canvas.addEventListener('pointerup', handlePointerUp);
     canvas.addEventListener('pointermove', handlePointerMove);
+    document.addEventListener('pointerup', handlePointerUp);
+
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
 
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown);
-      canvas.removeEventListener('pointerup', handlePointerUp);
       canvas.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerup', handlePointerUp);
+
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
     };
@@ -534,16 +552,21 @@ const World = ({
     }
   });
 
-  type AnimatedPlaneProps = {
+  const AnimatedPlane = React.memo(({
+    planeRef,
+    orbitRadius,
+    heightAboveSurface,
+    speed,
+    angleRef,
+    direction = 1,
+  }: {
   planeRef: React.RefObject<THREE.Group | null>;
   orbitRadius: number;
   heightAboveSurface: number;
   speed: number;
   angleRef: React.RefObject<number>;
   direction?: 1 | -1;
-};
-
-  const AnimatedPlane = React.memo(({ planeRef, orbitRadius, heightAboveSurface, speed, angleRef, direction = 1 }: AnimatedPlaneProps) => {
+}) => {
     useFrame((_, delta) => {
       angleRef.current += direction * (Math.PI * 2 * delta) / speed;
 
@@ -675,7 +698,7 @@ const World = ({
               planeRef={plane3Ref}
               orbitRadius={200}
               heightAboveSurface={100}
-              speed={20} // Velocidade em segundos para completar uma volta
+              speed={20}
               angleRef={plane3Angle}
               direction={-1}
 

@@ -13,11 +13,11 @@ import ufoScene from '../assets/3d/ufo.glb';
 import { useAnimations, useGLTF } from '@react-three/drei';
 
 type UfoProps = JSX.IntrinsicElements['group'] & {
-  isRotating: boolean;
+  isInteracting: boolean;
   rotationDirection: 1 | -1;
 }
 
-const Ufo = ({ isRotating, rotationDirection, ...props }: UfoProps) => {
+const Ufo = ({ isInteracting, rotationDirection, ...props }: UfoProps) => {
   const ufoRef = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(ufoScene);
   const { actions } = useAnimations(animations, ufoRef);
@@ -25,15 +25,15 @@ const Ufo = ({ isRotating, rotationDirection, ...props }: UfoProps) => {
   useEffect(() => {
     const action = actions['ArmatureAction.001'];
     if (action) {
-      action.timeScale = isRotating ? rotationDirection : 0;
-      if (isRotating) {
+      action.timeScale = isInteracting ? rotationDirection : 0;
+      if (isInteracting) {
         action.play();
       } else {
         action.timeScale = 0.2 * rotationDirection;
         action.play();
       }
     }
-  }, [actions, isRotating, rotationDirection]);
+  }, [actions, isInteracting, rotationDirection]);
 
   useEffect(() => {
     scene.traverse((child) => {
