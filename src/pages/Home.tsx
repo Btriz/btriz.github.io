@@ -1,19 +1,14 @@
-import { Suspense, useState, useEffect, useRef } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { AnimatePresence, motion } from 'framer-motion';
 import { EffectComposer, Bloom, Noise, Scanline, Vignette } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 
-import sakura from '../assets/sakura.mp3';
-import { soundoff, soundon } from '../assets/icons';
 import { World, Ufo, Sky } from '../models';
 import { Loader, HomeInfo } from '../components';
+import { MdOutlineSwipeLeft } from 'react-icons/md';
 
 function Home() {
-  const audioRef = useRef(new Audio(sakura));
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
@@ -59,17 +54,6 @@ function Home() {
 
     return () => cancelAnimationFrame(frame);
   }, []);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (isAudioPlaying) {
-      audio.play();
-    }
-
-    return () => {
-      audio.pause();
-    };
-  }, [isAudioPlaying]);
 
   const CameraUpdater = ({ position }: { position: [number, number, number] }) => {
     const { camera } = useThree();
@@ -196,21 +180,29 @@ function Home() {
         </Suspense>
       </Canvas>
 
-      <motion.div
-        className="absolute bottom-2 left-2"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <img
-          src={isAudioPlaying ? soundon : soundoff}
-          alt="Sound"
-          className="w-10 h-10 cursor-pointer object-contain"
-          onClick={() => setIsAudioPlaying(!isAudioPlaying)}
-        />
-      </motion.div>
+      <AnimatePresence>
+        {cameraReady && currentStage === 1 && (
+          <motion.div
+            className="absolute lg:bottom-50 bottom-30 left-1/2 -translate-x-1/2  z-20 pointer-events-none"
+            initial={{ x: 0, opacity: 0 }}
+            animate={{ x: [-10, 0, -10], opacity: 1 }}
+            transition={{
+              opacity: { duration: 0.5, ease: 'easeInOut' },
+              x: { repeat: Infinity, duration: 1.5, ease: 'easeInOut' },
+            }}
+            exit={{ x: -50, opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
+            aria-label="Indicador de gesto: arraste para a esquerda"
+            role="status"
+          >
+            <div className="opacity-80 flex flex-col items-center">
+              <MdOutlineSwipeLeft color="white" size={40} />
+
+              <span className="text-white mt-2 select-none font-bold">ARRASTE</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

@@ -7,6 +7,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import { Home, About, Projects, Contact, Welcome } from './pages';
+import MusicPlayer from './components/MusicPlayer';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -59,6 +60,8 @@ const App = () => {
     <main className="bg-slate-300/20">
       <Router>
         <Navbar />
+
+        <MusicPlayer />
 
         <AnimatedRoutes />
       </Router>
