@@ -1,13 +1,11 @@
 import {
   Route,
-  BrowserRouter as Router,
   Routes,
   useLocation,
 } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import { Home, About, Projects, Contact, Welcome } from './pages';
-import MusicPlayer from './components/MusicPlayer';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -40,7 +38,7 @@ const AnimatedRoutes = () => {
         className="w-full min-h-screen"
       >
         <Routes location={location}>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Welcome key={location.pathname} />} />
 
           <Route path="/Home" element={<Home />} />
 
@@ -56,15 +54,17 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
+  // const location = useLocation();
+
   return (
     <main className="bg-slate-300/20">
-      <Router>
-        <Navbar />
 
-        <MusicPlayer />
+      {/* {location.pathname !== '/' && <Navbar />} */}
 
-        <AnimatedRoutes />
-      </Router>
+      <Navbar />
+
+      <AnimatedRoutes />
+
     </main>
   );
 };

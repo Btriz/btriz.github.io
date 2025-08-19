@@ -16,6 +16,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
 import worldScene from '../assets/3d/world.glb';
+import Sky from './Sky';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -368,6 +369,7 @@ type WorldProps = JSX.IntrinsicElements['group'] & {
   setCurrentStage: (_stage: number | null) => void;
   setRotationDirection: (_dir: 1 | -1) => void;
   setIsMoving: (_isMoving: boolean) => void;
+  rotation?: [number, number, number],
 };
 
 const World = ({
@@ -376,6 +378,7 @@ const World = ({
   setCurrentStage,
   setRotationDirection,
   setIsMoving,
+  rotation = [0, 0, 0],
   ...props
 }: WorldProps) => {
   const { gl, viewport } = useThree();
@@ -397,10 +400,10 @@ const World = ({
   const [leftPressed, setLeftPressed] = useState(false);
   const [rightPressed, setRightPressed] = useState(false);
 
-  const updateRotationDirection = useCallback((dir: 1 | -1) => {
-    setRotationDirection(dir);
-    setIsMoving(true);
-  }, [setRotationDirection, setIsMoving]);
+  const setStop = useCallback(() => {
+    setIsMoving(false);
+    setIsInteracting(false);
+  }, [setIsMoving, setIsInteracting]);
 
   const handlePointerDown = useCallback(
     (event: PointerEvent | TouchEvent) => {
@@ -420,13 +423,12 @@ const World = ({
   );
 
   const handlePointerUp = useCallback(
-    (event: PointerEvent) => {
+    (event: PointerEvent | TouchEvent) => {
       event.stopPropagation();
       event.preventDefault();
-      setIsInteracting(false);
-      setIsMoving(false);
+      setStop();
     },
-    [setIsMoving, setIsInteracting],
+    [setStop],
   );
 
   const handlePointerMove = useCallback(
@@ -442,7 +444,8 @@ const World = ({
         const delta = clientX - lastX.current;
 
         if (Math.abs(delta) > 2) {
-          updateRotationDirection(delta > 0 ? 1 : -1);
+          setRotationDirection(delta > 0 ? -1 : 1);
+          setIsMoving(true);
         }
 
         if (worldRef.current) {
@@ -450,103 +453,103 @@ const World = ({
         }
 
         lastX.current = clientX;
-        rotationSpeed.current = (delta / viewport.width) * 0.005;
+        rotationSpeed.current = (delta / viewport.width) * 0.005 * Math.PI;
       }
     },
-    [isInteracting, viewport.width, updateRotationDirection],
+    [isInteracting, viewport.width, setRotationDirection, setIsMoving],
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        setLeftPressed(true);
-        setIsInteracting(true);
+        if (!leftPressed) {
+          setLeftPressed(true);
+          setRotationDirection(1);
+          setIsInteracting(true);
+          setIsMoving(true);
+        }
       } else if (event.key === 'ArrowRight') {
-        setRightPressed(true);
-        setIsInteracting(true);
+        if (!rightPressed) {
+          setRightPressed(true);
+          setRotationDirection(-1);
+          setIsInteracting(true);
+          setIsMoving(true);
+        }
       }
     },
-    [setIsInteracting],
+    [leftPressed, rightPressed, setIsInteracting, setIsMoving, setRotationDirection],
   );
 
   const handleKeyUp = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
         setLeftPressed(false);
+        setStop();
       } else if (event.key === 'ArrowRight') {
         setRightPressed(false);
+        setStop();
       }
-      setIsInteracting(false);
-      setIsMoving(false);
     },
-    [setIsInteracting, setIsMoving],
+    [setStop],
   );
 
   useFrame(() => {
     if (worldRef.current) {
       if (leftPressed) {
-        worldRef.current.rotation.y += 0.01 * Math.PI;
-        rotationSpeed.current = 0.0125;
-        updateRotationDirection(1);
+        rotationSpeed.current = 0.01 * Math.PI;
       } else if (rightPressed) {
-        worldRef.current.rotation.y -= 0.01 * Math.PI;
-        rotationSpeed.current = -0.0125;
-        updateRotationDirection(-1);
+        rotationSpeed.current = -0.01 * Math.PI;
       } else if (!isInteracting) {
         rotationSpeed.current *= dampingFactor;
-        if (Math.abs(rotationSpeed.current) < 0.001) {
-          rotationSpeed.current = 0;
-        }
-        worldRef.current.rotation.y += rotationSpeed.current;
       }
 
-      if (isInteracting) {
-        const rotation = worldRef.current.rotation.y;
-        const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      worldRef.current.rotation.y += rotationSpeed.current;
 
-        if (normalizedRotation >= 0 && normalizedRotation < 1.27) {
-          setCurrentStage(1);
-        } else if (normalizedRotation >= 1.57 && normalizedRotation < 2.84) {
-          setCurrentStage(4);
-        } else if (normalizedRotation >= 3.14 && normalizedRotation < 4.41) {
-          setCurrentStage(3);
-        } else if (normalizedRotation >= 4.71 && normalizedRotation < 5.98) {
-          setCurrentStage(2);
-        } else {
-          setCurrentStage(null);
-        }
+      if (Math.abs(rotationSpeed.current) < 0.0001) {
+        setIsMoving(false);
+      }
+
+      const rotation = worldRef.current.rotation.y;
+      const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+      if (normalizedRotation >= 0 && normalizedRotation < 1.27) {
+        setCurrentStage(1);
+      } else if (normalizedRotation >= 1.57 && normalizedRotation < 2.84) {
+        setCurrentStage(4);
+      } else if (normalizedRotation >= 3.14 && normalizedRotation < 4.41) {
+        setCurrentStage(3);
+      } else if (normalizedRotation >= 4.71 && normalizedRotation < 5.98) {
+        setCurrentStage(2);
+      } else {
+        setCurrentStage(null);
       }
     }
-
   });
 
   useEffect(() => {
     const canvas = gl.domElement;
+
     canvas.addEventListener('pointerdown', handlePointerDown);
-    canvas.addEventListener('pointermove', handlePointerMove);
     canvas.addEventListener('pointerup', handlePointerUp);
-    document.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    // canvas.addEventListener('touchstart', handleTouchStart);
+    // canvas.addEventListener('touchend', handleTouchEnd);
+    // canvas.addEventListener('touchmove', handleTouchMove);
 
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', handleKeyUp);
-
+    // Remove event listeners when component unmounts
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown);
-      canvas.removeEventListener('pointermove', handlePointerMove);
       canvas.removeEventListener('pointerup', handlePointerUp);
-      document.removeEventListener('pointerup', handlePointerUp);
-
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
+      canvas.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+      // canvas.removeEventListener('touchstart', handleTouchStart);
+      // canvas.removeEventListener('touchend', handleTouchEnd);
+      // canvas.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [
-    gl,
-    handlePointerDown,
-    handlePointerUp,
-    handlePointerMove,
-    handleKeyDown,
-    handleKeyUp,
-  ]);
+  }, [gl, handleKeyDown, handleKeyUp, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   useFrame(() => {
     if (cloudsRef.current) {
@@ -598,7 +601,9 @@ const World = ({
   });
 
   return (
-    <a.group ref={worldRef} {...props}>
+    <a.group ref={worldRef} rotation={rotation} {...props}>
+      <Sky />
+
       <group scale={0.01}>
         <mesh //terra
           castShadow

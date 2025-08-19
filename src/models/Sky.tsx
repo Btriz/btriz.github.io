@@ -4,14 +4,9 @@ import type { JSX } from 'react';
 import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
 import skyScene from '../assets/3d/sky.glb';
 
-type SkyProps = JSX.IntrinsicElements['group'] & {
-  isMoving: boolean;
-};
-
-function Sky({ isMoving }: SkyProps) {
+function Sky(props:JSX.IntrinsicElements['group']) {
   const sky = useGLTF(skyScene) as GLTF;
   const skyRef = useRef<THREE.Group>(null);
 
@@ -29,14 +24,8 @@ function Sky({ isMoving }: SkyProps) {
     });
   }, [sky]);
 
-  useFrame((_, delta) => {
-    if (skyRef.current && isMoving) {
-      skyRef.current.rotation.y += 0.15 * delta;
-    }
-  });
-
   return (
-    <primitive object={sky.scene} ref={skyRef} />
+    <primitive object={sky.scene} ref={skyRef} {...props} />
   );
 }
 

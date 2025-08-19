@@ -13,27 +13,27 @@ import ufoScene from '../assets/3d/ufo.glb';
 import { useAnimations, useGLTF } from '@react-three/drei';
 
 type UfoProps = JSX.IntrinsicElements['group'] & {
-  isInteracting: boolean;
+  isMoving: boolean;
   rotationDirection: 1 | -1;
-}
+};
 
-const Ufo = ({ isInteracting, rotationDirection, ...props }: UfoProps) => {
+const Ufo = ({ isMoving, rotationDirection, ...props }: UfoProps) => {
   const ufoRef = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(ufoScene);
   const { actions } = useAnimations(animations, ufoRef);
 
   useEffect(() => {
     const action = actions['ArmatureAction.001'];
+
     if (action) {
-      action.timeScale = isInteracting ? rotationDirection : 0;
-      if (isInteracting) {
-        action.play();
+      if (isMoving) {
+        action.timeScale = 1 * rotationDirection;
       } else {
         action.timeScale = 0.2 * rotationDirection;
-        action.play();
       }
+      action.play();
     }
-  }, [actions, isInteracting, rotationDirection]);
+  }, [actions, isMoving, rotationDirection]);
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -79,39 +79,36 @@ const Ufo = ({ isInteracting, rotationDirection, ...props }: UfoProps) => {
         }
       }
     });
-
   }, [scene]);
 
   return (
-    <>
-      <mesh {...props}>
-        <primitive object={scene} ref={ufoRef} />
+    <group {...props}>
+      <primitive object={scene} ref={ufoRef} />
 
-        <spotLight
-          position={[-0.3, 0.7, 2.3]}
-          intensity={0.03}
-          distance={0.4}
-          color="#00ff80"
-          angle={2}
-          penumbra={1}
-        />
+      <spotLight
+        position={[-0.3, 0.7, 2.3]}
+        intensity={0.03}
+        distance={0.4}
+        color="#00ff80"
+        angle={2}
+        penumbra={1}
+      />
 
-        <pointLight
-          position={[2, 0.5, 0.1]}
-          intensity={0.15}
-          distance={0.5}
-          color="#ffffff"
-        />
+      <pointLight
+        position={[2, 0.5, 0.1]}
+        intensity={0.15}
+        distance={0.5}
+        color="#ffffff"
+      />
 
-        <pointLight
-          position={[0, -0.2, 0.2]}
-          intensity={5}
-          distance={0.5}
-          color="#ffffff"
-          decay={2.5}
-        />
-      </mesh>
-    </>
+      <pointLight
+        position={[0, -0.2, 0.2]}
+        intensity={5}
+        distance={0.5}
+        color="#ffffff"
+        decay={2.5}
+      />
+    </group>
   );
 };
 

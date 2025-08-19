@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { EffectComposer, Bloom, Noise, Scanline, Vignette } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 
-import { World, Ufo, Sky } from '../models';
-import { Loader, HomeInfo } from '../components';
-import { MdOutlineSwipeLeft } from 'react-icons/md';
+import { World, Ufo } from '../models';
+import { Loader, InfoPopUp } from '../components';
+import DragIndicator from '../components/DragIndicator';
 
 function Home() {
   const [isInteracting, setIsInteracting] = useState(false);
@@ -20,7 +20,7 @@ function Home() {
     let frame: number;
 
     const target: [number, number, number] = [0, 0, 5];
-    const speed = 0.1;
+    const speed = 0.0005;
     const threshold = 0.01;
 
     // cálculo da distância Euclidiana
@@ -64,10 +64,9 @@ function Home() {
     return null;
   };
 
-  const adjustIslandForScreenSize = () => {
+  const adjustGlobeForScreenSize = () => {
     let screenScale: [number, number, number];
-    const screenPosition: [number, number, number] = [0, -0.5, 0];
-    const rotation: [number, number, number] = [0, 0, 0.5];
+    const screenPosition: [number, number, number] = [0, -0.6, 0];
 
     if (window.innerWidth < 768) {
       screenScale = [1.3, 1.3, 1.3];
@@ -75,7 +74,7 @@ function Home() {
       screenScale = [1.8, 1.8, 1.8];
     }
 
-    return [screenScale, screenPosition, rotation];
+    return [screenScale, screenPosition];
   };
 
   const adjustUfoForScreenSize = () => {
@@ -93,8 +92,8 @@ function Home() {
     return [ufoScale, ufoPosition];
   };
 
-  const [islandScale, islandPosition, islandRotation] =
-    adjustIslandForScreenSize();
+  const [islandScale, islandPosition] =
+    adjustGlobeForScreenSize();
 
   const [ufoScale, ufoPosition] = adjustUfoForScreenSize();
 
@@ -106,7 +105,7 @@ function Home() {
             key={currentStage}
             className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center"
           >
-            <HomeInfo currentStage={currentStage} />
+            <InfoPopUp currentStage={currentStage} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -115,9 +114,10 @@ function Home() {
         className={`w-full h-screen bg-transparent ${isInteracting ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}
       >
-        <CameraUpdater position={cameraPosition} />
 
         <Suspense fallback={<Loader />}>
+          <CameraUpdater position={cameraPosition} />
+
           <directionalLight
             position={[5, 0, 2]}
             intensity={1.2}
@@ -147,12 +147,9 @@ function Home() {
             args={['#ffcc80', '#ff9100', 0.15]}
           /> */}
 
-          <Sky isMoving={isMoving} />
-
           <World
             position={islandPosition}
             scale={islandScale}
-            rotation={islandRotation}
             setCurrentStage={setCurrentStage}
             setRotationDirection={setRotationDirection}
             isInteracting={isInteracting}
@@ -161,7 +158,7 @@ function Home() {
           />
 
           <Ufo
-            isInteracting={isMoving}
+            isMoving={isMoving}
             rotationDirection={rotationDirection}
             scale={ufoScale}
             position={ufoPosition}
@@ -182,24 +179,7 @@ function Home() {
 
       <AnimatePresence>
         {cameraReady && currentStage === 1 && (
-          <motion.div
-            className="absolute lg:bottom-50 bottom-30 left-1/2 -translate-x-1/2  z-20 pointer-events-none"
-            initial={{ x: 0, opacity: 0 }}
-            animate={{ x: [-10, 0, -10], opacity: 1 }}
-            transition={{
-              opacity: { duration: 0.5, ease: 'easeInOut' },
-              x: { repeat: Infinity, duration: 1.5, ease: 'easeInOut' },
-            }}
-            exit={{ x: -50, opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
-            aria-label="Indicador de gesto: arraste para a esquerda"
-            role="status"
-          >
-            <div className="opacity-80 flex flex-col items-center">
-              <MdOutlineSwipeLeft color="white" size={40} />
-
-              <span className="text-white mt-2 select-none font-bold">ARRASTE</span>
-            </div>
-          </motion.div>
+          <DragIndicator />
         )}
       </AnimatePresence>
 

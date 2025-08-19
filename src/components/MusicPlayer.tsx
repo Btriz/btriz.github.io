@@ -20,7 +20,6 @@ const MusicPlayer = () => {
   useEffect(() => {
     const audio = audioRef.current;
     if (isAudioPlaying) {
-
       audio.play();
     } else {
       audio.pause();
@@ -47,53 +46,52 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-3 left-3 flex items-center z-500">
-      <motion.button
-        className="
-          w-14 h-14 rounded-full
-          bg-gradient-to-br from-gray-400 via-gray-600 to-gray-300 border-2 border-gray-500
-          flex items-center justify-center
-          active:scale-95
-          transition-all
-          duration-200
-          shadow-[-1px_0_4px_#c9c9c9_inset]
-          hover:shadow-[0_0_40px_#22c55e]
-          hover:border-2 border-gray-400
-          hover:scale-105
-          focus:outline-none
-        "
+    <div className="flex items-center">
+      <button
+        className="metal-btn"
         onClick={handleToggleAudio}
         aria-label={isAudioPlaying ? 'Pause music' : 'Play music'}
       >
         {(isRadioPlaying || isAudioPlaying)
-          ? <MdMusicNote size={40} color="#22c55e" />
-          : <MdMusicOff size={40} color="white" />}
-      </motion.button>
+          ? <MdMusicNote className={`${isRadioPlaying && 'animate-pulse-fast '} text-neon hover:text-neon-light`} />
+          : <MdMusicOff className="text-gray-300 hover:text-neon-light" />}
+      </button>
 
       <AnimatePresence>
         {(isRadioPlaying || isAudioPlaying) && (
-          <div className="absolute left-18 overflow-hidden whitespace-nowrap w-60">
-            <motion.div
-              className="text-white font-mono text-[18px] select-none"
-              initial={{ opacity: 0, x: 0 }}
-              animate={{ opacity: 1, x: -240 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                opacity: { duration: 0.3 },
-                x: {
-                  repeat: Infinity,
-                  repeatType: 'loop',
-                  duration: 10,
-                  ease: 'linear',
-                },
-              }}
-            >
-              {isRadioPlaying
-                ? '•••••••••••••••••••••••••••••••••••••••••••••'
-                : `${musicTitle} • ${musicTitle}`}
+          <motion.div
+            className="flex-col items-center gap-2 text-neon px-2"
+            exit={{ opacity: 0 }}
+            transition={ { opacity: { duration: 0.3 } } }
+          >
+            <div className="opacity-70 flex items-center gap-2 ">
+              <svg className="size-5"fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M4 5H2v14h18v-4h2V9h-2V5H4zm14 2v10H4V7h14zM6 9h2v6H6V9zm6 0h-2v6h2V9z" fill="currentColor" /> </svg>
 
-            </motion.div>
-          </div>
+              <svg className="size-4" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9V2zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4h4z" fill="currentColor" /> </svg>
+            </div>
+
+            <div className=" overflow-hidden whitespace-nowrap w-60">
+              <motion.div
+                className="font-handjet text-xl select-none leading-tight"
+                initial={{ opacity: 0, x: 0 }}
+                animate={{ opacity: 1, x: -200 }}
+                transition={{
+
+                  x: {
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                    duration: 15,
+                    ease: 'linear',
+                  },
+                }}
+              >
+                {isRadioPlaying
+                  ? '•••••••••••••••••••••••••••••••••••••••••••••'
+                  : `${musicTitle} • ${musicTitle}`}
+
+              </motion.div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

@@ -1,34 +1,45 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import MusicPlayer from './MusicPlayer';
 
 const Navbar = () => {
+  const isWelcomePage = useLocation().pathname === '/';
+
   return (
-    <header className="flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0">
-      <NavLink
-        to="/"
-        className="w-10 h-10 rounded-lg bg-white items-center justify-center flex font-bold shadow-md"
-      >
-        <p className="blue-gradient_text font-poppins">BM</p>
-      </NavLink>
+    <header className="flex justify-between items-center sm:px-16 px-8 py-4  mx-auto absolute top-0 bg-transparent z-10 right-0 left-0 border-b border-lavender/20">
+      <div className="flex items-center gap-5">
+        {!isWelcomePage && (
+          <NavLink
+            to="/"
+            className="metal-btn"
+          >
+            <p className="">B</p>
+          </NavLink>
+        )}
 
-      <nav className="flex text-lg gap-7 font-medium">
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive ? 'text-blue-500' : 'text-black'
-          }
-        >
+        <MusicPlayer />
+      </div>
+
+      {!isWelcomePage && (
+        <nav className="flex gap-7 font-tiny5 text-2xl">
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? 'text-neon' : 'text-lavender hover:text-neon-light'
+            }
+          >
           About
-        </NavLink>
+          </NavLink>
 
-        <NavLink
-          to="/projects"
-          className={({ isActive }) =>
-            isActive ? 'text-blue-500' : 'text-black'
-          }
-        >
+          <NavLink
+            to="/projects"
+            className={({ isActive }) =>
+              isActive ? 'text-neon' : 'text-lavender hover:text-neon-light'
+            }
+          >
           Projects
-        </NavLink>
-      </nav>
+          </NavLink>
+        </nav>
+      )}
     </header>
   );
 };
