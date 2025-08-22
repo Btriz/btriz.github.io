@@ -1,0 +1,13 @@
+{
+  "about": {
+    "hello": "Hello, I'm <1>Beatriz</1>.",
+    "subtitle": "Software Developer based in Brazil, undergraduate student majoring in Information Systems, passionate about software development and innovation.",
+    "skills": {
+      "title": "My Skills"
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "I've worked with all sorts of companies, leveling up my skills and teaming up with smart people. Here's the rundown:"
+    }
+  }
+}

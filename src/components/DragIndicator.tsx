@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const DragIndicator = () => {
   return (
     <motion.div
-      className="absolute bottom-30 left-1/2 -translate-x-1/2  z-20 pointer-events-none"
+      className="absolute bottom-30 left-1/2 -translate-x-1/2  z-10 pointer-events-none"
       initial={{ x: 0, opacity: 0 }}
       animate={{ x: [0, -10, 0], opacity: 1 }}
       transition={{

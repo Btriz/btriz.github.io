@@ -3,11 +3,13 @@ import { motion } from 'framer-motion';
 import { projects } from '../constants';
 import { arrow } from '../assets/icons';
 import CTA from '../components/CTA';
+import { Trans, useTranslation } from 'react-i18next';
 
 function Projects() {
+  const { t } = useTranslation();
   return (
     <motion.section
-      className="max-container"
+      className="max-container projects"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -18,17 +20,19 @@ function Projects() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        My <span className="blue-gradient_text font-semibold drop-shadow">projects</span>
+        <Trans i18nKey="projects.title">
+          My <span className="gradient_text font-semibold drop-shadow">projects</span>
+        </Trans>
       </motion.h1>
 
-      <motion.div
+      <motion.p
         className="mt-5 flex flex-col gap-3 text-slate-500"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
-        <p>I've embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:</p>
-      </motion.div>
+        {t('projects.description', { defaultValue: 'I\'ve embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:' })}
+      </motion.p>
 
       <motion.div
         className="flex flex-wrap my-20 gap-16"

@@ -107,6 +107,11 @@ export const skills = [
     name: 'TypeScript',
     type: 'Frontend',
   },
+  {
+    imageUrl: '',
+    name: 'Python',
+    type: 'Backend',
+  },
 ];
 
 export const experiences = [

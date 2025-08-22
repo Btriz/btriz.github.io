@@ -94,7 +94,7 @@
 
 body {
   font-family: 'Work Sans', sans-serif;
-  background-color: var(--color-lavender-light);
+  color: #fff;
 }
 
 body:has(.card[data-color='blue']:hover) {
@@ -105,13 +105,25 @@ body:has(.card[data-color='green']:hover) {
   background-color: rgb(var(--green-rgb) / 25%);
 }
 
+.about {
+  background-color: var(--color-blue-dark);
+}
+
+.projects {
+  background-color: var(--color-blue);
+}
+
 @layer utilities {
   .animate-pulse-fast {
     animation: pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .metal-btn {
-    @apply text-neon hover:text-neon-light font-caprasimo text-4xl w-12 h-12 rounded-md bg-gradient-to-tl from-metal-light via-metal to-metal-dark items-center justify-center flex font-bold shadow-lg focus:outline-none border-1 border-metal;
+    @apply text-neon hover:text-neon-light font-caprasimo font-bold text-3xl
+    w-10 h-10 md:text-4xl md:w-12 md:h-12
+    bg-gradient-to-tl from-metal-light via-metal to-metal-dark 
+    justify-center items-center flex rounded-md
+    border-1 border-metal shadow-lg
   }
 
   .btn-neon {
@@ -120,10 +132,6 @@ body:has(.card[data-color='green']:hover) {
 
   .gradient_text {
     @apply bg-gradient-to-l from-[#27F293] via-[#859DF6] to-[#FE26AE] bg-clip-text text-transparent;
-  }
-
-  .gradient_text_diagonal {
-    @apply bg-gradient-to-bl from-[#27F293] via-[#859DF6] to-[#FE26AE] bg-clip-text text-transparent;
   }
 
   .neo-btn {
@@ -137,7 +145,7 @@ body:has(.card[data-color='green']:hover) {
 
 
   .head-text {
-    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug
+    @apply sm:text-5xl text-3xl font-shrikhand sm:leading-snug
     /*font-poppins;*/
   }
 
@@ -196,14 +204,6 @@ body:has(.card[data-color='green']:hover) {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.logo {
-  border-radius: 8.889px;
-  background: #fff;
-  box-shadow:
-    0px 10px 35px -4px rgba(67, 83, 255, 0.15),
-    0px 1.5px 4px -1px rgba(67, 83, 255, 0.2);
-}
-
 .block-container {
   position: relative;
   transition: 250ms;
@@ -221,7 +221,7 @@ body:has(.card[data-color='green']:hover) {
   transform-origin: bottom right;
   transform: rotateZ(15deg);
   will-change: transform;
-  box-shadow: 16px 0 40px #e4e4e4;
+  box-shadow: 16px 0 40px var(--color-lavender-dark);
 }
 
 .block-container .btn-back-red {

@@ -1,0 +1,13 @@
+{
+  "about": {
+    "hello": "Olá, eu sou <1>Beatriz</1>.",
+    "subtitle": "Desenvolvedora de Software baseada no Brasil, estudante de graduação em Sistemas de Informação.",
+    "skills": {
+      "title": "Minhas Habilidades"
+    },
+    "experience": {
+      "title": "Experiência",
+      "description": "Trabalhei com diversos tipos de empresas, aprimorando minhas habilidades e colaborando com pessoas inteligentes. Aqui está um resumo:"
+    }
+  }
+}

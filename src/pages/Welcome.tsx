@@ -1,32 +1,40 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-purple-dark bg-opacity-90 overflow-hidden">
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-purple-dark bg-opacity-90 overflow-hidden px-3">
 
       <h1 className="text-center leading-tight mb-3 md:mb-6  ">
-        <div className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-lavender font-shrikhand">
-          a viagem de
-        </div>
+        <Trans i18nKey="welcome.title">
+          <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-lavender font-shrikhand">
+            the trip of
+          </span>
 
-        <div className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-oi text-blue-200 pointer-events-none px-4">
-          Beatriz
-        </div>
+          <br />
+
+          <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-oi text-blue-200">
+            Beatriz
+          </span>
+        </Trans>
       </h1>
 
-      <p className="text-m sm:text-xl md:text-2xl lg:text-3xl text-center text-lavender font-serif mb-25 max-w-3xl px-4">
-        Explore minha jornada no mudo do desenvolvimento web
-        <br />
-        de carona em um disco voador!
+      <p className="whitespace-pre-line text-m sm:text-xl md:text-2xl lg:text-3xl text-center text-lavender font-serif mb-25 max-w-3xl">
+        {<Trans i18nKey="welcome.subtitle">
+          Explore my journey in the world of web development
+          <br />
+          hitchhiking on a flying saucer!
+        </Trans>}
       </p>
 
       <button
         onClick={() => navigate('/Home')}
         className="btn-neon text-lg sm:text-xl md:text-2xl lg:text-3xl"
       >
-        EXPLORAR
+        { t('welcome.explore', { defaultValue: 'EXPLORE' })}
       </button>
     </div>
   );

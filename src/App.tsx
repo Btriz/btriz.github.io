@@ -4,8 +4,9 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from './components/Navbar';
+import { Navbar } from './components';
 import { Home, About, Projects, Contact, Welcome } from './pages';
+import { useEffect } from 'react';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -22,6 +23,18 @@ const AnimatedRoutes = () => {
     },
   };
 
+  useEffect(() => {
+    let bg = 'var(--color-lavender)';
+    if (location.pathname === '/about') {
+      bg = 'var(--color-blue-dark)';
+    }
+
+    document.body.style.backgroundColor = bg;
+
+    return () => {
+      document.body.style.backgroundColor = 'var(--color-lavender)';
+    };
+  }, [location.pathname]);
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -54,13 +67,8 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
-  // const location = useLocation();
-
   return (
-    <main className="bg-slate-300/20">
-
-      {/* {location.pathname !== '/' && <Navbar />} */}
-
+    <main>
       <Navbar />
 
       <AnimatedRoutes />

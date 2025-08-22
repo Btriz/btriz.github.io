@@ -2,9 +2,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { MdMusicNote, MdMusicOff } from 'react-icons/md';
 
-import { music, radio } from '../assets/sounds';
+import { music, radio } from '../../assets/sounds';
+import { useTranslation } from 'react-i18next';
 
 const MusicPlayer = () => {
+  const { t } = useTranslation();
   const musicTitle = 'Disco Voador - Rita Lee';
   const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
   const [isRadioPlaying, setIsRadioPlaying] = useState<boolean>(false);
@@ -46,16 +48,26 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="flex items-center">
+    <div
+      className="flex items-center"
+      role="region"
+      aria-label={t('navbar.music.container', { defaultValue: 'Music player' })}
+    >
       <button
         className="metal-btn"
         onClick={handleToggleAudio}
-        aria-label={isAudioPlaying ? 'Pause music' : 'Play music'}
+        aria-label={isAudioPlaying
+          ? t('music.pause', { defaultValue: 'Pause music' })
+          : t('music.play', { defaultValue: 'Play music' })}
       >
         {(isRadioPlaying || isAudioPlaying)
           ? <MdMusicNote className={`${isRadioPlaying && 'animate-pulse-fast '} text-neon hover:text-neon-light`} />
           : <MdMusicOff className="text-gray-300 hover:text-neon-light" />}
       </button>
+
+      <span aria-live="polite" className="sr-only">
+        {isAudioPlaying && musicTitle}
+      </span>
 
       <AnimatePresence>
         {(isRadioPlaying || isAudioPlaying) && (
@@ -70,11 +82,12 @@ const MusicPlayer = () => {
               <svg className="size-4" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9V2zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4h4z" fill="currentColor" /> </svg>
             </div>
 
-            <div className=" overflow-hidden whitespace-nowrap w-60">
+            <div className=" overflow-hidden whitespace-nowrap w-40 md:w-60">
               <motion.div
-                className="font-handjet text-xl select-none leading-tight"
+                aria-hidden="true"
+                className="font-handjet text-md md:text-xl select-none leading-tight"
                 initial={{ opacity: 0, x: 0 }}
-                animate={{ opacity: 1, x: -200 }}
+                animate={{ opacity: 1, x: -150 }}
                 transition={{
 
                   x: {
@@ -86,8 +99,8 @@ const MusicPlayer = () => {
                 }}
               >
                 {isRadioPlaying
-                  ? '•••••••••••••••••••••••••••••••••••••••••••••'
-                  : `${musicTitle} • ${musicTitle}`}
+                  ? '•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
+                  : `${musicTitle} • ${musicTitle} • ${musicTitle}`}
 
               </motion.div>
             </div>
