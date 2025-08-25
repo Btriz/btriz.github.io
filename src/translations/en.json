@@ -1,4 +1,46 @@
 {
+  "home": {
+    "1": {
+      "hello": "Hi, I am <1>Beatriz </1>",
+      "info": "a software developer from Brazil..."
+    },
+    "2": {
+      "info": "I've worked with some wonderful companies and picked up many skills along the way...",
+      "btn": "Learn more"
+    },
+    "3": {
+      "info": "I love creating things, and I'm always looking for new challenges to tackle...",
+      "btn": "See my work"
+    },
+    "4": {
+      "info": "Looking for a dev? I'm just a few keystrokes away!",
+      "btn": "Contact me"
+    },
+    "drag": {
+      "label": "Gesture indicator: drag left",
+      "text": "DRAG"
+    }
+  },
+  "navbar": {
+    "language": {
+      "pt": "Switch to portuguese",
+      "en": "Switch to english"
+    },
+    "music": {
+      "container": "Music player"
+    },
+    "logo": "Go to welcome screen",
+    "menu_close": "Close menu",
+    "menu_open": "Open menu",
+    "links": {
+      "about": "About",
+      "projects": "Projects"
+    }
+  },
+  "music": {
+    "pause": "Pause music",
+    "play": "Play music"
+  },
   "about": {
     "hello": "Hello, I'm <1>Beatriz</1>.",
     "subtitle": "Software Developer based in Brazil, undergraduate student majoring in Information Systems, passionate about software development and innovation.",
@@ -9,5 +51,14 @@
       "title": "Experience",
       "description": "I've worked with all sorts of companies, leveling up my skills and teaming up with smart people. Here's the rundown:"
     }
+  },
+  "projects": {
+    "title": "My <1>projects</1>",
+    "description": "I've embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:"
+  },
+  "welcome": {
+    "title": "<0>the trip of</0><1></1><2>Beatriz</2>",
+    "subtitle": "Explore my journey in the world of web development<1></1>hitchhiking on a flying saucer!",
+    "explore": "EXPLORE"
   }
 }

@@ -111,7 +111,7 @@ function Home() {
       </AnimatePresence>
 
       <Canvas
-        className={`w-full h-screen bg-transparent ${isInteracting ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`w-full h-screen bg-transparent touch-none overscroll-contain ${isInteracting ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}
       >
 

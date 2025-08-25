@@ -1,7 +1,49 @@
 {
+  "home": {
+    "1": {
+      "hello": "Oi, eu sou <1>Beatriz </1>",
+      "info": "uma desenvolvedora de software do Brasil..."
+    },
+    "2": {
+      "info": "Trabalhei com algumas empresas incríveis e adquiri várias habilidades ao longo do caminho...",
+      "btn": "Saiba mais"
+    },
+    "3": {
+      "info": "Adoro criar coisas e estou sempre em busca de novos desafios para enfrentar...",
+      "btn": "Veja meu trabalho"
+    },
+    "4": {
+      "info": "Procurando um dev? Estou a apenas algumas teclas de distância!",
+      "btn": "Contate-me"
+    },
+    "drag": {
+      "label": "Indicador de gesto: arraste para a esquerda",
+      "text": "ARRASTE"
+    }
+  },
+  "navbar": {
+    "language": {
+      "pt": "Mudar para português",
+      "en": "Mudar para inglês"
+    },
+    "music": {
+      "container": "Reprodutor de música"
+    },
+    "logo": "Ir para a tela de boas-vindas",
+    "menu_close": "Fechar menu",
+    "menu_open": "Abrir menu",
+    "links": {
+      "about": "Sobre",
+      "projects": "Projetos"
+    }
+  },
+  "music": {
+    "pause": "Pausar musica",
+    "play": "Tocar musica"
+  },
   "about": {
     "hello": "Olá, eu sou <1>Beatriz</1>.",
-    "subtitle": "Desenvolvedora de Software baseada no Brasil, estudante de graduação em Sistemas de Informação.",
+    "subtitle": "Desenvolvedora de Software, estudante de graduação em Sistemas de Informação.",
     "skills": {
       "title": "Minhas Habilidades"
     },
@@ -9,5 +51,14 @@
       "title": "Experiência",
       "description": "Trabalhei com diversos tipos de empresas, aprimorando minhas habilidades e colaborando com pessoas inteligentes. Aqui está um resumo:"
     }
+  },
+  "projects": {
+    "title": "My <1>projects</1>",
+    "description": "Embarquei em inúmeros projetos ao longo da minha jornada como desenvolvedora, cada um me ensinando algo novo e impulsionando minhas habilidades para o próximo nível. Aqui estão alguns dos meus favoritos:"
+  },
+  "welcome": {
+    "title": "<0>a viagem de</0><1></1><2>Beatriz</2>",
+    "subtitle": "Explore minha jornada no mundo do desenvolvimento web<1></1>de carona em um disco voador!",
+    "explore": "EXPLORAR"
   }
 }

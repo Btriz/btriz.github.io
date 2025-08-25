@@ -449,11 +449,11 @@ const World = ({
         }
 
         if (worldRef.current) {
-          worldRef.current.rotation.y += (delta / viewport.width) * 0.005 * Math.PI;
+          worldRef.current.rotation.y += (delta / viewport.width) * 0.003 * Math.PI;
         }
 
         lastX.current = clientX;
-        rotationSpeed.current = (delta / viewport.width) * 0.005 * Math.PI;
+        rotationSpeed.current = (delta / viewport.width) * 0.003 * Math.PI;
       }
     },
     [isInteracting, viewport.width, setRotationDirection, setIsMoving],
@@ -496,9 +496,9 @@ const World = ({
   useFrame(() => {
     if (worldRef.current) {
       if (leftPressed) {
-        rotationSpeed.current = 0.01 * Math.PI;
+        rotationSpeed.current = 0.003 * Math.PI;
       } else if (rightPressed) {
-        rotationSpeed.current = -0.01 * Math.PI;
+        rotationSpeed.current = -0.003 * Math.PI;
       } else if (!isInteracting) {
         rotationSpeed.current *= dampingFactor;
       }
@@ -538,7 +538,6 @@ const World = ({
     // canvas.addEventListener('touchend', handleTouchEnd);
     // canvas.addEventListener('touchmove', handleTouchMove);
 
-    // Remove event listeners when component unmounts
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown);
       canvas.removeEventListener('pointerup', handlePointerUp);

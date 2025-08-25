@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { t } from 'i18next';
 import { LanguageSelector, MenuButton, MusicPlayer, NavItems } from '.';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   const location = useLocation();
   const isWelcomePage = location.pathname === '/';
