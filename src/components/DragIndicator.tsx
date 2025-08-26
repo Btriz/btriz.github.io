@@ -13,7 +13,7 @@ const DragIndicator = () => {
         x: { repeat: Infinity, duration: 1.5, ease: 'easeInOut' },
       }}
       exit={{ x: -50, opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
-      aria-label={t('home.drag.label', { defaultValue: 'Dragable content' })}
+      aria-label={t('home.drag.label', { defaultValue: 'Gesture indicator: drag left' })}
       role="status"
     >
       <div className="flex flex-col items-center text-neon-light/80">

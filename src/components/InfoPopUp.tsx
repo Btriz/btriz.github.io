@@ -18,7 +18,7 @@ const InfoBox = ({ text, image, link, btnText }: {
 }) => (
   <motion.div
     className="rounded-md text-neon-light p-4 mx-5 relative flex flex-col items-center justify-center max-w-xl
-      border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30
+      border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30 overflow-hidden
     "
     initial={{ opacity: 0, scale: 0.8, y: 20 }}
     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -43,10 +43,12 @@ const InfoBox = ({ text, image, link, btnText }: {
     </motion.p>
 
     {link && btnText && (
-      <Link to={link} className="btn-neon text-xs sm:text-sm md:text-md lg:text-lg">
+      <Link to={link} className="btn-neon text-xs sm:text-sm md:text-md lg:text-lg relative">
         {btnText}
 
         <FaCaretSquareRight />
+
+        <div className="sticky-element" />
       </Link>
     )}
   </motion.div>

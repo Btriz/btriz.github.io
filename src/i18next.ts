@@ -19,5 +19,4 @@ i18next
     },
     debug: true,
   });
-console.log('Idioma detectado:', i18next.languages);
 export default i18next;

@@ -84,17 +84,19 @@ const Navbar = () => {
 
         {!isWelcomePage && (
           <nav>
-            <MenuButton
-              ref={buttonRef}
-              open={open}
-              onClick={() => setOpen(!open)}
-              className="md:hidden!"
-              aria-expanded={open}
-              aria-controls="main-menu"
-              aria-label={open
-                ? t('navbar.menu_close', { defaultValue: 'Close menu' })
-                : t('navbar.menu_open', { defaultValue: 'Open menu' })}
-            />
+            <Magnetic>
+              <MenuButton
+                ref={buttonRef}
+                open={open}
+                onClick={() => setOpen(!open)}
+                className="md:hidden!"
+                aria-expanded={open}
+                aria-controls="main-menu"
+                aria-label={open
+                  ? t('navbar.menu_close', { defaultValue: 'Close menu' })
+                  : t('navbar.menu_open', { defaultValue: 'Open menu' })}
+              />
+            </Magnetic>
 
             <div
               className="hidden md:flex items-center w-95"

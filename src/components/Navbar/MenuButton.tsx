@@ -6,7 +6,11 @@ type MenuButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   ref?: React.Ref<HTMLButtonElement>;
 }
 
-const MenuButton = ({ className = '', open = false, ref, ...props }: MenuButtonProps) => {
+const MenuButton = ({
+  className = '',
+  open = false,
+  ref,
+  ...props }: MenuButtonProps) => {
   return (
     <button
       ref={ref}
@@ -34,6 +38,8 @@ const MenuButton = ({ className = '', open = false, ref, ...props }: MenuButtonP
           ${open ? '-rotate-45 -translate-y-2' : ''}`
         }
       />
+
+      <div className="sticky-element" />
     </button>
   );
 };
