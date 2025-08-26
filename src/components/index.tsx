@@ -5,6 +5,8 @@ import Loader from './Loader';
 import DragIndicator from './DragIndicator';
 import AnimatedPlane from './AnimatedPlane';
 import { Navbar } from './Navbar';
+import Magnetic from './Magnetic';
+import Cursor from './Cursor';
 
 export {
   Alert,
@@ -14,4 +16,6 @@ export {
   InfoPopUp,
   Loader,
   Navbar,
+  Magnetic,
+  Cursor,
 };

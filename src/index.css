@@ -116,11 +116,16 @@ body:has(.card[data-color='green']:hover) {
 @layer utilities {
   .animate-pulse-fast {
     animation: pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  }
+
+  .sticky-element {
+    @apply w-full h-full absolute top-0 left-0 hover:scale-x-150 hover:scale-y-500
   }
 
   .metal-btn {
     @apply text-neon hover:text-neon-light font-caprasimo font-bold text-3xl
-    w-10 h-10 md:text-4xl md:w-12 md:h-12
+    w-10 h-10 md:text-4xl md:w-12 md:h-12 relative
     bg-gradient-to-tl from-metal-light via-metal to-metal-dark 
     justify-center items-center flex rounded-md
     border-1 border-metal shadow-lg

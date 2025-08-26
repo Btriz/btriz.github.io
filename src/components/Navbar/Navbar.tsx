@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageSelector, MenuButton, MusicPlayer, NavItems } from '.';
 import { useTranslation } from 'react-i18next';
+import { Magnetic } from '..';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -13,7 +14,6 @@ const Navbar = () => {
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const firstItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     setOpen(false);
@@ -21,10 +21,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!open) return;
-
-    if (firstItemRef.current) {
-      firstItemRef.current.focus();
-    }
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -55,7 +51,7 @@ const Navbar = () => {
   return (
     <header
       className={`
-        absolute top-0 right-0 left-0 z-20
+        absolute top-0 right-0 left-0 z-20 overflow-hidden
         border-b border-lavender/20 transition-all duration-300
         ${open && 'bg-purple-dark/60'}`}
     >
@@ -68,13 +64,17 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-3 md:gap-5">
           {!isWelcomePage && (
-            <NavLink
-              to="/"
-              className="metal-btn"
-              aria-label={t('navbar.logo', { defaultValue: 'Go to welcome screen' })}
-            >
-              <p className="">B</p>
-            </NavLink>
+            <Magnetic>
+              <NavLink
+                to="/"
+                className="metal-btn"
+                aria-label={t('navbar.logo', { defaultValue: 'Go to welcome screen' })}
+              >
+                <p>B</p>
+
+                <div className="sticky-element" />
+              </NavLink>
+            </Magnetic>
           )}
 
           <MusicPlayer />
@@ -86,6 +86,7 @@ const Navbar = () => {
           <nav>
             <MenuButton
               ref={buttonRef}
+              open={open}
               onClick={() => setOpen(!open)}
               className="md:hidden!"
               aria-expanded={open}
@@ -117,7 +118,7 @@ const Navbar = () => {
               w-full py-1 relative z-10
               border-t border-lavender/20"
           >
-            <NavItems ref={firstItemRef} />
+            <NavItems />
           </motion.nav>
         )}
       </AnimatePresence>

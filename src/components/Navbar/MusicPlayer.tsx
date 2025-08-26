@@ -4,6 +4,7 @@ import { MdMusicNote, MdMusicOff } from 'react-icons/md';
 
 import { music, radio } from '../../assets/sounds';
 import { useTranslation } from 'react-i18next';
+import { Magnetic } from '..';
 
 const MusicPlayer = () => {
   const { t } = useTranslation();
@@ -53,17 +54,21 @@ const MusicPlayer = () => {
       role="region"
       aria-label={t('navbar.music.container', { defaultValue: 'Music player' })}
     >
-      <button
-        className="metal-btn"
-        onClick={handleToggleAudio}
-        aria-label={isAudioPlaying
-          ? t('music.pause', { defaultValue: 'Pause music' })
-          : t('music.play', { defaultValue: 'Play music' })}
-      >
-        {(isRadioPlaying || isAudioPlaying)
-          ? <MdMusicNote className={`${isRadioPlaying && 'animate-pulse-fast '} text-neon hover:text-neon-light`} />
-          : <MdMusicOff className="text-gray-300 hover:text-neon-light" />}
-      </button>
+      <Magnetic>
+        <button
+          className="metal-btn"
+          onClick={handleToggleAudio}
+          aria-label={isAudioPlaying
+            ? t('music.pause', { defaultValue: 'Pause music' })
+            : t('music.play', { defaultValue: 'Play music' })}
+        >
+          {(isRadioPlaying || isAudioPlaying)
+            ? <MdMusicNote className={`${isRadioPlaying && 'animate-pulse-fast '} text-neon hover:text-neon-light`} />
+            : <MdMusicOff className="text-gray-300 hover:text-neon-light" />}
+
+          <div className="sticky-element" />
+        </button>
+      </Magnetic>
 
       <span aria-live="polite" className="sr-only">
         {isAudioPlaying && musicTitle}

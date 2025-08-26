@@ -1,5 +1,6 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Magnetic } from '../components';
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -30,12 +31,16 @@ const Welcome = () => {
         </Trans>}
       </p>
 
-      <button
-        onClick={() => navigate('/Home')}
-        className="btn-neon text-lg sm:text-xl md:text-2xl lg:text-3xl"
-      >
-        { t('welcome.explore', { defaultValue: 'EXPLORE' })}
-      </button>
+      <Magnetic>
+        <button
+          onClick={() => navigate('/Home')}
+          className="btn-neon text-lg sm:text-xl md:text-2xl lg:text-3xl"
+        >
+          { t('welcome.explore', { defaultValue: 'EXPLORE' })}
+
+          <div className="sticky-element" />
+        </button>
+      </Magnetic>
     </div>
   );
 };
