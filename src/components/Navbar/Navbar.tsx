@@ -4,10 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageSelector, MenuButton, MusicPlayer, NavItems } from '.';
 import { useTranslation } from 'react-i18next';
 import { Magnetic } from '..';
+import { useNextRoute } from '../../context/NextRouteContext';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const { setNextRoute } = useNextRoute();
 
   const location = useLocation();
   const isWelcomePage = location.pathname === '/';
@@ -67,6 +69,7 @@ const Navbar = () => {
             <Magnetic>
               <NavLink
                 to="/"
+                onClick={() => setNextRoute('/')}
                 className="metal-btn"
                 aria-label={t('navbar.logo', { defaultValue: 'Go to welcome screen' })}
               >

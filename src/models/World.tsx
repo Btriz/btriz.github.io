@@ -369,7 +369,6 @@ type WorldProps = JSX.IntrinsicElements['group'] & {
   setCurrentStage: (_stage: number | null) => void;
   setRotationDirection: (_dir: 1 | -1) => void;
   setIsMoving: (_isMoving: boolean) => void;
-  rotation?: [number, number, number],
 };
 
 const World = ({
@@ -378,7 +377,6 @@ const World = ({
   setCurrentStage,
   setRotationDirection,
   setIsMoving,
-  rotation = [0, 0, 0],
   ...props
 }: WorldProps) => {
   const { gl, viewport } = useThree();
@@ -399,6 +397,11 @@ const World = ({
   const dampingFactor = 0.95;
   const [leftPressed, setLeftPressed] = useState(false);
   const [rightPressed, setRightPressed] = useState(false);
+  const scale: [number, number, number] = viewport.width < 10
+    ? [1.3, 1.3, 1.3]
+    : [1.8, 1.8, 1.8];
+  const position: [number, number, number] = [0, -0.6, 0];
+  const rotation: [number, number, number] = [0, 0, 0];
 
   const setStop = useCallback(() => {
     setIsMoving(false);
@@ -600,7 +603,13 @@ const World = ({
   });
 
   return (
-    <a.group ref={worldRef} rotation={rotation} {...props}>
+    <a.group
+      ref={worldRef}
+      position={position}
+      rotation={rotation}
+      scale={scale}
+      {...props}
+    >
       <Sky />
 
       <group scale={0.01}>

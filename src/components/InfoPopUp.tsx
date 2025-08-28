@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaCaretSquareRight } from 'react-icons/fa';
 import { MdWavingHand } from 'react-icons/md';
 import { Trans, useTranslation } from 'react-i18next';
+import { useNextRoute } from '../context/NextRouteContext';
 
 type InfoPopUpProps = {
     currentStage: number;
@@ -15,44 +16,52 @@ const InfoBox = ({ text, image, link, btnText }: {
   btnText?: string;
   image: React.ReactNode;
   side?: 'left' | 'right';
-}) => (
-  <motion.div
-    className="rounded-md text-neon-light p-4 mx-5 relative flex flex-col items-center justify-center max-w-xl
+}) => {
+  const { setNextRoute } = useNextRoute();
+
+  return(
+    <motion.div
+      className="rounded-md text-neon-light p-4 mx-5 relative flex flex-col items-center justify-center max-w-xl
       border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30 overflow-hidden
     "
-    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}
-    exit={{ opacity: 0, scale: 0.5, y: 40, transition: { duration: 0.3, ease: 'easeIn' } }}
-    role="region"
-    aria-label="Informações"
-  >
-    <motion.p
-      className="text-xs sm:text-sm md:text-md lg:text-md font-64 flex gap-5"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.2, duration: 0.5 }}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}
+      exit={{ opacity: 0, scale: 0.5, y: 40, transition: { duration: 0.3, ease: 'easeIn' } }}
+      role="region"
+      aria-label="Informações"
     >
-      <div className=" w-[95px] relative border-3 border-neon-light p-1 flex items-center justify-center">
-        {image}
+      <motion.p
+        className="text-xs sm:text-sm md:text-md lg:text-md font-64 flex gap-5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <div className=" w-[95px] relative border-3 border-neon-light p-1 flex items-center justify-center">
+          {image}
 
-        <div className="absolute inset-0 bg-neon/30 mix-blend-darken pointer-events-none" />
-      </div>
+          <div className="absolute inset-0 bg-neon/30 mix-blend-darken pointer-events-none" />
+        </div>
 
-      <div className="py-2">{text}</div>
-    </motion.p>
+        <div className="py-2">{text}</div>
+      </motion.p>
 
-    {link && btnText && (
-      <Link to={link} className="btn-neon text-xs sm:text-sm md:text-md lg:text-lg relative">
-        {btnText}
+      {link && btnText && (
+        <Link
+          to={link}
+          className="btn-neon text-xs sm:text-sm md:text-md lg:text-lg relative"
+          onClick={() => setNextRoute(link)}
+        >
+          {btnText}
 
-        <FaCaretSquareRight />
+          <FaCaretSquareRight />
 
-        <div className="sticky-element" />
-      </Link>
-    )}
-  </motion.div>
-);
+          <div className="sticky-element" />
+        </Link>
+      )}
+    </motion.div>
+  );
+};
 
 const InfoPopUp = ({ currentStage }: InfoPopUpProps) => {
   const { t } = useTranslation();

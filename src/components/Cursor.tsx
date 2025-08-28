@@ -2,7 +2,7 @@ import { animate, motion, transform, useMotionValue, useSpring } from 'framer-mo
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const StickyCursor = () => {
+const Cursor = () => {
   const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
   const cursorRef = useRef(null);
@@ -96,7 +96,7 @@ const StickyCursor = () => {
     <motion.div
       transformTemplate={template}
       ref={cursorRef}
-      className={'size-[30px] bg-green-500 rounded-full fixed z-30 pointer-events-none mix-blend-difference'}
+      className={'size-[30px] bg-radial from-lime-900 via-lime-800 to-lime-500  rounded-full fixed z-30 pointer-events-none mix-blend-difference'}
       style={{ left: smoothMouse.x, top: smoothMouse.y, scaleX: scale.x, scaleY: scale.y }}
       animate={{ width: cursorSize, height: cursorSize }}
     >
@@ -104,4 +104,4 @@ const StickyCursor = () => {
   );
 };
 
-export default StickyCursor;
+export default Cursor;
