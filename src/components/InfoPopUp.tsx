@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCaretSquareRight } from 'react-icons/fa';
 import { MdWavingHand } from 'react-icons/md';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNextRoute } from '../context/NextRouteContext';
+import { Magnetic, NeonButton } from '.';
+import { FaCaretSquareRight } from 'react-icons/fa';
 
 type InfoPopUpProps = {
     currentStage: number;
@@ -18,6 +19,7 @@ const InfoBox = ({ text, image, link, btnText }: {
   side?: 'left' | 'right';
 }) => {
   const { setNextRoute } = useNextRoute();
+  const navigate = useNavigate();
 
   return(
     <motion.div
@@ -33,9 +35,9 @@ const InfoBox = ({ text, image, link, btnText }: {
     >
       <motion.p
         className="text-xs sm:text-sm md:text-md lg:text-md font-64 flex gap-5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // transition={{ delay: 0.2, duration: 0.5 }}
       >
         <div className=" w-[95px] relative border-3 border-neon-light p-1 flex items-center justify-center">
           {image}
@@ -47,17 +49,17 @@ const InfoBox = ({ text, image, link, btnText }: {
       </motion.p>
 
       {link && btnText && (
-        <Link
-          to={link}
-          className="btn-neon text-xs sm:text-sm md:text-md lg:text-lg relative"
-          onClick={() => setNextRoute(link)}
-        >
-          {btnText}
-
-          <FaCaretSquareRight />
-
-          <div className="sticky-element" />
-        </Link>
+        <Magnetic>
+          <NeonButton
+            className="text-xs sm:text-sm md:text-md"
+            text={btnText}
+            icon={<FaCaretSquareRight />}
+            onClick={() => {
+              setNextRoute(link);
+              navigate(link);
+            }}
+          />
+        </Magnetic>
       )}
     </motion.div>
   );

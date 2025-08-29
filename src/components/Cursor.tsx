@@ -5,9 +5,12 @@ import { useLocation } from 'react-router-dom';
 const Cursor = () => {
   const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
+  const [isBigHovered, setIsBigHovered] = useState(false);
   const cursorRef = useRef(null);
 
-  const cursorSize = isHovered ? 70 : 30;
+  let cursorSize = isHovered ? 60 : 30;
+  cursorSize = isBigHovered ? 110 : cursorSize;
+
   const mouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),
@@ -26,6 +29,7 @@ const Cursor = () => {
 
   useEffect(() => {
     setIsHovered(false);
+    setIsBigHovered(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -36,57 +40,61 @@ const Cursor = () => {
 
     const manageMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
-      const target = event.target as HTMLElement;
 
-      if (isHovered && target.classList.contains('sticky-element')) {
-        const { left, top, width, height } = target.getBoundingClientRect();
+      let hovered = false;
+      let bigHovered = false;
+      let stickyRect: DOMRect | null = null;
 
-        const center = { x: left + width / 2, y: top + height / 2 };
+      document.querySelectorAll('.sticky-element').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (
+          clientX >= rect.left
+          && clientX <= rect.right
+          && clientY >= rect.top
+          && clientY <= rect.bottom
+        ) {
+          hovered = true;
+          stickyRect = rect;
+          if (el.classList.contains('se-big')) {
+            bigHovered = true;
+          }
+        }
+      });
+
+      setIsHovered(hovered);
+      setIsBigHovered(bigHovered);
+
+      if (hovered && stickyRect) {
+        const rect: DOMRect = stickyRect;
+
+        const center = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
         const distance = { x: clientX - center.x, y: clientY - center.y };
 
         const absDistance = Math.max(Math.abs(distance.x), Math.abs(distance.y));
-        const newScaleX = transform(absDistance, [0, width / 2], [1, 1.3]);
-        const newScaleY = transform(absDistance, [0, width / 2], [1, 0.8]);
+        const newScaleX = transform(absDistance, [0, rect.width / 2], [1, 1.3]);
+        const newScaleY = transform(absDistance, [0, rect.width / 2], [1, 0.8]);
 
         rotateCursor(distance);
 
         scale.x.set(newScaleX);
         scale.y.set(newScaleY);
 
-        mouse.x.set((center.x - cursorSize / 2) + distance.x * 0.5);
-        mouse.y.set((center.y - cursorSize / 2) + distance.y * 0.5);
+        mouse.x.set((center.x - (bigHovered ? 100 : 70) / 2) + distance.x * 0.5);
+        mouse.y.set((center.y - (bigHovered ? 100 : 70) / 2) + distance.y * 0.5);
       } else {
-        mouse.x.set(clientX - cursorSize / 2);
-        mouse.y.set(clientY - cursorSize / 2);
-
-      }
-    };
-
-    const manageMouseOver = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (target.classList.contains('sticky-element')) {
-        setIsHovered(true);
-      }
-    };
-
-    const manageMouseOut = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (target.classList.contains('sticky-element')) {
-        setIsHovered(false);
-        animate(cursorRef.current, { scaleX: 1, scaleY: 1 }, { duration: 0.1 });
+        scale.x.set(1);
+        scale.y.set(1);
+        mouse.x.set(clientX - 15);
+        mouse.y.set(clientY - 15);
       }
     };
 
     window.addEventListener('mousemove', manageMouseMove);
-    document.addEventListener('mouseover', manageMouseOver);
-    document.addEventListener('mouseout', manageMouseOut);
 
     return () => {
       window.removeEventListener('mousemove', manageMouseMove);
-      document.removeEventListener('mouseover', manageMouseOver);
-      document.removeEventListener('mouseout', manageMouseOut);
     };
-  }, [mouse.x, mouse.y, cursorSize, isHovered, scale.x, scale.y]);
+  }, [mouse.x, mouse.y, scale.x, scale.y]);
 
   const template = ({ rotate, scaleX, scaleY }: { rotate: number; scaleX: number; scaleY: number }) => {
     return `rotate(${rotate}) scaleX(${scaleX}) scaleY(${scaleY})`;
@@ -96,9 +104,24 @@ const Cursor = () => {
     <motion.div
       transformTemplate={template}
       ref={cursorRef}
-      className={'size-[30px] bg-radial from-lime-900 via-lime-800 to-lime-500  rounded-full fixed z-30 pointer-events-none mix-blend-difference'}
-      style={{ left: smoothMouse.x, top: smoothMouse.y, scaleX: scale.x, scaleY: scale.y }}
-      animate={{ width: cursorSize, height: cursorSize }}
+      className={`
+      bg-radial 
+      size-[30px] rounded-full fixed z-30 pointer-events-none
+      mix-blend-color-dodge blur-[1px] 
+      ${isHovered
+      ? 'blur-[2px] from-purple-900 via-purple-800 to-purple-500'
+      : 'blur-[1px] from-emerald-900 via-emerald-800 to-emerald-500'}
+      `}
+      style={{
+        left: smoothMouse.x,
+        top: smoothMouse.y,
+        scaleX: scale.x,
+        scaleY: scale.y,
+      }}
+      animate={{
+        width: cursorSize,
+        height: cursorSize,
+      }}
     >
     </motion.div>
   );

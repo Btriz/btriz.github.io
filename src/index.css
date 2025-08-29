@@ -25,6 +25,25 @@
 
 
 
+/* Hero Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+
+/* Títulos e Subtítulos */
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;700&display=swap');
+
+/* Texto Corrido / Parágrafos */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* Componentes Interativos (Pixel / Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
 @import "tailwindcss";
 
 
@@ -35,7 +54,6 @@
   --font-tiny5: "Tiny5", sans-serif;
   --font-64: "Sixtyfour", sans-serif;
   --font-caprasimo: "Caprasimo", serif;
-  --font-oi: "Oi", sans-serif;
   --font-coral-pixels: "Coral Pixels", sans-serif;
   --font-vt323: "VT323", monospace;
   --font-micro5: "Micro 5", sans-serif;
@@ -43,7 +61,19 @@
   --font-press-start: "Press Start 2P", sans-serif;
   --font-handjet: "Handjet", sans-serif;
   --font-dot-gothic: "DotGothic16", sans-serif;
-  --font-shrikhand: "Shrikhand", sans-serif;
+  --font-shrikhand: "Shrikhand", cursive;
+  --font-oi: "Oi", serif;
+
+
+  /* --font-shrikhand: "Shrikhand, cursive", */
+  /* --font-oi: "Oi, serif", */
+  --font-eczar: "Eczar", serif;
+  --font-lora: "Lora", serif;
+  --font-ibm: "IBM Plex Serif", serif;
+  --font-spectral: "Spectral", serif;
+  --font-inter: "Inter", sans-serif;
+  --font-inconsolata: "Inconsolata", monospace;
+  /* --font-pixel: "Press Start 2P", monospace; */
 
   /* Tons de roxo/lilás (B989D9) */
   --color-lavender: #B989D9;
@@ -93,9 +123,21 @@
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
   color: #fff;
+  font-family: 'Inter', serif;
 }
+
+/* .hero-impact {
+  font-family: 'Oi', serif;
+} */
+
+/* .subtitle {
+  font-family: 'Eczar', serif;
+} */
+
+/* .navbar, .popup {
+  font-family: 'Press Start 2P', monospace;
+} */
 
 body:has(.card[data-color='blue']:hover) {
   background-color: rgb(var(--blue-rgb) / 25%);
@@ -105,22 +147,26 @@ body:has(.card[data-color='green']:hover) {
   background-color: rgb(var(--green-rgb) / 25%);
 }
 
-.about {
-  background-color: var(--color-blue-dark);
-}
-
-.projects {
-  background-color: var(--color-blue);
-}
-
 @layer utilities {
   .animate-pulse-fast {
     animation: pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   
   }
 
+  .paragraph {
+    @apply sm:text-lg md:text-xl lg:text-2xl mb-25 max-w-4xl tracking-widest leading-relaxed;
+  }
+
+  .subhead-text {
+    @apply sm:text-3xl md:text-4xl relative font-shrikhand;
+  }
+
+  .head-text {
+    @apply text-3xl sm:text-5xl  font-shrikhand sm:leading-snug  max-w-xs md:max-w-lg
+  }
+
   .sticky-element {
-    @apply w-full h-full absolute top-0 left-0 hover:scale-x-150 hover:scale-y-500
+    @apply w-full h-full absolute top-0 hover:scale-x-150 hover:scale-y-500
   }
 
   .metal-btn {
@@ -128,12 +174,12 @@ body:has(.card[data-color='green']:hover) {
     w-10 h-10 md:text-4xl md:w-12 md:h-12 relative
     bg-gradient-to-tl from-metal-light via-metal to-metal-dark 
     justify-center items-center flex rounded-md
-    border-1 border-metal shadow-lg
+    border-1 border-metal shadow-lg focus:outline-none
   }
 
-  .btn-neon {
+  /* .btn-neon {
     @apply flex items-center gap-2 justify-center font-press-start border-3 border-neon-light text-neon-light py-1 px-3 transition-colors duration-200 animate-pulse hover:animate-none rounded-md;
-  }
+  } */
 
   .gradient_text {
     @apply bg-gradient-to-l from-[#27F293] via-[#859DF6] to-[#FE26AE] bg-clip-text text-transparent;
@@ -145,20 +191,10 @@ body:has(.card[data-color='green']:hover) {
   }
 
   .max-container {
-    @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)];
+    @apply w-full sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)] max-w-5xl mx-auto;
   }
 
 
-  .head-text {
-    @apply sm:text-5xl text-3xl font-shrikhand sm:leading-snug
-    /*font-poppins;*/
-  }
-
-  .subhead-text {
-    @apply font-semibold sm:text-3xl text-xl relative
-    /*font-poppins;*/
-    ;
-  }
 
   .input {
     @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal;
@@ -226,7 +262,7 @@ body:has(.card[data-color='green']:hover) {
   transform-origin: bottom right;
   transform: rotateZ(15deg);
   will-change: transform;
-  box-shadow: 16px 0 40px var(--color-lavender-dark);
+  /* box-shadow: 16px 0 40px var(--color-lavender-dark); */
 }
 
 .block-container .btn-back-red {
@@ -401,4 +437,107 @@ body:has(.card[data-color='green']:hover) {
 .animate-wave {
   animation: wave 1s infinite;
   transform-origin: bottom left;
+}
+
+.abcd:hover {
+  .efg {
+    background-color: blue;
+    transform: scale(40);
+    transition: all 0.4s ease-out;
+  }
+}
+
+.btn-neon {
+  align-items: center;
+  animation: pulse 1s infinite;
+  border: 2px solid var(--color-neon-light);
+  border-radius: 0.375em;
+  color: var(--color-neon-light);
+  display: flex;
+  font-family: var(--font-press-start);
+  justify-content: center;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+  transition: color 0.2s 0.4s;
+
+  .btn-neon-bg {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    border-radius: 0.375em;
+    box-sizing: content-box;
+    padding: 3px;
+
+    .background {
+      background-color: var(--color-neon-light);
+      width: 1em;
+      height: 1em;
+      opacity: 0;
+      transition:
+        opacity 0.2s 0.4s,
+        transform 0.6s ease-out;
+    }
+  }
+
+  &.with-icon {
+    padding-right: 3em;
+
+    .text {
+      transition: transform 0.4s ease-out;
+    }
+    .btn-neon-bg-icon {
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      z-index: -1;
+      padding-right: 1em;
+
+      .background-icon {
+        color: var(--color-neon-light);
+
+        transition: transform .5s ease-out;
+      }
+    }
+  }
+
+
+  &:hover {
+    animation: none;
+    color: var(--color-purple-light);
+    transition: color 0.2s 0s;
+
+    .background {
+      background-color: var(--color-neon-light);
+      transform: scale(20);
+      opacity: 1;
+      transition:
+        opacity 0.2s 0s,
+        transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    &.with-icon {
+      .text {
+        transform: translateX(1em);
+        transition: transform 0.4s ease-out;
+      }
+
+      .background-icon {
+        background-color: var(--color-neon-light);
+        transform: scale(30);
+      }
+    }
+
+  }
+
 }

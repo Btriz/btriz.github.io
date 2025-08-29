@@ -1,6 +1,11 @@
-import mercadolivre from './mercadolivre.png';
-import blip from './blip.png';
-import puc from './puc.png';
-import trybe from './trybe.png';
+import mercadolivre from './experiences/mercadolivre.png';
+import blip from './experiences/blip.png';
+import puc from './experiences/puc.png';
+import trybe from './experiences/trybe.png';
 
-export { mercadolivre, blip, puc, trybe };
+export {
+  mercadolivre,
+  blip,
+  puc,
+  trybe,
+};

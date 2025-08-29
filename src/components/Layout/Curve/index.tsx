@@ -42,24 +42,24 @@ const Curve = ({ children, backgroundColor }: React.PropsWithChildren & { backgr
   }, []);
 
   return (
-    <div className="relative h-screen" style={{ backgroundColor }}>
+    <div className="relative min-h-screen w-full" style={{ backgroundColor }}>
       {dimensions.width == null && (
-        <div
-          className="fixed h-screen w-screen top-0 left-0 z-49 bg-black"
-        />
+        <div className="fixed h-screen w-screen top-0 left-0 z-49 bg-black" />
       )}
 
       <motion.p
         {...animation(text)}
         className="
-          absolute left-[50%] top-[40%] translate-x-[-50%] z-51
-        text-white text-5xl font-shrikhand
-        "
+        fixed left-1/2 top-[40%] -translate-x-1/2 z-51
+        text-white text-5xl font-shrikhand pointer-events-none
+      "
       >
         {routeName}
       </motion.p>
 
-      {children}
+      <div className="relative z-10">
+        {children}
+      </div>
 
       {dimensions.width !== null && dimensions.height !== null && (
         <SVG width={dimensions.width} height={dimensions.height} />

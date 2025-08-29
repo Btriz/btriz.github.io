@@ -114,12 +114,21 @@ export const skills = [
   },
 ];
 
-export const experiences = [
+export type Experience = {
+  company_name: string;
+  date: string;
+  icon: string;
+  title: string;
+  points: string[];
+  color: string;
+  type: 'work' | 'education';
+};
+
+export const experiences: Experience[] = [
   {
     title: 'Frontend Developer',
     company_name: 'Mercado Livre',
     icon: mercadolivre,
-    iconBg: '#ffd6f9',
     date: 'Jul 2022 - Dec 2024',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
@@ -127,12 +136,13 @@ export const experiences = [
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+    color: '#ffb6c1',
+    type: 'work',
   },
   {
     title: 'Chatbot Developer',
     company_name: 'Take Blip',
     icon: blip,
-    iconBg: '#ffd6f9',
     date: 'Jan 2021 - Jul 2022',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
@@ -140,12 +150,13 @@ export const experiences = [
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+    color: '#add8e6',
+    type: 'work',
   },
   {
-    title: 'Bachelor\'s Degree in Information Systems',
+    title: 'Information Systems Bachelor',
     company_name: 'Pontifícia Universidade Católica de Minas Gerais (PUC Minas)',
     icon: puc,
-    iconBg: '#c8e9fa',
     date: '... - ...',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
@@ -153,12 +164,13 @@ export const experiences = [
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+    color: '#87ceeb',
+    type: 'education',
   },
   {
-    title: 'Full Stack Developer Training',
+    title: 'Full Stack Developer',
     company_name: 'Trybe',
     icon: trybe,
-    iconBg: '#c8e9fa',
     date: '... - ...',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
@@ -166,6 +178,8 @@ export const experiences = [
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+    color: '#90ee90',
+    type: 'education',
   },
 ];
 

@@ -16,12 +16,15 @@ const DragIndicator = () => {
       aria-label={t('home.drag.label', { defaultValue: 'Gesture indicator: drag left' })}
       role="status"
     >
-      <div className="flex flex-col items-center text-neon-light/80">
+      <div className="flex flex-col items-center relative text-neon-light/80">
         <svg className="size-12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2h12zM10 7H8v2h2V7zm0 0h2V5h-2v2zm0 10H8v-2h2v2zm0 0h2v2h-2v-2z" fill="currentColor" /> </svg>
 
         <span className="select-none font-handjet text-2xl">
           {t('home.drag.text', { defaultValue: 'DRAG' })}
         </span>
+
+        <div className="sticky-element se-big px-10 scale-300" />
+
       </div>
     </motion.div>
   );

@@ -91,6 +91,7 @@ const Ufo = ({ isMoving, rotationDirection, ...props }: UfoProps) => {
       scale={scale}
       position={position}
       rotation={rotation}
+      raycast={() => false}
       {...props}
     >
       <primitive object={scene} ref={ufoRef} />

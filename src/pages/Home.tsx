@@ -19,7 +19,7 @@ function Home() {
 
   return (
     <Curve>
-      <section className="w-full h-screen relative">
+      <section className="w-full h-screen relative overflow-hidden">
         <AnimatePresence>
           {currentStage && cameraReady && (
             <motion.div

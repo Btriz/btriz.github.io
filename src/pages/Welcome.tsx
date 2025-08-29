@@ -1,6 +1,6 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Magnetic } from '../components';
+import { Magnetic, NeonButton } from '../components';
 import Curve from '../components/Layout/Curve';
 import { useNextRoute } from '../context/NextRouteContext';
 
@@ -27,7 +27,7 @@ const Welcome = () => {
           </Trans>
         </h1>
 
-        <p className="whitespace-pre-line text-m sm:text-xl md:text-2xl lg:text-3xl text-center text-lavender font-serif mb-25 max-w-3xl">
+        <p className={'paragraph whitespace-pre-line text-center text-lavender'}>
           {<Trans i18nKey="welcome.subtitle">
           Explore my journey in the world of web development
             <br />
@@ -36,18 +36,15 @@ const Welcome = () => {
         </p>
 
         <Magnetic>
-          <button
+          <NeonButton
+            text={t('welcome.explore', { defaultValue: 'EXPLORE' })}
             onClick={() => {
               const route = '/home';
               setNextRoute(route);
               navigate(route);
             }}
-            className="btn-neon text-lg sm:text-xl md:text-2xl lg:text-3xl"
-          >
-            { t('welcome.explore', { defaultValue: 'EXPLORE' })}
-
-            <div className="sticky-element" />
-          </button>
+            className="text-md sm:text-lg md:text-xl lg:text-2xl"
+          />
         </Magnetic>
       </div>
     </Curve>
