@@ -24,95 +24,192 @@ import {
   tailwindcss,
   threads,
   typescript,
+  python,
 } from '../assets/icons';
 
 export const skills = [
-  {
-    imageUrl: css,
-    name: 'CSS',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: express,
-    name: 'Express',
-    type: 'Backend',
-  },
-  {
-    imageUrl: git,
-    name: 'Git',
-    type: 'Version Control',
-  },
-  {
-    imageUrl: github,
-    name: 'GitHub',
-    type: 'Version Control',
-  },
-  {
-    imageUrl: html,
-    name: 'HTML',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: javascript,
-    name: 'JavaScript',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: mongodb,
-    name: 'MongoDB',
-    type: 'Database',
-  },
-  {
-    imageUrl: motion,
-    name: 'Motion',
-    type: 'Animation',
-  },
-  {
-    imageUrl: mui,
-    name: 'Material-UI',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: nextjs,
-    name: 'Next.js',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: nodejs,
-    name: 'Node.js',
-    type: 'Backend',
-  },
-  {
-    imageUrl: react,
-    name: 'React',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: redux,
-    name: 'Redux',
-    type: 'State Management',
-  },
-  {
-    imageUrl: sass,
-    name: 'Sass',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: tailwindcss,
-    name: 'Tailwind CSS',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: typescript,
-    name: 'TypeScript',
-    type: 'Frontend',
-  },
-  {
-    imageUrl: '',
-    name: 'Python',
-    type: 'Backend',
-  },
+  [
+    {
+      imageUrl: git,
+      name: 'Git',
+      type: 'Version Control',
+    },
+    {
+      imageUrl: github,
+      name: 'GitHub',
+      type: 'Version Control',
+    },
+    {
+      imageUrl: html,
+      name: 'HTML',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: css,
+      name: 'CSS',
+      type: 'Frontend',
+    },
+  ],
+  [
+    {
+      imageUrl: javascript,
+      name: 'JavaScript',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: react,
+      name: 'React',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: redux,
+      name: 'Redux',
+      type: 'State Management',
+    },
+    {
+      imageUrl: sass,
+      name: 'Sass',
+      type: 'Frontend',
+    },
+  ],
+  [
+    {
+      imageUrl: motion,
+      name: 'Motion',
+      type: 'Animation',
+    },
+    {
+      imageUrl: tailwindcss,
+      name: 'Tailwind CSS',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: nodejs,
+      name: 'Node.js',
+      type: 'Backend',
+    },
+    {
+      imageUrl: express,
+      name: 'Express',
+      type: 'Backend',
+    },
+
+  ],
+  [
+    {
+      imageUrl: python,
+      name: 'Python',
+      type: 'Backend',
+    },
+    {
+      imageUrl: typescript,
+      name: 'TypeScript',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: mongodb,
+      name: 'MongoDB',
+      type: 'Database',
+    },
+
+    {
+      imageUrl: nextjs,
+      name: 'Next.js',
+      type: 'Frontend',
+    },
+
+  ],
 ];
+// export const skills = [
+//   [
+//     {
+//       imageUrl: git,
+//       name: 'Git',
+//       type: 'Version Control',
+//     },
+//     {
+//       imageUrl: nodejs,
+//       name: 'Node.js',
+//       type: 'Backend',
+//     },
+//     {
+//       imageUrl: redux,
+//       name: 'Redux',
+//       type: 'State Management',
+//     },
+//     {
+//       imageUrl: css,
+//       name: 'CSS',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: python,
+//       name: 'Python',
+//       type: 'Backend',
+//     },
+//     {
+//       imageUrl: tailwindcss,
+//       name: 'Tailwind CSS',
+//       type: 'Frontend',
+//     },
+
+//   ],
+//   [
+//     {
+//       imageUrl: react,
+//       name: 'React',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: html,
+//       name: 'HTML',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: mongodb,
+//       name: 'MongoDB',
+//       type: 'Database',
+//     },
+
+//     {
+//       imageUrl: nextjs,
+//       name: 'Next.js',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: sass,
+//       name: 'Sass',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: typescript,
+//       name: 'TypeScript',
+//       type: 'Frontend',
+//     },
+//   ],
+//   [
+//     {
+//       imageUrl: javascript,
+//       name: 'JavaScript',
+//       type: 'Frontend',
+//     },
+//     {
+//       imageUrl: github,
+//       name: 'GitHub',
+//       type: 'Version Control',
+//     },
+//     {
+//       imageUrl: express,
+//       name: 'Express',
+//       type: 'Backend',
+//     },
+//     {
+//       imageUrl: motion,
+//       name: 'Motion',
+//       type: 'Animation',
+//     },
+//   ],
+// ];
 
 export type Experience = {
   company_name: string;
@@ -131,12 +228,11 @@ export const experiences: Experience[] = [
     icon: mercadolivre,
     date: 'Jul 2022 - Dec 2024',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Desenvolvimento de interfaces escaláveis com React.js, JavaScript e TypeScript integradas à pipelines CI/CD e definição/monitoramento de métricas de produto em ambiente de alta disponibilidade.',
+      'Atuação com ferramentas de observabilidade (Datadog, New Relic, Grafana) e condução de análises pós-incidente.',
+      'Vivência em colaboração com equipes internacionais, incluindo comunicação técnica em espanhol.',
     ],
-    color: '#ffb6c1',
+    color: '#AEB2E7',
     type: 'work',
   },
   {
@@ -145,40 +241,40 @@ export const experiences: Experience[] = [
     icon: blip,
     date: 'Jan 2021 - Jul 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Desenvolvimento, manutenção e evolução de fluxos conversacionais inteligentes usando JavaScript dentro da plataforma Blip, com foco em automação de atendimento e integração omnichannel, especialmente com WhatsApp Business API.',
     ],
     color: '#add8e6',
     type: 'work',
   },
   {
     title: 'Information Systems Bachelor',
-    company_name: 'Pontifícia Universidade Católica de Minas Gerais (PUC Minas)',
+    company_name: 'Pontifícia Universidade Católica de Minas Gerais',
     icon: puc,
-    date: '... - ...',
+    date: '2024 - 2027',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Participação em projeto de extensão voltado à construção de um Data Warehouse com foco em reduzir desperdícios na distribuição de alimentos. Atividades incluem diagnóstico de requisitos, modelagem multidimensional, integração de fontes de dados, construção de protótipo web para visualização analítica e aplicação de metodologia ágil com validação contínua junto ao parceiro.',
     ],
-    color: '#87ceeb',
+    color: '#AEE7DD',
     type: 'education',
   },
   {
-    title: 'Full Stack Developer',
+    title: 'Full Stack Web Development',
     company_name: 'Trybe',
     icon: trybe,
-    date: '... - ...',
+    date: '2021 - 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Back-end',
+      'Ciência da computação',
+      'Engenharia de software',
+      'Metodologias ágeis',
+      'Habilidades comportamentais',
+
+      // 'Developing and maintaining web applications using React.js and other related technologies.',
+      // 'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
+      // 'Implementing responsive design and ensuring cross-browser compatibility.',
+      // 'Participating in code reviews and providing constructive feedback to other developers.',
     ],
-    color: '#90ee90',
+    color: '#AEE7B8',
     type: 'education',
   },
 ];

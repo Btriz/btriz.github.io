@@ -400,7 +400,7 @@ const World = ({
   const scale: [number, number, number] = viewport.width < 10
     ? [1.3, 1.3, 1.3]
     : [1.8, 1.8, 1.8];
-  const position: [number, number, number] = [0, -0.6, 0];
+  const position: [number, number, number] = [0, -0.9, 0];
   const rotation: [number, number, number] = [0, 0, 0];
 
   const setStop = useCallback(() => {

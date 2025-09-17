@@ -90,7 +90,7 @@ const MusicPlayer = () => {
             <div className=" overflow-hidden whitespace-nowrap w-40 md:w-60">
               <motion.div
                 aria-hidden="true"
-                className="font-handjet text-md md:text-xl select-none leading-tight"
+                className="font-handjet text-base md:text-xl select-none leading-tight"
                 initial={{ opacity: 0, x: 0 }}
                 animate={{ opacity: 1, x: -150 }}
                 transition={{

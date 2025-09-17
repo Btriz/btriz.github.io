@@ -23,7 +23,6 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
     icon,
     points,
     company_name: companyName,
-    color,
   } = experience;
 
   const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
@@ -37,12 +36,16 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
       style={{ scale }}
     >
       <div
-        className={'card w-[1000px] h-[500px] flex items-center relative p-10 gap-5 rounded-2xl overflow-hidden'}
-        style={{ backgroundColor: color,
+        className={`
+            card max-w-1000 h-3/4 md:h-100 flex flex-col md:flex-row items-center relative
+            p-10 gap-5 rounded-2xl overflow-hidden 
+            bg-neon-light/10 backdrop-blur-2xl border-4 border-neon-light/20
+          `}
+        style={{
           top: `calc(-5vh + ${index * 25}px)`,
         }}
       >
-        <div className="image-container relative w-[50%]">
+        <div className="image-container relative w-1/3 md:w-1/2">
           <motion.div
             className="inner w-full h-full"
             style={{ scale: imageScale }}
@@ -55,16 +58,20 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
           </motion.div>
         </div>
 
-        <div className="info flex flex-col">
-          <h3 className="text-3xl font-bold text-white mt-5">{title}</h3>
+        <div className="info flex flex-col font-64 text-neon-light md:max-w-2/3 min-h-fit">
+          <h3 className="text-lg md:text-2xl mt-5">{title}</h3>
 
-          <p className="text-xl text-white/80 font-mono">{companyName}</p>
+          <p className="text-xl md:text-3xl font-handjet">{companyName}</p>
 
-          <span className="text-sm text-white/70 font-mono">{date}</span>
+          <span className="font-handjet">{date}</span>
 
-          <ul className="mt-5 list-disc ml-5 space-y-2">
+          <ul className="mt-5 ml-5 space-y-2 text-lg font-handjet">
             {points.map((point, i) => (
-              <li key={i} className="text-white/90 text-sm">{point}</li>
+              <li key={i} className="">
+                {'✦  '}
+
+                {point}
+              </li>
             ))}
           </ul>
         </div>

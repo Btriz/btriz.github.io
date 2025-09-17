@@ -1,7 +1,6 @@
 import { useScroll } from 'framer-motion';
 import { StickyCard } from '.';
-import { useEffect, useRef } from 'react';
-import Lenis from 'lenis';
+import { useRef } from 'react';
 import type { Experience } from '../constants';
 
 interface ExperienceCardsProps {
@@ -14,21 +13,6 @@ const ExperienceCards = ({ experiences }: ExperienceCardsProps) => {
     target: containerRef,
     offset: ['start start', 'end end'],
   });
-
-  useEffect(() => {
-    const lenis = new Lenis({ autoRaf: true });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   return (
     <div ref={containerRef} className="">

@@ -9,7 +9,7 @@
       "btn": "Saiba mais"
     },
     "3": {
-      "info": "Adoro criar coisas e estou sempre em busca de novos desafios para enfrentar...",
+      "info": "Adoro criar coisas novas e estou sempre em busca de novos desafios...",
       "btn": "Meu trabalho"
     },
     "4": {
@@ -42,14 +42,14 @@
     "play": "Tocar musica"
   },
   "about": {
-    "hello": "Olá, eu sou <1>Beatriz</1>.",
-    "subtitle": "Desenvolvedora de Software, estudante de graduação em Sistemas de Informação.",
+    "hello": "Olá, eu sou",
+    "subtitle": "Desenvolvedora de Software Full Stack com foco em Front-end e estudante de graduação em Sistemas de Informação.",
     "skills": {
       "title": "Minhas Habilidades"
     },
     "experience": {
       "title": "Experiência",
-      "description": "Trabalhei com diversos tipos de empresas, aprimorando minhas habilidades e colaborando com pessoas inteligentes. Aqui está um resumo:"
+      "description": "Trabalhei e aprendi com times diversos, colaborando com muita gente inteligente. Aqui está um resumo:"
     }
   },
   "projects": {

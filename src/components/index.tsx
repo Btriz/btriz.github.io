@@ -10,6 +10,7 @@ import Cursor from './Cursor';
 import NeonButton from './NeonButton';
 import ExperienceCards from './ExperienceCards';
 import StickyCard from './StickyCard';
+import Skills from './Skills';
 
 export {
   Alert,
@@ -24,4 +25,5 @@ export {
   NeonButton,
   Magnetic,
   StickyCard,
+  Skills,
 };

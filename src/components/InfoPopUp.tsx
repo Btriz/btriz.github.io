@@ -23,9 +23,11 @@ const InfoBox = ({ text, image, link, btnText }: {
 
   return(
     <motion.div
-      className="rounded-md text-neon-light p-4 mx-5 relative flex flex-col items-center justify-center max-w-xl
-      border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30 overflow-hidden
-    "
+      className={`
+        rounded-md text-neon-light p-4 mx-5 
+        max-w-xl
+        border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30 overflow-hidden
+      `}
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}
@@ -33,34 +35,38 @@ const InfoBox = ({ text, image, link, btnText }: {
       role="region"
       aria-label="Informações"
     >
-      <motion.p
-        className="text-xs sm:text-sm md:text-md lg:text-md font-64 flex gap-5"
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
-        // transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        <div className=" w-[95px] relative border-3 border-neon-light p-1 flex items-center justify-center">
+      <div className="flex gap-5 items-center">
+        <div
+          className={`
+            relative w-15 h-fit md:w-24 aspect-square shrink-0
+            flex items-center justify-center overflow-hidden
+            border-3 border-neon-light p-1
+          `}
+        >
           {image}
 
           <div className="absolute inset-0 bg-neon/30 mix-blend-darken pointer-events-none" />
         </div>
 
-        <div className="py-2">{text}</div>
-      </motion.p>
+        <p className="text-base sm:text-2xl tracking-wider font-handjet">{text}</p>
+      </div>
 
-      {link && btnText && (
-        <Magnetic>
-          <NeonButton
-            className="text-xs sm:text-sm md:text-md"
-            text={btnText}
-            icon={<FaCaretSquareRight />}
-            onClick={() => {
-              setNextRoute(link);
-              navigate(link);
-            }}
-          />
-        </Magnetic>
-      )}
+      <div className="mt-3 w-fit m-auto">
+        {link && btnText && (
+          <Magnetic>
+            <NeonButton
+              className="text-xs sm:text-sm md:text-base"
+              text={btnText}
+              icon={<FaCaretSquareRight />}
+              onClick={() => {
+                setNextRoute(link);
+                navigate(link);
+              }}
+            />
+          </Magnetic>
+        )}
+      </div>
+
     </motion.div>
   );
 };

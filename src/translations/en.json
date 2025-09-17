@@ -42,7 +42,7 @@
     "play": "Play music"
   },
   "about": {
-    "hello": "Hello, I'm <1>Beatriz</1>.",
+    "hello": "Hello, I'm",
     "subtitle": "Software Developer based in Brazil, undergraduate student majoring in Information Systems, passionate about software development and innovation.",
     "skills": {
       "title": "My Skills"
