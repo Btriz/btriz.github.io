@@ -1,54 +1,6 @@
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 
 const HomeBg = () => {
-  const shaderProps = {
-    control: 'props',
-    type: 'sphere',
-    animate: 'on',
-    cameraZoom: 9,
-    cAzimuthAngle: 250,
-    cPolarAngle: -170,
-
-    positionX: 0,
-    positionY: 0,
-    rotationX: 0,
-    positionZ: 0,
-    rotationY: 0,
-    rotationZ: 0,
-
-    color1: '#6a5a7f',
-    color2: '#371163',
-    color3: '#15f800',
-    // color3: '#66f87e',
-
-    brightness: 1.45,
-    grain: 'on',
-
-    uAmplitude: 5,
-    uDensity: 4,
-    uFrequency: 3,
-    uSpeed: 0.02,
-    uStrength: 1.1,
-    uTime: 0,
-
-    // misc (pass-through; some keys may not exist in current TS types)
-    // kept from URL for parity; cast to any below to avoid TS errors if type misses them
-    // destination: 'onCanvas' as const,
-    // embedMode: 'off' as const,
-    // envPreset: 'city' as const,
-    // format: 'gif' as const,
-    // frameRate: 10,
-    // gizmoHelper: 'hide' as const,
-    // lightType: '3d' as const,
-    // range: 'disabled' as const,
-    // rangeStart: 0,
-    // rangeEnd: 40,
-    // reflection: 0.5,
-    // shader: 'defaults' as const,
-    // wireframe: false,
-    // axesHelper: 'off' as const,
-  };
-
   return (
     <ShaderGradientCanvas
       style={{
@@ -88,12 +40,41 @@ const HomeBg = () => {
         uDensity={2.9}
         uAmplitude={3}
         uFrequency={3}
-        uSpeed={0.1}
+        uSpeed={0.02}
         brightness={1.5}
         grain="on"
       /> */}
 
-      <ShaderGradient {...(shaderProps)} />
+      <ShaderGradient
+        control="props"
+        type="sphere"
+        animate="on"
+        cameraZoom={9}
+        cAzimuthAngle={250}
+        cPolarAngle={-170}
+
+        positionX={0}
+        positionY={0}
+        rotationX={0}
+        positionZ={0}
+        rotationY={0}
+        rotationZ={0}
+
+        color1="#6a5a7f"
+        color2="#371163"
+        color3="#15f800"
+        // color3='#66f87e'
+
+        brightness={1.45}
+        grain="on"
+
+        uAmplitude={5}
+        uDensity={4}
+        uFrequency={3}
+        uSpeed={0.02}
+        uStrength={1.1}
+        uTime={0}
+      />
     </ShaderGradientCanvas>
 
   );
