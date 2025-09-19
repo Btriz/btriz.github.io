@@ -27,7 +27,6 @@ const AnimatedPlane = React.memo(({
 
       planeRef.current.position.set(x, y, z);
 
-      // Orientação do avião na direção do movimento
       const tangent = new THREE.Vector3(
         -Math.sin(angleRef.current) * direction,
         0,

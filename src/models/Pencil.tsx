@@ -44,13 +44,6 @@ type GLTFResult = GLTF & {
   }
 }
 
-// type ActionName =
-//   | '����������������|����������������.001Action'
-//   | '����������������|����������������.003Action'
-//   | '����������������|����������������.004Action'
-//   | '����������������|����������������.005Action'
-//   | '����������������|����������������.006Action'
-
 type PencilProps = Omit<JSX.IntrinsicElements['group'], 'position' | 'rotation'> & {
   currentAnimation: string;
   position?: [number, number, number];

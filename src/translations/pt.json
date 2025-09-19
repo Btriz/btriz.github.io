@@ -27,7 +27,7 @@
     }
   },
   "transition": {
-    "welcome": "Boas vindas",
+    "welcome": "Boas-vindas",
     "home": "Início",
     "about": "Sobre",
     "projects": "Projetos",
