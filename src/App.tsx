@@ -7,9 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cursor, Navbar } from './components';
 import { Home, About, Projects, Contact, Welcome } from './pages';
 import { NextRouteProvider } from './context/NextRouteContext';
+import { init } from '@emailjs/browser';
 
 const App = () => {
   const location = useLocation();
+  init(import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
 
   return (
     <main>
