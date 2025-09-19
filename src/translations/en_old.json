@@ -1,0 +1,27 @@
+{
+  "projects": {
+    "description": "I've embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:"
+  },
+  "experiences": {
+    "meli": {
+      "point1": "Development of scalable interfaces with React.js, JavaScript, and TypeScript integrated into CI/CD pipelines and definition/monitoring of product metrics in a high-availability environment.",
+      "point2": "Experience with observability tools (Datadog, New Relic, Grafana) and conducting post-incident analyses.",
+      "point3": "Collaboration with international teams, including technical communication in Spanish."
+    },
+    "blip": {
+      "point1": "Development, maintenance, and evolution of intelligent conversational flows using JavaScript within the Blip platform, focusing on service automation and omnichannel integration, especially with WhatsApp Business API."
+    },
+    "puc": {
+      "title": "Information Systems Bachelor",
+      "company": "Pontifical Catholic University of Minas Gerais",
+      "point1": "Participating in a extension project focused on building a Data Warehouse for a real organization. Activities involve requirements analysis, multidimensional modeling, data integration, web prototype development for analytical visualization, and agile methodology application with continuous validation alongside partners."
+    },
+    "trybe": {
+      "title": "Full Stack Web Development",
+      "point1": "Intensive training in Full Stack Web Development, covering front-end and back-end technologies, computer science fundamentals, software engineering principles, agile methodologies, and soft skills."
+    }
+  },
+  "footer": {
+    "text": "Have a project in mind?<1></1>Let's build something together!"
+  }
+}

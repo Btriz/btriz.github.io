@@ -1,61 +1,93 @@
-import { useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { skills } from '../constants';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { OrbitingCircles } from './magicui/OrbitingCircles';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Skills = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1280,
+    height: typeof window !== 'undefined' ? window.innerHeight : 800,
   });
+  const { t } = useTranslation();
 
-  const left = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const right = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const groupScroll = [left, right, left, right];
+  useEffect(() => {
+    const handleResize = () =>
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getIconSize = (index: number) => {
+    const w = dimensions.width;
+    if (w < 420) return index === 0 ? 60 : 50;
+    if (w < 640) return index === 0 ? 70 : 60;
+    return index === 0 ? 90 : 70;
+  };
+  const maxRadius =
+    dimensions.width > dimensions.height
+      ? dimensions.height / 2 - 47
+      : dimensions.width / 2;
+  const outerRadius = maxRadius;
+  const innerRadius = maxRadius * 0.55;
 
   return (
-    <div
-      ref={containerRef}
-      className={`
-      relative mt-10 mb-25
-      flex flex-col items-center sm:gap-20 gap-6
-    `}
-    >
-      {skills.map((group, groupIdx) => (
-        <motion.div
-          key={groupIdx}
-          className={`
-          skill-group flex justify-between
-          w-full pointer-events-none gap-6
-          ${groupIdx % 2 === 0 ? 'ml-20' : 'mr-20'}
-        `}
-          style={{
-            zIndex: groupIdx + 1,
-            x: groupScroll[groupIdx],
-          }}
+    <div className="relative overflow-hidden h-[80vh] md:h-screen w-full" aria-label={t('about.label.skillOrbit', { defaultValue: 'Orbitating Skills' })}>
+      {[outerRadius, innerRadius].map((radius, index) => (
+        <div
+          key={index}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full h-full pointer-events-none"
+          aria-label={index === 0
+            ? t('about.label.outerSkill', { defaultValue: 'Outer skill ring' })
+            : t('about.label.innerSkill', { defaultValue: 'Inner skill ring' })
+          }
         >
-          {group.map((skill) => (
-            <motion.div
-              key={skill.name}
-              className={`
-              w-15 md:w-20 flex flex-col items-center justify-center relative
-              hover:scale-150 transition-transform
-              bg-white/20 p-2 rounded-lg backdrop-blur-sm
-           `}
-              style={{ pointerEvents: 'auto' }}
-            >
-              <img
-                src={skill.imageUrl}
-                alt={skill.name}
-                className={`
-                w-full
-              `}
-              />
+          <AnimatePresence>
+            {hoveredSkill && (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-neon-light/80 font-tiny5 text-3xl uppercase transition-all duration-200 pointer-events-none"
+                aria-live="polite"
+              >
+                {hoveredSkill}
+              </motion.span>
+            )}
+          </AnimatePresence>
 
-              {/* <span className="mt-2 text-xs">{skill.name}</span> */}
-            </motion.div>
-          ))}
-        </motion.div>
+          <OrbitingCircles
+            iconSize={getIconSize(index)}
+            radius={radius}
+            speed={0.2 + index * 0.2}
+            duration={25 - index * 2}
+            className="backdrop-blur-sm bg-radial to-transparent from-white/50 p-2 flex items-center justify-center"
+          >
+            {skills[index].map((skill) => (
+              <button
+                key={skill.name}
+                onMouseEnter={() => setHoveredSkill(skill.name)}
+                onMouseLeave={() => setHoveredSkill(null)}
+                onFocus={() => setHoveredSkill(skill.name)}
+                onBlur={() => setHoveredSkill(null)}
+                tabIndex={0}
+                aria-label={skill.name}
+              >
+                <div
+                  className="sticky-element rounded-full pointer-events-auto"
+                />
+
+                <img
+                  src={skill.imageUrl}
+                  alt={skill.name}
+                  className="hover:brightness-200 transition-transform duration-300 ease-in-out w-full h-full object-contain"
+                />
+              </button>
+            ))}
+          </OrbitingCircles>
+        </div>
       ))}
     </div>
   );

@@ -7,12 +7,12 @@ const Alert = ({ type, text }: AlertProps) => {
   const isDangerType = type === 'danger';
 
   return (
-    <div className="absolute top-15 left-10 right-0 flex justify-center items-center">
+    <div className="absolute left-1/2 -translate-x-1/2 -top-20 flex justify-center items-center font-handjet text-xl z-10">
       <div
-        className={`${isDangerType ? 'bg-red-800' : 'bg-blue-800'} p-2 text-indigo-100 leading-none rounded-full flex lg:inline-flex items-center text-xs`}
+        className={`${isDangerType ? 'bg-pink-800/50' : 'bg-emerald-800/50'} backdrop-blur-xs p-2 text-indigo-100 leading-none flex lg:inline-flex items-center`}
         role="alert"
       >
-        <p className={`${isDangerType ? 'bg-red-500' : 'bg-blue-500'} flex rounded-full uppercase px-2 py-1 font-semibold mr-3`}>
+        <p className={`${isDangerType ? 'bg-pink-500/50' : 'bg-emerald-500/50'} flex uppercase px-2 py-1 mr-3`}>
           {isDangerType ? 'Failed' : 'Success'}
         </p>
 

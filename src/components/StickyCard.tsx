@@ -1,6 +1,7 @@
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import type { Experience } from '../constants';
+import { useTranslation } from 'react-i18next';
 
 type StickyCardProps = {
   experience: Experience;
@@ -16,6 +17,7 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
     target: containerRef,
     offset: ['start end', 'start start'],
   });
+  const { t } = useTranslation();
 
   const {
     title,
@@ -28,6 +30,11 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
   const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
   const scale = useTransform(progress, range, [1, targetScale]);
 
+  const resolveText = (value: string | { key: string; defaultValue: string }) => {
+    if (typeof value === 'string') return value;
+    return t(value.key, { defaultValue: value.defaultValue });
+  };
+
   return (
     <motion.div
       key={index}
@@ -37,9 +44,9 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
     >
       <div
         className={`
-            card max-w-1000 h-3/4 md:h-100 flex flex-col md:flex-row items-center relative
-            p-10 gap-5 rounded-2xl overflow-hidden 
-            bg-neon-light/10 backdrop-blur-2xl border-4 border-neon-light/20
+            card max-w-1000 h-4/5 md:h-2/3 flex flex-col md:flex-row items-center relative
+            p-5 gap-5 rounded-2xl md:py-70 md:px-10 justify-center
+            bg-neon-light/10 backdrop-blur-xl border-4 border-neon-light/20
           `}
         style={{
           top: `calc(-5vh + ${index * 25}px)`,
@@ -52,25 +59,25 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
           >
             <img
               src={icon}
-              alt={companyName}
+              alt={resolveText(companyName)}
               className=" w-full"
             />
           </motion.div>
         </div>
 
         <div className="info flex flex-col font-64 text-neon-light md:max-w-2/3 min-h-fit">
-          <h3 className="text-lg md:text-2xl mt-5">{title}</h3>
+          <h3 className="text-lg md:text-2xl">{resolveText(title)}</h3>
 
-          <p className="text-xl md:text-3xl font-handjet">{companyName}</p>
+          <p className="text-xl md:text-3xl font-handjet">{resolveText(companyName)}</p>
 
-          <span className="font-handjet">{date}</span>
+          <span className="text-lg font-handjet">{date}</span>
 
-          <ul className="mt-5 ml-5 space-y-2 text-lg font-handjet">
-            {points.map((point, i) => (
+          <ul className="mt-5 ml-5 space-y-2 text-lg md:text-2xl font-handjet">
+            {points.map(({ key, defaultValue }, i) => (
               <li key={i} className="">
                 {'✦  '}
 
-                {point}
+                {t(key, { defaultValue })}
               </li>
             ))}
           </ul>

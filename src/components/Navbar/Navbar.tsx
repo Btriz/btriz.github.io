@@ -24,7 +24,7 @@ const Navbar = () => {
   useEffect(() => {
     if (!open) return;
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: PointerEvent) => {
       const target = event.target as Node;
       if (
         menuRef.current &&
@@ -36,8 +36,8 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
+    return () => document.removeEventListener('pointerdown', handleClickOutside);
   }, [open]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Navbar = () => {
       className={`
         absolute top-0 right-0 left-0 z-20 overflow-hidden
         border-b border-lavender/20 transition-all duration-300
-        ${open && 'bg-purple-dark/60'}`}
+        ${open && 'bg-purple-dark/30'}`}
     >
       <div
         className={`
@@ -92,7 +92,6 @@ const Navbar = () => {
                 ref={buttonRef}
                 open={open}
                 onClick={() => setOpen(!open)}
-                className="md:hidden!"
                 aria-expanded={open}
                 aria-controls="main-menu"
                 aria-label={open
@@ -100,12 +99,6 @@ const Navbar = () => {
                   : t('navbar.menu_open', { defaultValue: 'Open menu' })}
               />
             </Magnetic>
-
-            <div
-              className="hidden md:flex items-center w-95"
-            >
-              <NavItems />
-            </div>
           </nav>
         )}
       </div>
@@ -121,9 +114,9 @@ const Navbar = () => {
             ref={menuRef}
             className="flex items-center
               w-full py-1 relative z-10
-              border-t border-lavender/20"
+              border-t border-lavender/20 backdrop-blur-xs"
           >
-            <NavItems />
+            <NavItems onChangeLanguage={() => setOpen(false)} />
           </motion.nav>
         )}
       </AnimatePresence>

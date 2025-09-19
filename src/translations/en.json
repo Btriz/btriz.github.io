@@ -1,4 +1,9 @@
 {
+  "footer": {
+    "text1": "Have a project in mind?",
+    "text2": "Let's build something together!",
+    "button": "CONTACT"
+  },
   "home": {
     "1": {
       "hello": "Hi, I am <1>Beatriz </1>",
@@ -21,6 +26,13 @@
       "text": "DRAG"
     }
   },
+  "transition": {
+    "welcome": "Welcome",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
   "navbar": {
     "language": {
       "pt": "Switch to portuguese",
@@ -33,6 +45,7 @@
     "menu_close": "Close menu",
     "menu_open": "Open menu",
     "links": {
+      "home": "Home",
       "about": "About",
       "projects": "Projects"
     }
@@ -42,19 +55,45 @@
     "play": "Play music"
   },
   "about": {
+    "label": {
+      "skillOrbit": "Orbitating Skills",
+      "outerSkill": "Outer skill ring",
+      "innerSkill": "Inner skill ring"
+    },
     "hello": "Hello, I'm",
-    "subtitle": "Software Developer based in Brazil, undergraduate student majoring in Information Systems, passionate about software development and innovation.",
+    "subtitle": "Full Stack Web Developer with a focus on Front-end and undergraduate student in Information Systems.",
     "skills": {
       "title": "My Skills"
     },
     "experience": {
       "title": "Experience",
-      "description": "I've worked with all sorts of companies, leveling up my skills and teaming up with smart people. Here's the rundown:"
+      "description": "I've worked and learned with diverse teams, collaborating with smart people. Here's the rundown:"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "label": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Your Message",
+      "linkedin": "Go to linkedin"
+    },
+    "input": {
+      "name": "Your Name",
+      "email": "name@email.com",
+      "message": "Let me know how I can help you!"
+    },
+    "button": {
+      "sending": "SENDING...",
+      "send": "SEND MESSAGE"
     }
   },
   "projects": {
-    "title": "My <1>projects</1>",
-    "description": "I've embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:"
+    "title": "My projects",
+    "description1": "This portfolio is an exploration of new technologies for me: React Three Fiber, Three.js, Framer Motion and Vite.",
+    "description2": "The project is responsive, uses TypeScript, Tailwind and features internationalization through react-i18next.",
+    "button": "Source Code",
+    "construction": "This section is under construction. Meanwhile, you can check out the source code of my portfolio on GitHub."
   },
   "welcome": {
     "title": "<0>the trip of</0><1></1><2>Beatriz</2>",

@@ -2,10 +2,10 @@ import { experiences } from '../constants';
 import { useTranslation } from 'react-i18next';
 import Curve from '../components/Layout/Curve';
 import { CTA, ExperienceCards, Skills } from '../components';
-import Lenis from 'lenis';
-import { useEffect, useRef, useMemo } from 'react';
+import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import AboutBg from '../components/ShaderGradient/AboutBg';
+import { useLenis } from '../hooks';
 
 const About = () => {
   const { t } = useTranslation();
@@ -22,21 +22,6 @@ const About = () => {
     target: experiencesRef,
     offset: ['start end', 'start center'],
   });
-
-  // useEffect(() => {
-  //   const lenis = new Lenis({ autoRaf: true });
-
-  //   function raf(time: number) {
-  //     lenis.raf(time);
-  //     requestAnimationFrame(raf);
-  //   }
-
-  //   requestAnimationFrame(raf);
-
-  //   return () => {
-  //     lenis.destroy();
-  //   };
-  // }, []);
 
   const Letter = ({ char, index, progress, className, invert }: {
     char: string;
@@ -63,25 +48,28 @@ const About = () => {
     );
   };
 
+  const surge = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.5, delay: 1 },
+  };
+
+  useLenis();
+
   return (
-    <Curve backgroundColor="rgba(4, 34, 27)">
+    <Curve>
       <AboutBg />
 
-      <section
-        className="max-container about"
+      <main
+        className="max-container px-0!"
         ref={pageRef}
       >
         <p
           ref={introRef}
-          className={`
-            paragraph
-            introduction
-            flex flex-col justify-center items-center
-            pt-43 md:pt-55
-          `}
+          className="paragraph mb-30 md:mb-45 px-8"
         >
           <div className="mt-5 flex flex-col gap-10">
-            <span className="">
+            <span>
               {t('about.hello', { defaultValue: 'Hello, I\'m ' })}
             </span>
 
@@ -99,10 +87,8 @@ const About = () => {
               }
             </span>
 
-            <motion.p
-              className=""
-            >
-              {t('about.subtitle', { defaultValue: 'I\'m a software developer from Brazil...' })
+            <motion.p>
+              {t('about.subtitle', { defaultValue: 'Full Stack Web Developer with a focus on Front-end and undergraduate student in Information Systems.' })
                 .split('').map((letter, index) => (
                   <Letter key={`l_${index}`} char={letter} index={index} progress={introProgress} />
                 ))}
@@ -110,31 +96,26 @@ const About = () => {
           </div>
         </p>
 
-        <div className="flex flex-col">
-          <h3 className="subhead-text">
-            {
-              t('about.skills.title', { defaultValue: 'My Skills' })
-            }
+        <section className="md:mb-25">
+          <motion.h2 {...surge} className={'title-text px-8'}>
+            {t('about.skills.title', { defaultValue: 'My Skills' })}
 
             {' ⊹₊⟡'}
-
-          </h3>
+          </motion.h2>
 
           <Skills />
-        </div>
+        </section>
 
-        <div
-          ref={experiencesRef}
-        >
-          <h2 className="subhead-text">
-            {t('about.experience.title', { defaultValue: 'Experience' })}
+        <div className="px-8">
+          <section ref={experiencesRef}>
+            <motion.h2 {...surge} className="title-text mb-10">
+              {t('about.experience.title', { defaultValue: 'Experience' })}
 
-            {' ₊✴︎⋆'} ݁
+              {' ₊✴︎⋆'}
 
-          </h2>
+            </motion.h2>
 
-          <div className="flex flex-col gap-3">
-            <p className="paragraph mb-0!">
+            <p className="paragraph mb-10 md:mb-25">
               {t('about.experience.description', {
                 defaultValue: 'I\'ve worked with all sorts of companies, leveling up my skills and teaming up with smart people. Here\'s the rundown:',
               })
@@ -148,15 +129,15 @@ const About = () => {
                   />
                 ))}
             </p>
-          </div>
 
-          <ExperienceCards experiences={experiences} />
+            <ExperienceCards experiences={experiences} />
+          </section>
+
+          <hr className="border-slate-200" />
+
+          <CTA />
         </div>
-
-        <hr className="border-slate-200" />
-
-        <CTA />
-      </section>
+      </main>
     </Curve>
   );
 };

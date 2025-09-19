@@ -5,7 +5,7 @@ import { MdWavingHand } from 'react-icons/md';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNextRoute } from '../context/NextRouteContext';
 import { Magnetic, NeonButton } from '.';
-import { FaCaretSquareRight } from 'react-icons/fa';
+import { RiArrowRightBoxFill } from 'react-icons/ri';
 
 type InfoPopUpProps = {
     currentStage: number;
@@ -57,7 +57,7 @@ const InfoBox = ({ text, image, link, btnText }: {
             <NeonButton
               className="text-xs sm:text-sm md:text-base"
               text={btnText}
-              icon={<FaCaretSquareRight />}
+              icon={RiArrowRightBoxFill}
               onClick={() => {
                 setNextRoute(link);
                 navigate(link);
@@ -79,7 +79,7 @@ const InfoPopUp = ({ currentStage }: InfoPopUpProps) => {
       <InfoBox
         image={
           <img
-            src="src/assets/images/profilee.jpeg"
+            src="src/assets/images/profile.jpeg"
             alt=""
             className="w-full h-full object-cover"
           />}
