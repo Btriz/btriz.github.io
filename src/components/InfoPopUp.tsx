@@ -36,7 +36,7 @@ const InfoBox = ({ text, image, link, btnText }: {
       role="region"
       aria-label="Informações"
     >
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-5">
         <div
           className={`
             relative w-15 h-fit md:w-24 aspect-square shrink-0

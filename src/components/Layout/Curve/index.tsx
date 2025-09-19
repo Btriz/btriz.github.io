@@ -51,7 +51,7 @@ const Curve = ({ children, backgroundColor }: React.PropsWithChildren & { backgr
         {...animation(text)}
         className="
         fixed left-1/2 top-[40%] -translate-x-1/2 z-51
-        text-white text-5xl font-shrikhand pointer-events-none
+        text-white text-2xl md:text-5xl font-shrikhand pointer-events-none
       "
       >
         {routeName}

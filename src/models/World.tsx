@@ -394,7 +394,7 @@ const World = ({
   const plane3Angle = useRef(4);
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
-  const dampingFactor = 0.95;
+  const dampingFactor = 0.85;
   const [leftPressed, setLeftPressed] = useState(false);
   const [rightPressed, setRightPressed] = useState(false);
   const scale: [number, number, number] = viewport.width < 10
@@ -456,7 +456,7 @@ const World = ({
         }
 
         lastX.current = clientX;
-        rotationSpeed.current = (delta / viewport.width) * 0.003 * Math.PI;
+        rotationSpeed.current = (delta / viewport.width) * 0.002 * Math.PI;
       }
     },
     [isInteracting, viewport.width, setRotationDirection, setIsMoving],

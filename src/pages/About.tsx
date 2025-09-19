@@ -5,7 +5,6 @@ import { CTA, ExperienceCards, Skills } from '../components';
 import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import AboutBg from '../components/ShaderGradient/AboutBg';
-import { useLenis } from '../hooks';
 
 const About = () => {
   const { t } = useTranslation();
@@ -53,8 +52,6 @@ const About = () => {
     animate: { opacity: 1 },
     transition: { duration: 0.5, delay: 1 },
   };
-
-  useLenis();
 
   return (
     <Curve>

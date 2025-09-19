@@ -7,11 +7,10 @@ import { Canvas } from '@react-three/fiber';
 import { lazy, Suspense } from 'react';
 import { Loader, NeonButton } from '../components';
 import { RiGitRepositoryFill } from 'react-icons/ri';
-import { useLenis } from '../hooks';
 const PortfolioScene = lazy(() => import('../components/Scenes/PortfolioScene'));
-function Projects() {
+
+const Projects = () => {
   const { t } = useTranslation();
-  useLenis();
 
   return (
     <Curve>
@@ -111,6 +110,6 @@ function Projects() {
       </section>
     </Curve>
   );
-}
+};
 
 export default Projects;

@@ -183,3 +183,24 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .btn-neon { animation: none !important; }
 }
+
+@media (hover: none) {
+  .btn-neon:active {
+    background-color: var(--color-neon-dark) !important;
+    color: var(--color-purple-light) !important;
+  }
+  
+  .btn-neon.has-icon:active .text {
+    transform: translateX(0) !important;
+  }
+}
+
+.touch-device.btn-neon:hover .background,
+.touch-device.btn-neon:hover .background-icon {
+  transform: scale(0) !important;
+  opacity: 0 !important;
+}
+
+.touch-device.btn-neon:active {
+  background-color: var(--color-neon-dark) !important;
+}

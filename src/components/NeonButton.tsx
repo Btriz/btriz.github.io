@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { IconType } from 'react-icons/lib';
 
 const NeonButton = ({
@@ -13,6 +14,11 @@ const NeonButton = ({
 ) => {
   const hasIcon = !!icon;
   const Icon = icon;
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const backgroundContainerClass = `
     absolute overflow-hidden -z-1 w-full h-full flex items-center
@@ -33,10 +39,11 @@ const NeonButton = ({
         border-3 border-neon-light drop-shadow-2xl drop-shadow-neon-light/50
         transition-colors duration-500 delay-0
         font-64 text-neon-light uppercase
-        hover:text-purple-light will-change-auto hover:animate-none
-        hover:transition-colors hover:duration-500 hover:delay-0
+        will-change-auto
+        ${!isTouchDevice ? 'hover:text-purple-light hover:animate-none hover:transition-colors hover:duration-500 hover:delay-0' : 'active:text-purple-light'}
         ${hasIcon && 'has-icon pr-[3.5em]'}
         ${className}
+        ${isTouchDevice ? 'touch-device' : ''}
       `}
     >
       <div className="text transition-transform duration-500 ease-out translate-y-0.5">

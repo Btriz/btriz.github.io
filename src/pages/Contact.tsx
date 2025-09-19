@@ -195,7 +195,7 @@ const Contact = () => {
               />
             </motion.label>
 
-            <div className="w-full mt-5 h-20 justify-evenly items-center flex relative">
+            <div className="w-full mt-5 h-20 justify-evenly items-center flex relative gap-3">
               <NeonButton
                 text={isLoading
                   ? t('contact.button.sending', { defaultValue: 'SENDING...' })
@@ -205,6 +205,7 @@ const Contact = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 disabled={isLoading}
+                className="text-sm sm:text-base"
               />
 
               <a
