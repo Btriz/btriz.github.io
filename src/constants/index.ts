@@ -107,25 +107,25 @@ export const skills = [
 ];
 
 export type Experience = {
-  company_name: string;
+  company_name: string | { defaultValue: string; key: string };
   date: string;
   icon: string;
-  title: string;
-  points: string[];
+  title: string | { defaultValue: string; key: string };
+  points: { defaultValue: string; key: string }[];
   color: string;
   type: 'work' | 'education';
 };
 
 export const experiences: Experience[] = [
   {
-    title: 'Frontend Developer',
+    title: 'Frontend Software Developer',
     company_name: 'Mercado Livre',
     icon: mercadolivre,
     date: 'Jul 2022 - Nov 2024',
     points: [
-      'Desenvolvimento de interfaces escaláveis com React.js, JavaScript e TypeScript integradas à pipelines CI/CD e definição/monitoramento de métricas de produto em ambiente de alta disponibilidade.',
-      'Atuação com ferramentas de observabilidade (Datadog, New Relic, Grafana) e condução de análises pós-incidente.',
-      'Vivência em colaboração com equipes internacionais, incluindo comunicação técnica em espanhol.',
+      { defaultValue: 'Development of scalable interfaces with React.js, JavaScript, and TypeScript integrated into CI/CD pipelines and definition/monitoring of product metrics in a high-availability environment.', key: 'experiences.meli.point1' },
+      { defaultValue: 'Experience with observability tools (Datadog, New Relic, Grafana) and conducting post-incident analyses.', key: 'experiences.meli.point2' },
+      { defaultValue: 'Collaboration with international teams, including technical communication in Spanish.', key: 'experiences.meli.point3' },
     ],
     color: '#AEB2E7',
     type: 'work',
@@ -136,38 +136,29 @@ export const experiences: Experience[] = [
     icon: blip,
     date: 'Jan 2021 - Jul 2022',
     points: [
-      'Desenvolvimento, manutenção e evolução de fluxos conversacionais inteligentes usando JavaScript dentro da plataforma Blip, com foco em automação de atendimento e integração omnichannel, especialmente com WhatsApp Business API.',
+      { defaultValue: 'Development, maintenance, and evolution of intelligent conversational flows using JavaScript within the Blip platform, focusing on service automation and omnichannel integration, especially with WhatsApp Business API.', key: 'experiences.blip.point1' },
     ],
     color: '#add8e6',
     type: 'work',
   },
   {
-    title: 'Information Systems Bachelor',
-    company_name: 'Pontifícia Universidade Católica de Minas Gerais',
+    title: { defaultValue: 'Information Systems Bachelor', key: 'experiences.puc.title' },
+    company_name: { defaultValue: 'Pontifical Catholic University of Minas Gerais', key: 'experiences.puc.company' },
     icon: puc,
     date: '2024 - 2027',
     points: [
-      'Participação em projeto de extensão voltado à construção de um Data Warehouse com foco em reduzir desperdícios na distribuição de alimentos. Atividades incluem diagnóstico de requisitos, modelagem multidimensional, integração de fontes de dados, construção de protótipo web para visualização analítica e aplicação de metodologia ágil com validação contínua junto ao parceiro.',
+      { defaultValue: 'Participating in a extension project focused on building a Data Warehouse for a real organization. Activities involve requirements analysis, multidimensional modeling, data integration, web prototype development for analytical visualization, and agile methodology application with continuous validation alongside partners. ', key: 'experiences.puc.point1' },
     ],
     color: '#AEE7DD',
     type: 'education',
   },
   {
-    title: 'Full Stack Web Development',
+    title: { defaultValue: 'Full Stack Web Development', key: 'experiences.trybe.title' },
     company_name: 'Trybe',
     icon: trybe,
     date: '2021 - 2022',
     points: [
-      'Back-end',
-      'Ciência da computação',
-      'Engenharia de software',
-      'Metodologias ágeis',
-      'Habilidades comportamentais',
-
-      // 'Developing and maintaining web applications using React.js and other related technologies.',
-      // 'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      // 'Implementing responsive design and ensuring cross-browser compatibility.',
-      // 'Participating in code reviews and providing constructive feedback to other developers.',
+      { defaultValue: 'Intensive training covering front-end and back-end technologies, computer science fundamentals, software engineering principles, agile methodologies, and soft skills.', key: 'experiences.trybe.point1' },
     ],
     color: '#AEE7B8',
     type: 'education',

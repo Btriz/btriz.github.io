@@ -60,7 +60,7 @@ const About = () => {
     <Curve>
       <AboutBg />
 
-      <section
+      <main
         className="max-container px-0!"
         ref={pageRef}
       >
@@ -88,7 +88,7 @@ const About = () => {
             </span>
 
             <motion.p>
-              {t('about.subtitle', { defaultValue: 'I\'m a software developer from Brazil...' })
+              {t('about.subtitle', { defaultValue: 'Full Stack Web Developer with a focus on Front-end and undergraduate student in Information Systems.' })
                 .split('').map((letter, index) => (
                   <Letter key={`l_${index}`} char={letter} index={index} progress={introProgress} />
                 ))}
@@ -97,23 +97,23 @@ const About = () => {
         </p>
 
         <section className="md:mb-25">
-          <motion.h1 {...surge} className={'title-text px-8'}>
+          <motion.h2 {...surge} className={'title-text px-8'}>
             {t('about.skills.title', { defaultValue: 'My Skills' })}
 
             {' ⊹₊⟡'}
-          </motion.h1>
+          </motion.h2>
 
           <Skills />
         </section>
 
         <div className="px-8">
           <section ref={experiencesRef}>
-            <motion.h1 {...surge} className="title-text mb-10">
+            <motion.h2 {...surge} className="title-text mb-10">
               {t('about.experience.title', { defaultValue: 'Experience' })}
 
               {' ₊✴︎⋆'}
 
-            </motion.h1>
+            </motion.h2>
 
             <p className="paragraph mb-10 md:mb-25">
               {t('about.experience.description', {
@@ -137,7 +137,7 @@ const About = () => {
 
           <CTA />
         </div>
-      </section>
+      </main>
     </Curve>
   );
 };

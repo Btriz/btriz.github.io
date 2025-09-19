@@ -1,4 +1,9 @@
 {
+  "footer": {
+    "text1": "Tem um projeto em mente?",
+    "text2": "Vamos construir algo juntos!",
+    "button": "CONTATO"
+  },
   "home": {
     "1": {
       "hello": "Oi, eu sou <1>Beatriz </1>",
@@ -21,6 +26,13 @@
       "text": "ARRASTE"
     }
   },
+  "transition": {
+    "welcome": "Boas vindas",
+    "home": "Início",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
   "navbar": {
     "language": {
       "pt": "Mudar para português",
@@ -33,6 +45,7 @@
     "menu_close": "Fechar menu",
     "menu_open": "Abrir menu",
     "links": {
+      "home": "Home",
       "about": "Sobre",
       "projects": "Projetos"
     }
@@ -42,6 +55,11 @@
     "play": "Tocar musica"
   },
   "about": {
+    "label": {
+      "skillOrbit": "Habilidades Orbitantes",
+      "outerSkill": "Anel de habilidades externo",
+      "innerSkill": "Anel de habilidades interno"
+    },
     "hello": "Olá, eu sou",
     "subtitle": "Desenvolvedora Web Full Stack com foco em Front-end e estudante de graduação em Sistemas de Informação.",
     "skills": {
@@ -52,9 +70,30 @@
       "description": "Trabalhei e aprendi com times diversos, colaborando com muita gente inteligente. Aqui está um resumo:"
     }
   },
+  "contact": {
+    "title": "Faça contato",
+    "label": {
+      "name": "Nome",
+      "email": "Email",
+      "message": "Sua mensagem",
+      "linkedin": "Ir para linkedin"
+    },
+    "input": {
+      "name": "Seu nome",
+      "email": "nome@email.com",
+      "message": "Me conte como posso ajudar!"
+    },
+    "button": {
+      "sending": "ENVIANDO...",
+      "send": "ENVIAR MENSAGEM"
+    }
+  },
   "projects": {
-    "title": "My <1>projects</1>",
-    "description": "Embarquei em inúmeros projetos ao longo da minha jornada como desenvolvedora, cada um me ensinando algo novo e impulsionando minhas habilidades para o próximo nível. Aqui estão alguns dos meus favoritos:"
+    "title": "Meus projetos",
+    "description1": "Este portfolio é uma exploração de tecnologias novas para mim: React Three Fiber, Three.js, Framer Motion e Vite.",
+    "description2": "O projeto tem design responsivo, usa TypeScript, Tailwind e conta com internacionalização através de react-i18next.",
+    "button": "Repositório",
+    "construction": "Esta sessão está em construção. Enquanto isso, você pode conferir o código-fonte do meu portfolio no GitHub."
   },
   "welcome": {
     "title": "<0>a viagem de</0><1></1><2>Beatriz</2>",

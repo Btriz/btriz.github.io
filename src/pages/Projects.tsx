@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import CTA from '../components/CTA';
-import { Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Curve from '../components/Layout/Curve';
 import AboutBg from '../components/ShaderGradient/AboutBg';
 import { Canvas } from '@react-three/fiber';
@@ -10,7 +10,7 @@ import { RiGitRepositoryFill } from 'react-icons/ri';
 import { useLenis } from '../hooks';
 const PortfolioScene = lazy(() => import('../components/Scenes/PortfolioScene'));
 function Projects() {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   useLenis();
 
   return (
@@ -24,9 +24,7 @@ function Projects() {
           <h1
             className="title-text mb-10! md:mb-0!"
           >
-            <Trans i18nKey="projects.title">
-              My <span>projects</span>
-            </Trans>
+            {t('projects.title', { defaultValue: 'My Projects' })}
 
             {' ⊹₊⟡'}
           </h1>
@@ -49,15 +47,17 @@ function Projects() {
             `}
             >
               <p>
-                Este portfolio é uma exploração de tecnologias novas para mim: React Three Fiber, Three.js, Framer Motion e Vite.
+                {t('projects.description1', { defaultValue: 'This portfolio is an exploration of new technologies for me: React Three Fiber, Three.js, Framer Motion and Vite.' })}
+
               </p>
 
               <p>
-                O projeto tem design responsivo, usa TypeScript, Tailwind e conta com internacionalização através de react-i18next.
+                {t('projects.description2', { defaultValue: 'The project is responsive, uses TypeScript, Tailwind and features internationalization through react-i18next.' })}
+
               </p>
 
               <NeonButton
-                text={'Repositório'}
+                text={t('projects.button', { defaultValue: 'Source Code' })}
                 className="text-sm mt-10 md:mt-5"
                 onClick={() =>
                   window.open(
@@ -83,7 +83,8 @@ function Projects() {
           className="flex flex-col items-center justify-center text-center h-100 text-lg md:text-xl md:px-20 gap-5"
         >
           <p>
-              Esta sessão está em construção. Enquanto isso, você pode conferir o código-fonte do meu portfolio no GitHub.
+            {t('projects.construction', { defaultValue: 'This section is under construction. Meanwhile, you can check out the source code of my portfolio on GitHub.' })}
+
           </p>
 
           <p>

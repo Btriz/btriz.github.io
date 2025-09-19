@@ -11,6 +11,7 @@ import AboutBg from '../components/ShaderGradient/AboutBg';
 import { NeonButton } from '../components';
 import { Pencil } from '../models';
 import { socialLinks } from '../constants';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -23,6 +24,7 @@ const Contact = () => {
   });
 
   const { alert, showAlert, hideAlert } = useAlert();
+  const { t } = useTranslation();
 
   const handleFocus = () => setCurrentAnimation('walk');
   const handleBlur = () => setCurrentAnimation('idle');
@@ -119,7 +121,8 @@ const Contact = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Get in Touch
+            {t('contact.title', { defaultValue: 'Get in Touch' })}
+
             {' ₊✴︎⋆'}
           </motion.h1>
 
@@ -133,12 +136,13 @@ const Contact = () => {
               className="label"
               variants={itemVariants}
             >
-            Name
+              {t('contact.label.name', { defaultValue: 'Name' })}
+
               <motion.input
                 type="text"
                 name="name"
                 className="green-screen input"
-                placeholder="Person People"
+                placeholder={t('contact.input.name', { defaultValue: 'Your Name' })}
                 required
                 value={formData.name}
                 onChange={handleChange}
@@ -153,12 +157,13 @@ const Contact = () => {
               className="label"
               variants={itemVariants}
             >
-            Email
+              {t('contact.label.email', { defaultValue: 'Email' })}
+
               <motion.input
                 type="email"
                 name="email"
                 className="green-screen input"
-                placeholder="name@email.com"
+                placeholder={t('contact.input.email', { defaultValue: 'name@email.com' })}
                 required
                 value={formData.email}
                 onChange={handleChange}
@@ -173,11 +178,12 @@ const Contact = () => {
               className="label"
               variants={itemVariants}
             >
-            Your Message
+              {t('contact.label.message', { defaultValue: 'Your Message' })}
+
               <motion.textarea
                 name="message"
                 className="green-screen input"
-                placeholder="Let me know how I can help you!"
+                placeholder={t('contact.input.message', { defaultValue: 'Let me know how I can help you!' })}
                 rows={4}
                 required
                 value={formData.message}
@@ -191,7 +197,10 @@ const Contact = () => {
 
             <div className="w-full mt-5 h-20 justify-evenly items-center flex relative">
               <NeonButton
-                text={isLoading ? 'Sending...' : 'SEND MESSAGE'}
+                text={isLoading
+                  ? t('contact.button.sending', { defaultValue: 'SENDING...' })
+                  : t('contact.button.send', { defaultValue: 'SEND MESSAGE' })
+                }
                 type="submit"
                 onFocus={handleFocus}
                 onBlur={handleBlur}
@@ -206,7 +215,7 @@ const Contact = () => {
               >
                 <img
                   src={socialLinks.linkedin.iconUrl}
-                  alt="LinkedIn"
+                  alt={t('contact.label.linkedin', { defaultValue: 'Go to linkedin' })}
                   className="hover:brightness-150 h-full w-full object-contain"
                 />
 

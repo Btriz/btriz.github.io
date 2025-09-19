@@ -139,10 +139,6 @@ body {
     @apply font-tiny5 text-xl text-neon-light/80;
   }
 
-  .cta {
-    @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7;
-  }
-
   .info-box {
     @apply relative isolate rounded-lg overflow-hidden;
     background:

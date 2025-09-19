@@ -1,0 +1,27 @@
+{
+  "projects": {
+    "description": "Embarquei em inúmeros projetos ao longo da minha jornada como desenvolvedora, cada um me ensinando algo novo e impulsionando minhas habilidades para o próximo nível. Aqui estão alguns dos meus favoritos:"
+  },
+  "experiences": {
+    "meli": {
+      "point1": "Desenvolvimento de interfaces escaláveis com React.js, JavaScript e TypeScript integradas à pipelines CI/CD e definição/monitoramento de métricas de produto em ambiente de alta disponibilidade.",
+      "point2": "Atuação com ferramentas de observabilidade (Datadog, New Relic, Grafana) e condução de análises pós-incidente.",
+      "point3": "Vivência em colaboração com equipes internacionais, incluindo comunicação técnica em espanhol."
+    },
+    "blip": {
+      "point1": "Desenvolvimento, manutenção e evolução de fluxos conversacionais inteligentes usando JavaScript dentro da plataforma Blip, com foco em automação de atendimento e integração omnichannel, especialmente com WhatsApp Business API."
+    },
+    "puc": {
+      "title": "Bacharelado em Sistemas de Informação",
+      "company": "Pontifícia Universidade Católica de Minas Gerais",
+      "point1": "Participação em projeto de extensão voltado à construção de um Data Warehouse para uma organização real. Atividades incluem diagnóstico de requisitos, modelagem multidimensional, integração de fontes de dados, construção de protótipo web para visualização analítica e aplicação de metodologia ágil com validação contínua junto ao parceiro."
+    },
+    "trybe": {
+      "title": "Desenvolvimento Web Full Stack",
+      "point1": "Treinamento intensivo em Desenvolvimento Web Full Stack, abrangendo tecnologias de front-end e back-end, fundamentos de ciência da computação, princípios de engenharia de software, metodologias ágeis e soft skills."
+    }
+  },
+  "footer": {
+    "text": "Tem um projeto em mente<1></1>Vamos construir algo juntos!"
+  }
+}

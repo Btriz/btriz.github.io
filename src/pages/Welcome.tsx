@@ -19,17 +19,13 @@ const Welcome = () => {
         <h1 className="text-center mb-3 md:mb-6 drop-shadow-xl drop-shadow-neutral-950/30">
           <Trans i18nKey="welcome.title">
             <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-lavender font-shrikhand">
-            the trip of
+              the trip of
             </span>
 
             <br />
 
-            <span
-              className={`
-              text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-oi text-blue-200 tracking-wider
-            `}
-            >
-            Beatriz
+            <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-oi text-blue-200 tracking-wider">
+              Beatriz
             </span>
           </Trans>
         </h1>
