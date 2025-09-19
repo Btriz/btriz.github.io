@@ -22,16 +22,13 @@ const App = () => {
     const detectMobile = () => {
       const nav = navigator as NavigatorWithMSTouch;
 
-      // Verifica suporte a touch
       const hasTouchSupport = 'ontouchstart' in window ||
         navigator.maxTouchPoints > 0 ||
         (nav.msMaxTouchPoints !== undefined && nav.msMaxTouchPoints > 0);
 
-      // Verifica user-agent
       const userAgent = navigator.userAgent.toLowerCase();
       const isMobileUA = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
 
-      // Combinação das verificações
       setIsMobile(hasTouchSupport && isMobileUA);
     };
 
