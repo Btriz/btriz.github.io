@@ -79,7 +79,7 @@ const InfoPopUp = ({ currentStage }: InfoPopUpProps) => {
       <InfoBox
         image={
           <img
-            src="src/assets/images/profilee.jpeg"
+            src="src/assets/images/profile.jpeg"
             alt=""
             className="w-full h-full object-cover"
           />}
