@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useNextRoute } from '../context/NextRouteContext';
 import { Magnetic, NeonButton } from '.';
 import { RiArrowRightBoxFill } from 'react-icons/ri';
+import { profile } from '../assets/images';
 
 type InfoPopUpProps = {
     currentStage: number;
@@ -79,7 +80,7 @@ const InfoPopUp = ({ currentStage }: InfoPopUpProps) => {
       <InfoBox
         image={
           <img
-            src="src/assets/images/profile.jpeg"
+            src={profile}
             alt=""
             className="w-full h-full object-cover"
           />}
