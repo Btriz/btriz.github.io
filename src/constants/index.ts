@@ -12,7 +12,6 @@ import {
   linkedin,
   mongodb,
   motion,
-  mui,
   nextjs,
   nodejs,
   pricewise,
@@ -28,6 +27,48 @@ import {
 } from '../assets/icons';
 
 export const skills = [
+  [
+    {
+      imageUrl: motion,
+      name: 'Motion',
+      type: 'Animation',
+    },
+    {
+      imageUrl: tailwindcss,
+      name: 'Tailwind',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: nodejs,
+      name: 'Node.js',
+      type: 'Backend',
+    },
+    {
+      imageUrl: express,
+      name: 'Express',
+      type: 'Backend',
+    },
+    {
+      imageUrl: python,
+      name: 'Python',
+      type: 'Backend',
+    },
+    {
+      imageUrl: typescript,
+      name: 'TypeScript',
+      type: 'Frontend',
+    },
+    {
+      imageUrl: mongodb,
+      name: 'MongoDB',
+      type: 'Database',
+    },
+    {
+      imageUrl: nextjs,
+      name: 'Next.js',
+      type: 'Frontend',
+    },
+  ],
   [
     {
       imageUrl: git,
@@ -49,8 +90,6 @@ export const skills = [
       name: 'CSS',
       type: 'Frontend',
     },
-  ],
-  [
     {
       imageUrl: javascript,
       name: 'JavaScript',
@@ -72,144 +111,7 @@ export const skills = [
       type: 'Frontend',
     },
   ],
-  [
-    {
-      imageUrl: motion,
-      name: 'Motion',
-      type: 'Animation',
-    },
-    {
-      imageUrl: tailwindcss,
-      name: 'Tailwind CSS',
-      type: 'Frontend',
-    },
-    {
-      imageUrl: nodejs,
-      name: 'Node.js',
-      type: 'Backend',
-    },
-    {
-      imageUrl: express,
-      name: 'Express',
-      type: 'Backend',
-    },
-
-  ],
-  [
-    {
-      imageUrl: python,
-      name: 'Python',
-      type: 'Backend',
-    },
-    {
-      imageUrl: typescript,
-      name: 'TypeScript',
-      type: 'Frontend',
-    },
-    {
-      imageUrl: mongodb,
-      name: 'MongoDB',
-      type: 'Database',
-    },
-
-    {
-      imageUrl: nextjs,
-      name: 'Next.js',
-      type: 'Frontend',
-    },
-
-  ],
 ];
-// export const skills = [
-//   [
-//     {
-//       imageUrl: git,
-//       name: 'Git',
-//       type: 'Version Control',
-//     },
-//     {
-//       imageUrl: nodejs,
-//       name: 'Node.js',
-//       type: 'Backend',
-//     },
-//     {
-//       imageUrl: redux,
-//       name: 'Redux',
-//       type: 'State Management',
-//     },
-//     {
-//       imageUrl: css,
-//       name: 'CSS',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: python,
-//       name: 'Python',
-//       type: 'Backend',
-//     },
-//     {
-//       imageUrl: tailwindcss,
-//       name: 'Tailwind CSS',
-//       type: 'Frontend',
-//     },
-
-//   ],
-//   [
-//     {
-//       imageUrl: react,
-//       name: 'React',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: html,
-//       name: 'HTML',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: mongodb,
-//       name: 'MongoDB',
-//       type: 'Database',
-//     },
-
-//     {
-//       imageUrl: nextjs,
-//       name: 'Next.js',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: sass,
-//       name: 'Sass',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: typescript,
-//       name: 'TypeScript',
-//       type: 'Frontend',
-//     },
-//   ],
-//   [
-//     {
-//       imageUrl: javascript,
-//       name: 'JavaScript',
-//       type: 'Frontend',
-//     },
-//     {
-//       imageUrl: github,
-//       name: 'GitHub',
-//       type: 'Version Control',
-//     },
-//     {
-//       imageUrl: express,
-//       name: 'Express',
-//       type: 'Backend',
-//     },
-//     {
-//       imageUrl: motion,
-//       name: 'Motion',
-//       type: 'Animation',
-//     },
-//   ],
-// ];
 
 export type Experience = {
   company_name: string;
@@ -226,7 +128,7 @@ export const experiences: Experience[] = [
     title: 'Frontend Developer',
     company_name: 'Mercado Livre',
     icon: mercadolivre,
-    date: 'Jul 2022 - Dec 2024',
+    date: 'Jul 2022 - Nov 2024',
     points: [
       'Desenvolvimento de interfaces escaláveis com React.js, JavaScript e TypeScript integradas à pipelines CI/CD e definição/monitoramento de métricas de produto em ambiente de alta disponibilidade.',
       'Atuação com ferramentas de observabilidade (Datadog, New Relic, Grafana) e condução de análises pós-incidente.',
@@ -279,23 +181,23 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const socialLinks = [
-  {
+export const socialLinks = {
+  contact: {
     name: 'Contact',
     iconUrl: contact,
     link: '/contact',
   },
-  {
+  github: {
     name: 'GitHub',
     iconUrl: github,
     link: 'https://github.com/Btriz',
   },
-  {
+  linkedin: {
     name: 'LinkedIn',
     iconUrl: linkedin,
-    link: 'https://www.linkedin.com/in/FagundesBeatriz',
+    link: 'https://www.linkedin.com/in/fagundesbeatriz/',
   },
-];
+};
 
 export const projects = [
   {

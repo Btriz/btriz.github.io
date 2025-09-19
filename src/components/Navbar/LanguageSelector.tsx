@@ -1,20 +1,30 @@
 import { useTranslation } from 'react-i18next';
 import { Magnetic } from '..';
 
-const LanguageSelector = ({ className }: {className?: string}) => {
+type LanguageSelectorProps = {
+  className?: string;
+  onChangeLanguage?: () => void;
+};
+
+const LanguageSelector = ({ className, onChangeLanguage }: LanguageSelectorProps) => {
   const { i18n, t } = useTranslation();
+
+  const handleChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    onChangeLanguage?.();
+  };
 
   return (
     <div
       className=
-        {`w-[50%] md:w-[25%] items-center md:items-end justify-center
-        flex gap-3 sm:gap-5 md:gap-1 md:flex-col
+        {`w-[50%]  md:w-[25%] items-center justify-center
+        flex gap-3 sm:gap-5
         text-lavender text-lg font-tiny5 ${className}`}
     >
       <Magnetic>
         <button
           className={`${i18n.language === 'pt' && 'text-neon'}`}
-          onClick={() => i18n.changeLanguage('pt')}
+          onClick={() => handleChange('pt')}
           aria-label={t('navbar.language.pt', { defaultValue: 'Switch to portuguese' })}
         >
           POR
@@ -24,7 +34,7 @@ const LanguageSelector = ({ className }: {className?: string}) => {
       <Magnetic>
         <button
           className={`${i18n.language === 'en' && 'text-neon'}`}
-          onClick={() => i18n.changeLanguage('en')}
+          onClick={() => handleChange('en')}
           aria-label={t('navbar.language.en', { defaultValue: 'Switch to english' })}
         >
           ENG

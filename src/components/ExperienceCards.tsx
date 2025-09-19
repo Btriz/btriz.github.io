@@ -15,7 +15,9 @@ const ExperienceCards = ({ experiences }: ExperienceCardsProps) => {
   });
 
   return (
-    <div ref={containerRef} className="">
+    <div
+      ref={containerRef}
+    >
       { experiences.map((experience, index) => {
         const targetScale = 1 - ((experiences.length - index) * 0.05);
         const range = [index * 0.25, 1];

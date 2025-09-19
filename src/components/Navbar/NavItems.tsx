@@ -4,7 +4,7 @@ import { Magnetic } from '..';
 import { NavLink } from 'react-router-dom';
 import { useNextRoute } from '../../context/NextRouteContext';
 
-const NavItems = () => {
+const NavItems = ({ onChangeLanguage }: { onChangeLanguage?: () => void }) => {
   const { t } = useTranslation();
   const { setNextRoute } = useNextRoute();
   const CustomLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
@@ -37,7 +37,7 @@ const NavItems = () => {
         </CustomLink>
       </div>
 
-      <LanguageSelector />
+      <LanguageSelector onChangeLanguage={onChangeLanguage} />
     </>
   );
 };

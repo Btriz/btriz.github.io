@@ -1,6 +1,6 @@
-import fox from './fox';
 import Sky from './Sky';
 import World from './World';
 import Ufo from './Ufo';
+import Pencil from './Pencil';
 
-export { fox, Sky, World, Ufo };
+export { Sky, World, Ufo, Pencil };

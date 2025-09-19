@@ -13,19 +13,29 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 
 type UfoProps = JSX.IntrinsicElements['group'] & {
-  isMoving: boolean;
-  rotationDirection: 1 | -1;
+  isMoving?: boolean;
+  rotationDirection?: 1 | -1;
+  position?: [number, number, number];
+  scale?: [number, number, number];
+  rotation?: [number, number, number];
 };
 
-const Ufo = ({ isMoving, rotationDirection, ...props }: UfoProps) => {
+const Ufo = ({
+  isMoving = false,
+  rotationDirection = 1,
+  scale,
+  position = [0, -0.2, 3.3],
+  rotation = [0.4, 0, 0],
+  ...props
+}: UfoProps) => {
   const ufoRef = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(ufoScene);
   const { actions } = useAnimations(animations, ufoRef);
   const { viewport } = useThree();
 
-  const scale: [number, number, number] = viewport.width < 10 ? [0.1, 0.1, 0.1] : [0.15, 0.15, 0.15];
-  const position: [number, number, number] = [0, -0.2, 3.3];
-  const rotation: [number, number, number] = [0.4, 0, 0];
+  const ufoScale: [number, number, number] =
+    scale ??
+    (viewport.width < 10 ? [0.1, 0.1, 0.1] : [0.15, 0.15, 0.15]);
 
   useEffect(() => {
     const action = actions['ArmatureAction.001'];
@@ -88,7 +98,7 @@ const Ufo = ({ isMoving, rotationDirection, ...props }: UfoProps) => {
 
   return (
     <group
-      scale={scale}
+      scale={ufoScale}
       position={position}
       rotation={rotation}
       raycast={() => false}

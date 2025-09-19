@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { linkedin } from '../assets/icons';
+import Magnetic from './Magnetic';
 
 const CTA = () => {
   return (
@@ -11,7 +13,7 @@ const CTA = () => {
       viewport={{ once: true }}
     >
       <motion.p
-        className="cta-text"
+        className="font-tiny5 text-lg md:text-xl text-neon-light/80"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -22,19 +24,31 @@ const CTA = () => {
         Let's build something together!
       </motion.p>
 
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.1 }}
-        viewport={{ once: true }}
-      >
-        <Link to="/contact" className="metal-btn-wide">
-          Contact
-          <div className="sticky-element" />
-        </Link>
-      </motion.div>
+      <div className="flex gap-5">
+        <Magnetic>
+          <Link to="/contact" className="metal-btn-wide">
+          CONTACT
+            <div className="sticky-element" />
+          </Link>
+        </Magnetic>
+
+        <Magnetic>
+          <a
+            href="https://www.linkedin.com/in/fagundesbeatriz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="metal-btn-wide"
+          >
+            <img
+              src={linkedin}
+              alt="LinkedIn"
+            />
+
+            <div className="sticky-element" />
+          </a>
+        </Magnetic>
+
+      </div>
     </motion.section>
   );
 };

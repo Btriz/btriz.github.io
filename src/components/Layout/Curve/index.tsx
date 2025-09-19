@@ -42,7 +42,7 @@ const Curve = ({ children, backgroundColor }: React.PropsWithChildren & { backgr
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full" style={{ backgroundColor }}>
+    <div className="relative w-full min-h-screen" style={{ backgroundColor }}>
       {dimensions.width == null && (
         <div className="fixed h-screen w-screen top-0 left-0 z-49 bg-black" />
       )}
@@ -57,13 +57,14 @@ const Curve = ({ children, backgroundColor }: React.PropsWithChildren & { backgr
         {routeName}
       </motion.p>
 
+      {dimensions.width !== null && dimensions.height !== null && (
+        <SVG width={dimensions.width} height={dimensions.height} />
+      )}
+
       <div className="relative z-10">
         {children}
       </div>
 
-      {dimensions.width !== null && dimensions.height !== null && (
-        <SVG width={dimensions.width} height={dimensions.height} />
-      )}
     </div>
   );
 };

@@ -14,8 +14,8 @@ const SVG = ({ height, width }: {
   `;
 
   const targetPath = `
-    M0 300
-    Q${width / 2} 0 ${width} 300
+    M0 500
+    Q${width / 2} 0 ${width} 500
     L${width} ${height}
     Q${width / 2} ${height} 0 ${height}
     L0 0 

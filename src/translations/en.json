@@ -43,13 +43,13 @@
   },
   "about": {
     "hello": "Hello, I'm",
-    "subtitle": "Software Developer based in Brazil, undergraduate student majoring in Information Systems, passionate about software development and innovation.",
+    "subtitle": "Full Stack Web Developer with a focus on Front-end and undergraduate student in Information Systems.",
     "skills": {
       "title": "My Skills"
     },
     "experience": {
       "title": "Experience",
-      "description": "I've worked with all sorts of companies, leveling up my skills and teaming up with smart people. Here's the rundown:"
+      "description": "I've worked and learned with diverse teams, collaborating with smart people. Here's the rundown:"
     }
   },
   "projects": {

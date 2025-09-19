@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from 'react';
 
 import { EffectComposer, Bloom, Noise, Scanline, Vignette } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
-import { World, Ufo } from '../models';
+import { World, Ufo } from '../../models';
 import { useFrame, useThree } from '@react-three/fiber';
 
 const CameraUpdater = ({ position }: { position: [number, number, number] }) => {

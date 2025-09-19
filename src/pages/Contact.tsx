@@ -3,11 +3,14 @@ import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-import Fox from '../models/fox';
 import Loader from '../components/Loader';
 import Alert from '../components/Alert';
 import Curve from '../components/Layout/Curve';
 import { useAlert } from '../hooks';
+import AboutBg from '../components/ShaderGradient/AboutBg';
+import { NeonButton } from '../components';
+import { Pencil } from '../models';
+import { socialLinks } from '../constants';
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -99,6 +102,8 @@ const Contact = () => {
 
   return (
     <Curve>
+      <AboutBg />
+
       <motion.section
         className="relative flex lg:flex-row flex-col max-container h-screen"
         variants={containerVariants}
@@ -109,29 +114,30 @@ const Contact = () => {
 
         <motion.div className="flex-1 min-w-[50%] flex flex-col" variants={itemVariants}>
           <motion.h1
-            className="head-text"
+            className="title-text"
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-          Get in Touch
+            Get in Touch
+            {' ₊✴︎⋆'}
           </motion.h1>
 
           <motion.form
-            className="w-full flex flex-col gap-7 mt-14"
+            className="w-full flex flex-col gap-7 p-6"
             ref={formRef}
             onSubmit={handleSubmit}
             variants={containerVariants}
           >
             <motion.label
-              className="text-black-500 font-semibold"
+              className="label"
               variants={itemVariants}
             >
             Name
               <motion.input
                 type="text"
                 name="name"
-                className="input"
+                className="green-screen input"
                 placeholder="Person People"
                 required
                 value={formData.name}
@@ -144,14 +150,14 @@ const Contact = () => {
             </motion.label>
 
             <motion.label
-              className="text-black-500 font-semibold"
+              className="label"
               variants={itemVariants}
             >
             Email
               <motion.input
                 type="email"
                 name="email"
-                className="input"
+                className="green-screen input"
                 placeholder="name@email.com"
                 required
                 value={formData.email}
@@ -164,13 +170,13 @@ const Contact = () => {
             </motion.label>
 
             <motion.label
-              className="text-black-500 font-semibold"
+              className="label"
               variants={itemVariants}
             >
             Your Message
               <motion.textarea
                 name="message"
-                className="textarea"
+                className="green-screen input"
                 placeholder="Let me know how I can help you!"
                 rows={4}
                 required
@@ -183,18 +189,30 @@ const Contact = () => {
               />
             </motion.label>
 
-            <motion.button
-              type="submit"
-              className="btn"
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              disabled={isLoading}
-            >
-              {isLoading ? 'Sending...' : 'Send Message'}
-            </motion.button>
+            <div className="w-full mt-5 h-20 justify-evenly items-center flex relative">
+              <NeonButton
+                text={isLoading ? 'Sending...' : 'SEND MESSAGE'}
+                type="submit"
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                disabled={isLoading}
+              />
+
+              <a
+                href={socialLinks.linkedin.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 relative"
+              >
+                <img
+                  src={socialLinks.linkedin.iconUrl}
+                  alt="LinkedIn"
+                  className="hover:brightness-150 h-full w-full object-contain"
+                />
+
+                <div className="sticky-element" />
+              </a>
+            </div>
           </motion.form>
         </motion.div>
 
@@ -212,16 +230,21 @@ const Contact = () => {
               far: 1000,
             }}
           >
-            <directionalLight position={[0, 0, 1]} intensity={2.5} />
+            <spotLight
+              position={[-4, 6, 0]}
+              intensity={300}
+              color={'#65F5B0'}
+            />
 
             <ambientLight intensity={0.5} />
 
             <Suspense fallback={<Loader />}>
-              <Fox
+
+              <Pencil
                 currentAnimation={currentAnimation}
-                position={[0.5, 0.35, 0]}
-                rotation={[12.6, -0.6, 0]}
-                scale={[0.5, 0.5, 0.5]}
+                position={[0, -1.9, 0]}
+                rotation={[0.3, 4.2, 0]}
+                scale={[0.8, 0.8, 0.8]}
               />
             </Suspense>
           </Canvas>

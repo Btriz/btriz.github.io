@@ -26,10 +26,8 @@ const Welcome = () => {
 
             <span
               className={`
-                text-5xl sm:text-7xl md:text-8xl lg:text-9xl
-                font-oi tracking-wider bg-clip-text text-transparent
-                bg-radial from-blue-200 via-green-200 to-green-500
-              `}
+              text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-oi text-blue-200 tracking-wider
+            `}
             >
             Beatriz
             </span>

@@ -1,118 +1,98 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { projects } from '../constants';
-import { arrow } from '../assets/icons';
 import CTA from '../components/CTA';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import Curve from '../components/Layout/Curve';
-
+import AboutBg from '../components/ShaderGradient/AboutBg';
+import { Canvas } from '@react-three/fiber';
+import { lazy, Suspense } from 'react';
+import { Loader, NeonButton } from '../components';
+import { RiGitRepositoryFill } from 'react-icons/ri';
+import { useLenis } from '../hooks';
+const PortfolioScene = lazy(() => import('../components/Scenes/PortfolioScene'));
 function Projects() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
+  useLenis();
+
   return (
     <Curve>
-      <motion.section
-        className="max-container projects"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+      <AboutBg />
+
+      <section
+        className="max-container"
       >
-        <motion.h1
-          className="head-text"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Trans i18nKey="projects.title">
-          My <span className="gradient_text font-semibold drop-shadow">projects</span>
-          </Trans>
-        </motion.h1>
+        <div className="flex flex-col relative gap-5 md:gap-30">
+          <h1
+            className="title-text mb-10! md:mb-0!"
+          >
+            <Trans i18nKey="projects.title">
+              My <span>projects</span>
+            </Trans>
 
-        <motion.p
-          className="mt-5 flex flex-col gap-3 text-slate-500"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          {t('projects.description', { defaultValue: 'I\'ve embarked on numerous projects throughout my journey as a developer, each one teaching me something new and pushing my skills to the next level. Here are some of my favorites:' })}
-        </motion.p>
+            {' ⊹₊⟡'}
+          </h1>
 
-        <motion.div
-          className="flex flex-wrap my-20 gap-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              className="lg:w-[400px] w-full"
-              key={project.name}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1 + 0.4,
-                type: 'spring',
-                stiffness: 300,
-                damping: 20,
-              }}
-              whileHover={{ y: -10 }}
+          <section className="flex flex-col items-center md:items-start md:flex-row relative">
+            <Canvas
+              className="h-[210px]!"
+              camera={{ near: 0.1, far: 1000, position: [0, 0, -5] }}
             >
-              <motion.div
-                className="block-container w-12 h-12"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className={`btn-back rounded-xl ${project.theme}`} />
+              <Suspense fallback={<Loader />}>
+                <PortfolioScene />
+              </Suspense>
+            </Canvas>
 
-                <div className="btn-front rounded-xl flex justify-center items-center">
-                  <img
-                    src={project.iconUrl}
-                    alt="Project Icon"
-                    className="w-1/2 h-1/2 object-contain"
-                  />
-                </div>
-              </motion.div>
+            <div
+              className={`
+                md:max-w-3/4 flex flex-col items-center md:items-start gap-3
+                text-xl md:text-2xl text-center md:text-left
+                mt-5 md:mt-0 leading-relaxed
+            `}
+            >
+              <p>
+                Este portfolio é uma exploração de tecnologias novas para mim: React Three Fiber, Three.js, Framer Motion e Vite.
+              </p>
 
-              <motion.div
-                className="mt-5 flex flex-col"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-2xl font-poppins font-semibold">{project.name}</h4>
+              <p>
+                O projeto tem design responsivo, usa TypeScript, Tailwind e conta com internacionalização através de react-i18next.
+              </p>
 
-                <p className="mt-2 text-slate-500">{project.description}</p>
+              <NeonButton
+                text={'Repositório'}
+                className="text-sm mt-10 md:mt-5"
+                onClick={() =>
+                  window.open(
+                    'https://github.com/Btriz/btriz.github.io',
+                    '_blank',
+                    'noopener,noreferrer',
+                  )
+                }
+                icon={RiGitRepositoryFill}
+              />
+            </div>
+          </section>
 
-                <motion.div
-                  className="mt-5 flex items-center gap-2 font-poppins"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                >
-                  <Link
-                    to={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 font-semibold"
-                  >
-                  Live Link
-                  </Link>
+          <motion.hr
+            className="border-white/50 mt-10"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
+          />
+        </div>
 
-                  <motion.img
-                    src={arrow}
-                    alt="arrow"
-                    className="w-4 h-4 object-contain"
-                    whileHover={{ x: 3 }}
-                    transition={{ type: 'spring', stiffness: 400 }}
-                  />
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <section
+          className="flex flex-col items-center justify-center text-center h-100 text-lg md:text-xl md:px-20 gap-5"
+        >
+          <p>
+              Esta sessão está em construção. Enquanto isso, você pode conferir o código-fonte do meu portfolio no GitHub.
+          </p>
+
+          <p>
+            ⋆✴︎˚｡⋆.𖥔 ݁ ˖🛸.✦⋆˚࿔ ⊹⭒₊
+          </p>
+        </section>
 
         <motion.hr
-          className="border-slate-200"
+          className="border-white/50"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.5 }}
@@ -127,7 +107,7 @@ function Projects() {
         >
           <CTA />
         </motion.div>
-      </motion.section>
+      </section>
     </Curve>
   );
 }

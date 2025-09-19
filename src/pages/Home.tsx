@@ -7,7 +7,7 @@ import DragIndicator from '../components/DragIndicator';
 import { useAnimatedCamera } from '../hooks';
 import Curve from '../components/Layout/Curve';
 
-const HomeScene = lazy(() => import('../components/HomeScene'));
+const HomeScene = lazy(() => import('../components/Scenes/HomeScene'));
 
 function Home() {
   const [isInteracting, setIsInteracting] = useState(false);
