@@ -1,6 +1,7 @@
+import type { Experience } from '../hooks';
+
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import type { Experience } from '../constants';
 import { useTranslation } from 'react-i18next';
 
 type StickyCardProps = {
@@ -73,11 +74,11 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
           <span className="text-lg font-handjet">{date}</span>
 
           <ul className="mt-5 ml-5 space-y-2 text-lg md:text-2xl font-handjet">
-            {points.map(({ key, defaultValue }, i) => (
-              <li key={i}>
+            {points.map((point, index) => (
+              <li key={index}>
                 {'✦  '}
 
-                {t(key, { defaultValue })}
+                {point}
               </li>
             ))}
           </ul>

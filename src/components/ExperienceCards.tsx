@@ -1,13 +1,10 @@
 import { useScroll } from 'framer-motion';
 import { StickyCard } from '.';
 import { useRef } from 'react';
-import type { Experience } from '../constants';
+import { useExperiences } from '../hooks';
 
-interface ExperienceCardsProps {
-  experiences: Experience[];
-}
-
-const ExperienceCards = ({ experiences }: ExperienceCardsProps) => {
+const ExperienceCards = () => {
+  const experiences = useExperiences();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

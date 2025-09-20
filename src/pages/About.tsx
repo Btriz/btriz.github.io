@@ -1,4 +1,3 @@
-import { experiences } from '../constants';
 import { useTranslation } from 'react-i18next';
 import Curve from '../components/Layout/Curve';
 import { CTA, ExperienceCards, Skills } from '../components';
@@ -127,7 +126,7 @@ const About = () => {
                 ))}
             </p>
 
-            <ExperienceCards experiences={experiences} />
+            <ExperienceCards />
           </section>
 
           <hr className="border-slate-200" />

@@ -71,6 +71,30 @@
       "description": "Trabalhei e aprendi com times diversos, colaborando com muita gente inteligente. Aqui está um resumo:"
     }
   },
+  "experiences": {
+    "meli": {
+      "title": "Software Developer",
+      "company": "Mercado Livre",
+      "point1": "Desenvolvimento de interfaces escaláveis com React.js, JavaScript e TypeScript integradas à pipelines CI/CD e definição/monitoramento de métricas de produto em ambiente de alta disponibilidade.",
+      "point2": "Atuação com ferramentas de observabilidade (Datadog, New Relic, Grafana) e condução de análises pós-incidente.",
+      "point3": "Vivência em colaboração com equipes internacionais, incluindo comunicação técnica em espanhol."
+    },
+    "blip": {
+      "title": "Chatbot Developer",
+      "company": "Take Blip",
+      "point1": "Desenvolvimento, manutenção e evolução de fluxos conversacionais inteligentes usando JavaScript dentro da plataforma Blip, com foco em automação de atendimento e integração omnichannel, especialmente com WhatsApp Business API."
+    },
+    "puc": {
+      "title": "Bacharelado em Sistemas de Informação",
+      "company": "Pontifícia Universidade Católica de Minas Gerais",
+      "point1": "Participação em projeto de extensão voltado à construção de um Data Warehouse para uma organização real. Atividades incluem diagnóstico de requisitos, modelagem multidimensional, integração de fontes de dados, construção de protótipo web para visualização analítica e aplicação de metodologia ágil com validação contínua junto ao parceiro."
+    },
+    "trybe": {
+      "title": "Deenvolvimento Web Full Stack Web",
+      "company": "Trybe",
+      "point1": "Treinamento intensivo cobrindo tecnologias de front-end e back-end, fundamentos de ciência da computação, princípios de engenharia de software, metodologias ágeis e habilidades interpessoais."
+    }
+  },
   "contact": {
     "title": "Faça contato",
     "label": {
