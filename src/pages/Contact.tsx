@@ -229,7 +229,7 @@ const Contact = () => {
           </motion.div>
 
           <motion.div
-            className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] -mb-30"
+            className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] -mb-30 -z-1"
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}

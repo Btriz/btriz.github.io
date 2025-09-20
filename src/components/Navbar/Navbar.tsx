@@ -24,7 +24,7 @@ const Navbar = () => {
   useEffect(() => {
     if (!open) return;
 
-    const handleClickOutside = (event: PointerEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node;
       if (
         menuRef.current &&
@@ -36,8 +36,18 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('pointerdown', handleClickOutside);
-    return () => document.removeEventListener('pointerdown', handleClickOutside);
+    const handleCanvasClick = () => {
+      setOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside, { capture: true });
+    document.addEventListener('touchstart', handleClickOutside, { capture: true });
+    document.addEventListener('canvas-click', handleCanvasClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside, { capture: true });
+      document.removeEventListener('touchstart', handleClickOutside, { capture: true });
+      document.removeEventListener('canvas-click', handleCanvasClick);
+    };
   }, [open]);
 
   useEffect(() => {
