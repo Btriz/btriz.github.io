@@ -15,8 +15,6 @@ const NavItems = ({ onChangeLanguage }: { onChangeLanguage?: () => void }) => {
         onClick={() => setNextRoute(to)}
       >
         {children}
-
-        <div className="sticky-element" />
       </NavLink>
     </Magnetic>
   );
