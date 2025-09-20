@@ -24,11 +24,7 @@ const InfoBox = ({ text, image, link, btnText }: {
 
   return(
     <motion.div
-      className={`
-        rounded-md text-neon-light p-4 mx-5 
-        max-w-xl
-        border-3 border-neon-light/30 backdrop-blur-xs bg-teal-800/30 overflow-hidden
-      `}
+      className="p-4 mx-5 max-w-xl green-screen"
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}

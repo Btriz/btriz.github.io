@@ -132,7 +132,7 @@ body {
   }
 
   .input {
-    @apply text-2xl rounded-lg focus:outline-none focus:border-neon-light block w-full p-2.5 mt-2.5;
+    @apply text-2xl focus:outline-none focus:border-neon-light block w-full p-2.5 mt-2.5;
   }
 
   .label {

@@ -6,10 +6,14 @@
     "meli": {
       "point1": "Development of scalable interfaces with React.js, JavaScript, and TypeScript integrated into CI/CD pipelines and definition/monitoring of product metrics in a high-availability environment.",
       "point2": "Experience with observability tools (Datadog, New Relic, Grafana) and conducting post-incident analyses.",
-      "point3": "Collaboration with international teams, including technical communication in Spanish."
+      "point3": "Collaboration with international teams, including technical communication in Spanish.",
+      "title": "Software Developer",
+      "company": "Mercado Livre"
     },
     "blip": {
-      "point1": "Development, maintenance, and evolution of intelligent conversational flows using JavaScript within the Blip platform, focusing on service automation and omnichannel integration, especially with WhatsApp Business API."
+      "point1": "Development, maintenance, and evolution of intelligent conversational flows using JavaScript within the Blip platform, focusing on service automation and omnichannel integration, especially with WhatsApp Business API.",
+      "title": "Chatbot Developer",
+      "company": "Take Blip"
     },
     "puc": {
       "title": "Information Systems Bachelor",
@@ -18,7 +22,8 @@
     },
     "trybe": {
       "title": "Full Stack Web Development",
-      "point1": "Intensive training in Full Stack Web Development, covering front-end and back-end technologies, computer science fundamentals, software engineering principles, agile methodologies, and soft skills."
+      "point1": "Intensive training covering front-end and back-end technologies, computer science fundamentals, software engineering principles, agile methodologies, and soft skills.",
+      "company": "Trybe"
     }
   },
   "footer": {

@@ -23,7 +23,13 @@ const NavItems = ({ onChangeLanguage }: { onChangeLanguage?: () => void }) => {
 
   return(
     <>
-      <div className="text-xl md:text-2xl font-tiny5 flex justify-evenly w-full border-r border-lavender/20 ">
+      <div
+        className="text-2xl font-tiny5
+      flex justify-evenly margin-auto gap-5 md:flex-row flex-col
+      w-full border-b md:border-b-0 md:border-r border-lavender/20
+      text-right
+      "
+      >
         <CustomLink to="/home">
           {t('navbar.links.home', { defaultValue: 'Home' })}
         </CustomLink>
@@ -34,6 +40,10 @@ const NavItems = ({ onChangeLanguage }: { onChangeLanguage?: () => void }) => {
 
         <CustomLink to="/projects">
           {t('navbar.links.projects', { defaultValue: 'Projects' })}
+        </CustomLink>
+
+        <CustomLink to="/contact">
+          {t('navbar.links.contact', { defaultValue: 'Contact' })}
         </CustomLink>
       </div>
 

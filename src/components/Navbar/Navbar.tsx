@@ -114,7 +114,9 @@ const Navbar = () => {
             ref={menuRef}
             className="flex items-center
               w-full py-1 relative z-10
-              border-t border-lavender/20 backdrop-blur-xs"
+              border-t border-lavender/20 backdrop-blur-xs
+              md:flex-row flex-col px-10
+              "
           >
             <NavItems onChangeLanguage={() => setOpen(false)} />
           </motion.nav>

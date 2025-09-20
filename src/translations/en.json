@@ -47,7 +47,8 @@
     "links": {
       "home": "Home",
       "about": "About",
-      "projects": "Projects"
+      "projects": "Projects",
+      "contact": "Contact"
     }
   },
   "music": {

@@ -45,8 +45,8 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
       <div
         className={`
             card max-w-1000 h-4/5 md:h-2/3 flex flex-col md:flex-row items-center relative
-            p-5 gap-5 rounded-2xl md:py-70 md:px-10 justify-center
-            bg-neon-light/10 backdrop-blur-xl border-4 border-neon-light/20
+            p-5 gap-5 md:py-70 md:px-10 justify-center
+            green-screen backdrop-blur-md!
           `}
         style={{
           top: `calc(-5vh + ${index * 25}px)`,
@@ -60,7 +60,7 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
             <img
               src={icon}
               alt={resolveText(companyName)}
-              className=" w-full"
+              className=" w-4/5"
             />
           </motion.div>
         </div>
@@ -74,7 +74,7 @@ const StickyCard = ({ experience, index, range, targetScale, progress }: StickyC
 
           <ul className="mt-5 ml-5 space-y-2 text-lg md:text-2xl font-handjet">
             {points.map(({ key, defaultValue }, i) => (
-              <li key={i} className="">
+              <li key={i}>
                 {'✦  '}
 
                 {t(key, { defaultValue })}

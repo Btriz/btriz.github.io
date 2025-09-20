@@ -17,8 +17,7 @@ const LanguageSelector = ({ className, onChangeLanguage }: LanguageSelectorProps
   return (
     <div
       className=
-        {`w-[50%]  md:w-[25%] items-center justify-center
-        flex gap-3 sm:gap-5
+        {`w-full md:w-[25%] flex md:justify-center gap-5
         text-lavender text-lg font-tiny5 ${className}`}
     >
       <Magnetic>
