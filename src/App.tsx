@@ -5,12 +5,11 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cursor, Navbar, Loader } from './components'; // Adicione o Loader aqui
+import { Cursor, Navbar, SuspenseLoader } from './components';
 import { NextRouteProvider } from './context/NextRouteContext';
 import { init as initEmailJs } from '@emailjs/browser';
 import { useIsMobile } from './hooks/useIsMobile';
 
-// Lazy load das páginas
 const Welcome = React.lazy(() => import('./pages/Welcome'));
 const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
@@ -34,7 +33,7 @@ const App = () => {
 
         {!isMobile && <Cursor />}
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<SuspenseLoader />}>
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}

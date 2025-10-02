@@ -1,29 +1,14 @@
-import Alert from './Alert';
-import CTA from './CTA';
-import InfoPopUp from './InfoPopUp';
-import Loader from './Loader';
-import DragIndicator from './DragIndicator';
-import AnimatedPlane from './AnimatedPlane';
-import { Navbar } from './Navbar';
-import Magnetic from './Magnetic';
-import Cursor from './Cursor';
-import NeonButton from './NeonButton';
-import ExperienceCards from './ExperienceCards';
-import StickyCard from './StickyCard';
-import Skills from './Skills';
-
-export {
-  Alert,
-  AnimatedPlane,
-  CTA,
-  Cursor,
-  DragIndicator,
-  ExperienceCards,
-  InfoPopUp,
-  Loader,
-  Navbar,
-  NeonButton,
-  Magnetic,
-  StickyCard,
-  Skills,
-};
+export { default as Alert } from './Alert';
+export { default as AnimatedPlane } from './AnimatedPlane';
+export { default as CTA } from './CTA';
+export { default as Cursor } from './Cursor';
+export { default as DragIndicator } from './DragIndicator';
+export { default as ExperienceCards } from './ExperienceCards';
+export { default as InfoPopUp } from './InfoPopUp';
+export { default as Loader } from './Loader';
+export { default as Magnetic } from './Magnetic';
+export { default as NeonButton } from './NeonButton';
+export { default as Skills } from './Skills';
+export { default as StickyCard } from './StickyCard';
+export { default as SuspenseLoader } from './SuspenseLoader';
+export { default as Navbar } from './Navbar/Navbar';

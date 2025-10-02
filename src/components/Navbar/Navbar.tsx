@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LanguageSelector, MenuButton, MusicPlayer, NavItems } from '.';
+import LanguageSelector from './LanguageSelector';
+import MenuButton from './MenuButton';
+import MusicPlayer from './MusicPlayer';
+import NavItems from './NavItems';
 import { useTranslation } from 'react-i18next';
 import { Magnetic } from '..';
 import { useNextRoute } from '../../context/NextRouteContext';
