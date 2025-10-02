@@ -1,0 +1,1 @@
+import{j as e}from"./vendor-BCyGHQkV.js";import{a2 as r}from"./three-vendor-9nBbuck_.js";const o=()=>e.jsx(r,{children:e.jsx("div",{className:"flex justify-center items-center",children:e.jsx("div",{className:"w-20 h-20 border-4 border-opacity-20 border-blue-300 border-t-blue-500 rounded-full animate-spin"})})});export{o as L};

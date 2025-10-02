@@ -1,4 +1,4 @@
-import{r,j as e}from"./vendor-Cbn3c-eS.js";const x=({text:a,icon:o,className:i="",...c})=>{const t=!!o,n=o,[s,l]=r.useState(!1);r.useEffect(()=>{l("ontouchstart"in window||navigator.maxTouchPoints>0)},[]);const u=`
+import{r,j as e}from"./vendor-BCyGHQkV.js";const x=({text:a,icon:o,className:i="",...c})=>{const t=!!o,n=o,[s,l]=r.useState(!1);r.useEffect(()=>{l("ontouchstart"in window||navigator.maxTouchPoints>0)},[]);const u=`
     absolute overflow-hidden -z-1 w-full h-full flex items-center
     ${t?"right-0 pr-[1em] justify-end":"justify-center"}
   `,d=t?"background-icon flex transition-transform duration-500 ease-out text-neon-light":"background bg-neon-light w-[1em] h-[1em] rounded-full text-neon-light";return e.jsxs("button",{...c,className:`
