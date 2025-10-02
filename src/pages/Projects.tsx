@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
 import CTA from '../components/CTA';
 import { useTranslation } from 'react-i18next';
-import Curve from '../components/Layout/Curve';
-import AboutBg from '../components/ShaderGradient/AboutBg';
 import { Canvas } from '@react-three/fiber';
 import { lazy, Suspense } from 'react';
-import { Loader, NeonButton } from '../components';
+import { GradientBackground, Loader, NeonButton } from '../components';
 import { RiGitRepositoryFill } from 'react-icons/ri';
 const PortfolioScene = lazy(() => import('../components/Scenes/PortfolioScene'));
 
@@ -13,8 +11,8 @@ const Projects = () => {
   const { t } = useTranslation();
 
   return (
-    <Curve>
-      <AboutBg />
+    <div className="relative w-full min-h-screen">
+      <GradientBackground type="general" />
 
       <section
         className="max-container"
@@ -108,7 +106,7 @@ const Projects = () => {
           <CTA />
         </motion.div>
       </section>
-    </Curve>
+    </div>
   );
 };
 

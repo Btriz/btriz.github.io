@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import Curve from '../components/Layout/Curve';
-import { CTA, ExperienceCards, Skills } from '../components';
+import { CTA, ExperienceCards, GradientBackground, Skills } from '../components';
 import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import AboutBg from '../components/ShaderGradient/AboutBg';
 
 const About = () => {
   const { t } = useTranslation();
@@ -53,8 +51,8 @@ const About = () => {
   };
 
   return (
-    <Curve>
-      <AboutBg />
+    <div className="relative w-full min-h-screen">
+      <GradientBackground type="general" />
 
       <main
         className="max-container px-0!"
@@ -134,7 +132,7 @@ const About = () => {
           <CTA />
         </div>
       </main>
-    </Curve>
+    </div>
   );
 };
 

@@ -1,9 +1,7 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Magnetic, NeonButton } from '../components';
-import Curve from '../components/Layout/Curve';
+import { GradientBackground, Magnetic, NeonButton } from '../components';
 import { useNextRoute } from '../context/NextRouteContext';
-import HomeBg from '../components/ShaderGradient/WelcomeBg';
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -11,8 +9,8 @@ const Welcome = () => {
   const { setNextRoute } = useNextRoute();
 
   return (
-    <Curve>
-      <HomeBg />
+    <div className="relative w-full min-h-screen">
+      <GradientBackground type="welcome" />
 
       <div className="fixed inset-0 flex flex-col items-center justify-center overflow-hidden px-3">
 
@@ -50,8 +48,7 @@ const Welcome = () => {
           />
         </Magnetic>
       </div>
-
-    </Curve>
+    </div>
   );
 };
 export default Welcome;

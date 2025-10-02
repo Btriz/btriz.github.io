@@ -5,10 +5,8 @@ import emailjs from '@emailjs/browser';
 
 import Loader from '../components/Loader';
 import Alert from '../components/Alert';
-import Curve from '../components/Layout/Curve';
 import { useAlert } from '../hooks';
-import AboutBg from '../components/ShaderGradient/AboutBg';
-import { NeonButton } from '../components';
+import { GradientBackground, NeonButton } from '../components';
 import { Pencil } from '../models';
 import { socialLinks } from '../constants';
 import { useTranslation } from 'react-i18next';
@@ -103,8 +101,8 @@ const Contact = () => {
   };
 
   return (
-    <Curve>
-      <AboutBg />
+    <div className="relative w-full min-h-screen">
+      <GradientBackground type="general" />
 
       <motion.main
         className="max-container"
@@ -264,7 +262,7 @@ const Contact = () => {
         </div>
 
       </motion.main>
-    </Curve>
+    </div>
   );
 };
 

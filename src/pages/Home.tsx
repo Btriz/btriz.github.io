@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Loader, InfoPopUp } from '../components';
 import DragIndicator from '../components/DragIndicator';
 import { useAnimatedCamera } from '../hooks';
-import Curve from '../components/Layout/Curve';
 
 const HomeScene = lazy(() => import('../components/Scenes/HomeScene'));
 
@@ -37,7 +36,7 @@ function Home() {
   }, []);
 
   return (
-    <Curve>
+    <div className="relative w-full min-h-screen">
       <section className="w-full h-screen relative overflow-hidden">
         <AnimatePresence>
           {currentStage && cameraReady && (
@@ -77,7 +76,7 @@ function Home() {
         </AnimatePresence>
 
       </section>
-    </Curve>
+    </div>
   );
 }
 
