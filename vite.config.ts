@@ -1,24 +1,17 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tailwindcss from '@tailwindcss/vite';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    visualizer({ open: true, gzipSize: true, brotliSize: true }),
+  ],
   base: '/',
   assetsInclude: ['**/*.glb'],
-  optimizeDeps: {
-    include: [
-      'framer-motion',
-      'react',
-      'react-dom',
-      'react-router-dom',
-      '@react-three/fiber',
-      '@react-three/drei',
-      'three',
-    ],
-    force: true,
-  },
   server: {
     host: true,
     port: 5173,
@@ -29,11 +22,16 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'framer': ['framer-motion'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'framer-vendor';
+            }
+            return 'vendor';
+          }
         },
       },
     },
