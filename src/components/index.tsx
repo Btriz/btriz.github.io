@@ -10,6 +10,6 @@ export { default as Magnetic } from './Magnetic';
 export { default as NeonButton } from './NeonButton';
 export { default as Skills } from './Skills';
 export { default as StickyCard } from './StickyCard';
-export { default as SuspenseLoader } from './SuspenseLoader';
+export { default as PageLoader } from './PageLoader';
 export { default as Navbar } from './Navbar/Navbar';
 export { default as GradientBackground } from './GradientBackground';

@@ -5,7 +5,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cursor, Navbar, SuspenseLoader } from './components';
+import { Cursor, Navbar, PageLoader } from './components';
 import { init as initEmailJs } from '@emailjs/browser';
 import { useIsMobile } from './hooks/useIsMobile';
 
@@ -31,7 +31,7 @@ const App = () => {
 
       {!isMobile && <Cursor />}
 
-      <Suspense fallback={<SuspenseLoader />}>
+      <Suspense fallback={<PageLoader />}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
