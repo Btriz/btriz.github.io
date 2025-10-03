@@ -124,8 +124,7 @@ const Contact = () => {
         </motion.h1>
 
         <div className="relative flex lg:flex-row flex-col-reverse">
-          <motion.div className="flex-1 min-w-[50%] flex flex-col" variants={itemVariants}>
-
+          <motion.div className="flex-1 min-w-[50%] flex flex-col z-2" variants={itemVariants}>
             <motion.form
               className="w-full flex flex-col gap-7 p-6"
               ref={formRef}
@@ -227,10 +226,10 @@ const Contact = () => {
           </motion.div>
 
           <motion.div
-            className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] -mb-30 -z-1"
+            className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] -mb-30"
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <Canvas
               camera={{
