@@ -27,3 +27,5 @@ function Sky(props: JSX.IntrinsicElements['group']) {
 }
 
 export default Sky;
+
+useGLTF.preload(skyScene);

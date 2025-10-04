@@ -134,3 +134,5 @@ const Ufo = ({
 };
 
 export default Ufo;
+
+useGLTF.preload(ufoScene);

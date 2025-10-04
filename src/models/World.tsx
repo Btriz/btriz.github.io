@@ -4075,4 +4075,4 @@ const World = ({
 
 export default World;
 
-useGLTF.preload('/world.glb');
+useGLTF.preload(worldScene);
