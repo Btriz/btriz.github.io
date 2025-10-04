@@ -6,7 +6,14 @@ import { visualizer } from 'rollup-plugin-visualizer';
 const plugins: PluginOption[] = [react(), tailwindcss()];
 
 if (process.env.VITE_VISUALIZER === 'true') {
-  plugins.push(visualizer({ open: true, gzipSize: true, brotliSize: true }));
+  plugins.push(
+    visualizer({
+      filename: 'dist/stats.html',
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  );
 }
 
 // https://vite.dev/config/
